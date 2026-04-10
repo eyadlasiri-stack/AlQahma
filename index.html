@@ -12,17 +12,19 @@
     <meta name="author" content="إياد عسيري">
 
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <style>
-        /* الألوان الساحلية (أبيض وترابي/رملي) */
+        /* الألوان الجديدة - الوضع الداكن (Dark Mode) الفخم */
         :root { 
-            --bg-color: #faf9f6;          
-            --card-bg: #ffffff;           
-            --accent-sand: #c29a5b;       
-            --primary-blue: #0284c7;      
-            --text-primary: #1e293b;      
-            --text-secondary: #64748b;    
-            --border-color: #e2e8f0;      
+            --bg-color: #0b1121;          /* أزرق ليلي عميق جداً للخلفية */
+            --card-bg: #151e32;           /* لون الكروت الداكن */
+            --card-hover: #1e293b;        /* لون الكروت عند اللمس */
+            --accent-sand: #e2b714;       /* ذهبي/رملي ساطع للتباين */
+            --primary-blue: #38bdf8;      /* أزرق بحري مضيء */
+            --text-primary: #f8fafc;      /* أبيض ناصع للنصوص الأساسية */
+            --text-secondary: #94a3b8;    /* رمادي فاتح مريح للقراءة */
+            --border-color: #1e293b;      /* حدود داكنة خفيفة */
             --danger: #ef4444;
             --success: #10b981;
         }
@@ -33,99 +35,103 @@
         /* ========= شاشة التحميل ========= */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 999999; display: flex; justify-content: center; align-items: center; transition: 0.5s; }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .preloader-wrapper { position: relative; width: 130px; height: 130px; display: flex; justify-content: center; align-items: center; }
-        .spinner-ring { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 4px solid rgba(194, 154, 91, 0.2); border-top-color: var(--accent-sand); animation: spin 1s linear infinite; }
-        .preloader-logo { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; z-index: 2; animation: pulse 2s infinite; box-shadow: 0 0 20px rgba(194, 154, 91, 0.3); }
+        .preloader-wrapper { position: relative; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; }
+        .spinner-ring { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 4px solid rgba(226, 183, 20, 0.1); border-top-color: var(--accent-sand); animation: spin 1s linear infinite; }
+        .preloader-logo { width: 100px; height: 100px; object-fit: cover; border-radius: 50%; z-index: 2; animation: pulse 2s infinite; box-shadow: 0 0 25px rgba(226, 183, 20, 0.4); border: 2px solid var(--accent-sand); }
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
         /* ========= التبويبات السفلية ========= */
-        .tabs-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(15px); display: flex; justify-content: space-around; padding: 10px 2px 15px; border-top: 1px solid var(--border-color); z-index: 9000; box-shadow: 0 -4px 20px rgba(0,0,0,0.05); }
+        .tabs-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(11, 17, 33, 0.95); backdrop-filter: blur(15px); display: flex; justify-content: space-around; padding: 10px 2px 15px; border-top: 1px solid var(--border-color); z-index: 9000; box-shadow: 0 -4px 20px rgba(0,0,0,0.5); }
         .tab-btn { background: none; border: none; color: var(--text-secondary); font-family: 'Cairo'; font-size: 0.65rem; font-weight: 800; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; transition: 0.3s; padding: 5px; }
         .tab-btn.active { color: var(--accent-sand); transform: translateY(-4px); }
         .tab-btn .icon { font-size: 1.3rem; filter: grayscale(100%) opacity(0.5); transition: 0.3s; }
-        .tab-btn.active .icon { filter: grayscale(0%) opacity(1); drop-shadow: 0 0 8px rgba(194, 154, 91, 0.5); }
+        .tab-btn.active .icon { filter: grayscale(0%) opacity(1); drop-shadow: 0 0 10px rgba(226, 183, 20, 0.6); }
 
         .tab-content { display: none; padding: 15px 0 100px 0; animation: fadeIn 0.4s ease-out; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .container { max-width: 900px; margin: auto; padding: 15px; }
-        .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px 15px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); line-height: 1.8; }
+        .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px 15px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); line-height: 1.8; transition: 0.3s; }
+        .card-pro:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
 
         /* ========= الهيدر السياحي والصورة الرسمية ========= */
         .hero-guide { 
-            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2)), url('https://i.ibb.co/1GDNy8pr/IMG-6580.jpg'); 
+            background: linear-gradient(to top, var(--bg-color) 0%, rgba(11, 17, 33, 0.3) 100%), url('https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg'); 
             background-size: cover; 
             background-position: center; 
-            height: 320px; 
+            height: 380px; 
             border-radius: 20px; 
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 20px; text-align: right; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 20px; text-align: right; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; overflow: hidden; border: 1px solid var(--border-color);
         }
-        .hero-badge { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.95); color: var(--text-primary); padding: 5px 15px; border-radius: 30px; font-size: 0.75rem; font-weight: 900; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-        .hero-guide h1 { margin: 0; font-size: 2.2rem; font-weight: 900; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.8); }
-        .hero-guide p { margin: 5px 0 0 0; color: #fff; font-weight: 700; font-size: 0.95rem; opacity: 0.95; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+        .hero-badge { position: absolute; top: 15px; right: 15px; background: rgba(11, 17, 33, 0.8); color: var(--accent-sand); padding: 5px 15px; border-radius: 30px; font-size: 0.75rem; font-weight: 900; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 1px solid var(--accent-sand); backdrop-filter: blur(5px); }
+        .hero-guide h1 { margin: 0; font-size: 2.5rem; font-weight: 900; color: #fff; text-shadow: 0 4px 15px rgba(0,0,0,0.9); }
+        .hero-guide p { margin: 5px 0 0 0; color: var(--primary-blue); font-weight: 800; font-size: 1.1rem; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
 
         /* الطقس والصلاة */
         .live-widgets { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
-        .widget-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-        .widget-box span.icon { font-size: 2rem; margin-bottom: 5px; }
+        .widget-box { background: linear-gradient(135deg, var(--card-bg), #0f172a); border: 1px solid var(--border-color); border-radius: 16px; padding: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .widget-box span.icon { font-size: 2.2rem; margin-bottom: 5px; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4)); }
         .widget-box h4 { margin: 0; font-size: 0.8rem; color: var(--text-secondary); font-weight: 800; }
-        .widget-box p { margin: 5px 0 0; font-size: 1.2rem; font-weight: 900; color: var(--text-primary); }
+        .widget-box p { margin: 5px 0 0; font-size: 1.3rem; font-weight: 900; color: var(--accent-sand); }
 
-        .section-header { display: flex; align-items: center; gap: 10px; margin: 30px 0 20px; }
-        .section-header h2 { margin: 0; font-size: 1.2rem; color: var(--text-primary); font-weight: 900; }
-        .section-line { flex: 1; height: 2px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.6; border-radius: 5px; }
+        .section-header { display: flex; align-items: center; gap: 10px; margin: 35px 0 20px; }
+        .section-header h2 { margin: 0; font-size: 1.3rem; color: var(--text-primary); font-weight: 900; }
+        .section-line { flex: 1; height: 2px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.8; border-radius: 5px; }
 
         /* شبكة الكروت للخدمات والأماكن */
-        .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; }
-        .place-card { background: var(--card-bg); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); transition: 0.3s; display: flex; flex-direction: column; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
-        .place-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .place-img { height: 160px; background-size: cover; background-position: center; position: relative; }
-        .place-tag { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.95); color: var(--primary-blue); padding: 4px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 900; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-        .place-info { padding: 15px; flex: 1; display: flex; flex-direction: column; }
-        .place-info h3 { margin: 0 0 8px; font-size: 1.05rem; color: var(--text-primary); font-weight: 900;}
-        .place-info p { margin: 0 0 15px; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.7; flex: 1; }
-        .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: rgba(194, 154, 91, 0.1); color: var(--accent-sand); padding: 10px; border-radius: 10px; text-decoration: none; font-size: 0.8rem; font-weight: 900; border: 1px solid rgba(194, 154, 91, 0.3); transition: 0.2s; width: 100%; }
-        .btn-action:hover { background: var(--accent-sand); color: #fff; }
+        .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+        .place-card { background: var(--card-bg); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); transition: 0.3s; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .place-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.4); border-color: var(--accent-sand); }
+        .place-img { height: 180px; background-size: cover; background-position: center; position: relative; }
+        .place-tag { position: absolute; top: 12px; right: 12px; background: rgba(11, 17, 33, 0.9); color: var(--primary-blue); padding: 4px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 900; box-shadow: 0 2px 10px rgba(0,0,0,0.5); border: 1px solid var(--border-color); }
+        .place-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .place-info h3 { margin: 0 0 10px; font-size: 1.1rem; color: var(--accent-sand); font-weight: 900;}
+        .place-info p { margin: 0 0 15px; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8; flex: 1; }
+        .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 6px; background: rgba(226, 183, 20, 0.1); color: var(--accent-sand); padding: 12px; border-radius: 10px; text-decoration: none; font-size: 0.85rem; font-weight: 900; border: 1px solid rgba(226, 183, 20, 0.3); transition: 0.2s; width: 100%; }
+        .btn-action:hover { background: var(--accent-sand); color: #000; }
+        .btn-action.map-btn { background: rgba(56, 189, 248, 0.1); color: var(--primary-blue); border-color: rgba(56, 189, 248, 0.3); }
+        .btn-action.map-btn:hover { background: var(--primary-blue); color: #000; }
 
-        .text-block { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.9; margin-bottom: 15px; text-align: justify; }
-        .text-block strong { color: var(--text-primary); font-size: 0.9rem; }
+        .text-block { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.9; margin-bottom: 15px; text-align: justify; }
+        .text-block strong { color: var(--text-primary); font-size: 0.95rem; }
         
         .list-info { list-style: none; padding: 0; margin: 0; }
-        .list-info li { padding: 8px 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 8px;}
-        .list-info li::before { content: "📍"; font-size: 1rem; }
+        .list-info li { padding: 10px 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 8px;}
+        .list-info li:last-child { border-bottom: none; }
+        .list-info li::before { content: "📍"; font-size: 1.1rem; }
 
         /* ========= ستايلات البطولة (قوائم علوية) ========= */
-        .tournament-section-title { font-size: 1.4rem; font-weight: 900; color: var(--accent-sand); margin: 20px 0; text-align: center; }
+        .tournament-section-title { font-size: 1.6rem; font-weight: 900; color: var(--accent-sand); margin: 20px 0; text-align: center; text-shadow: 0 2px 10px rgba(226, 183, 20, 0.2); }
 
-        .sub-tabs-wrapper { display: flex; gap: 8px; margin-bottom: 20px; padding: 5px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+        .sub-tabs-wrapper { display: flex; gap: 10px; margin-bottom: 25px; padding: 5px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
         .sub-tabs-wrapper::-webkit-scrollbar { display: none; }
-        .sub-tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 18px; border-radius: 10px; font-size: 0.8rem; font-weight: 800; cursor: pointer; font-family: 'Cairo'; transition: 0.2s; flex: 0 0 auto; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        .sub-tab-btn.active { background: rgba(194, 154, 91, 0.1); color: var(--accent-sand); border-color: var(--accent-sand); }
+        .sub-tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 10px 20px; border-radius: 12px; font-size: 0.85rem; font-weight: 800; cursor: pointer; font-family: 'Cairo'; transition: 0.2s; flex: 0 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .sub-tab-btn.active { background: rgba(226, 183, 20, 0.1); color: var(--accent-sand); border-color: var(--accent-sand); }
         
         .sub-content { display: none; animation: fadeIn 0.3s; }
         .sub-content.active { display: block; }
 
-        .search-input { width: 100%; padding: 12px 15px; border-radius: 10px; background: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; outline: none; transition: 0.3s; box-shadow: inset 0 2px 5px rgba(0,0,0,0.02); }
-        .search-input:focus { border-color: var(--accent-sand); }
+        .search-input { width: 100%; padding: 15px; border-radius: 12px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.9rem; font-weight: 700; margin-bottom: 20px; outline: none; transition: 0.3s; }
+        .search-input:focus { border-color: var(--primary-blue); box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
         
-        .match-list-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); padding: 15px 12px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+        .match-list-card { background: var(--bg-color); border-radius: 12px; border: 1px solid var(--border-color); padding: 15px; margin-bottom: 15px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); }
         .teams-row-mini { display: flex; justify-content: space-between; align-items: center; }
-        .team-mini { width: 35%; text-align: center; font-weight: 900; font-size: 0.95rem; color: var(--text-primary); }
-        .score-mini { background: #f8fafc; color: var(--text-primary); padding: 6px 15px; border-radius: 10px; font-weight: 900; border: 1px solid var(--border-color); font-size: 1.1rem; display: flex; flex-direction: column; align-items: center; }
-        .day-header { color: #fff; background: var(--accent-sand); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 900; margin: 20px 0 10px; display: inline-block; box-shadow: 0 2px 8px rgba(194, 154, 91, 0.3);}
+        .team-mini { width: 35%; text-align: center; font-weight: 900; font-size: 1rem; color: var(--text-primary); }
+        .score-mini { background: var(--card-bg); color: var(--accent-sand); padding: 8px 18px; border-radius: 10px; font-weight: 900; border: 1px solid var(--border-color); font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; }
+        .day-header { color: #000; background: var(--accent-sand); padding: 6px 15px; border-radius: 8px; font-size: 0.9rem; font-weight: 900; margin: 25px 0 15px; display: inline-block; box-shadow: 0 4px 15px rgba(226, 183, 20, 0.3);}
         
-        .group-table-wrap { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
-        .group-header { background: #f8fafc; padding: 12px; font-weight: 900; font-size: 0.9rem; border-bottom: 1px solid var(--border-color); color: var(--primary-blue); text-align: center; }
+        .group-table-wrap { background: var(--bg-color); border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; margin-bottom: 20px; }
+        .group-header { background: var(--card-bg); padding: 15px; font-weight: 900; font-size: 0.95rem; border-bottom: 1px solid var(--border-color); color: var(--primary-blue); text-align: center; }
         .group-table { width: 100%; border-collapse: collapse; }
-        .group-table th { padding: 10px 8px; color: var(--text-secondary); font-size: 0.75rem; border-bottom: 1px solid var(--border-color); text-align: center; font-weight: 800; background: #f1f5f9; }
-        .group-table td { padding: 12px 8px; text-align: center; font-size: 0.85rem; border-bottom: 1px solid var(--border-color); font-weight: 700; color: var(--text-primary);}
-        .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 900; width: 40%; }
+        .group-table th { padding: 12px 8px; color: var(--text-secondary); font-size: 0.75rem; border-bottom: 1px solid var(--border-color); text-align: center; font-weight: 800; background: rgba(0,0,0,0.2); }
+        .group-table td { padding: 15px 8px; text-align: center; font-size: 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.02); font-weight: 700; color: var(--text-primary);}
+        .team-name-cell { text-align: right !important; padding-right: 15px !important; font-weight: 900; width: 40%; color: var(--accent-sand); }
 
         /* ========= ستايل المطور ========= */
-        .dev-card { background: linear-gradient(135deg, #ffffff, #f8fafc); border-radius: 20px; padding: 40px 20px; text-align: center; border: 1px solid var(--border-color); margin-top: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.04); }
-        .dev-avatar { width: 90px; height: 90px; background: var(--bg-color); border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 3rem; border: 3px solid var(--accent-sand); box-shadow: 0 4px 10px rgba(194,154,91,0.2); }
+        .dev-card { background: linear-gradient(135deg, var(--card-bg), #0f172a); border-radius: 20px; padding: 40px 20px; text-align: center; border: 1px solid var(--border-color); margin-top: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .dev-avatar { width: 100px; height: 100px; background: var(--bg-color); border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; font-size: 3.5rem; border: 4px solid var(--accent-sand); box-shadow: 0 4px 20px rgba(226,183,20,0.3); }
     </style>
 </head>
 <body>
@@ -133,14 +139,14 @@
     <div id="preloader">
         <div class="preloader-wrapper">
             <div class="spinner-ring"></div>
-            <img src="https://i.ibb.co/1GDNy8pr/IMG-6580.jpg" class="preloader-logo" alt="شعار القحمة">
+            <img src="https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg" class="preloader-logo" alt="شعار القحمة">
         </div>
     </div>
 
     <nav class="tabs-nav">
         <button class="tab-btn active" onclick="openTab('guide')"><span class="icon">🌴</span><span>السياحة</span></button>
         <button class="tab-btn" onclick="openTab('history')"><span class="icon">📜</span><span>تاريخنا</span></button>
-        <button class="tab-btn" onclick="openTab('services')"><span class="icon">🍽️</span><span>الخدمات</span></button>
+        <button class="tab-btn" onclick="openTab('services')"><span class="icon">🏥</span><span>الخدمات</span></button>
         <button class="tab-btn" onclick="openTab('tournament')"><span class="icon">⚽</span><span>بطولات القحمة</span></button>
         <button class="tab-btn" onclick="openTab('dev')"><span class="icon">💻</span><span>المطور</span></button>
     </nav>
@@ -172,29 +178,38 @@
 
             <div class="places-grid">
                 <div class="place-card">
-                    <div class="place-img" style="background-image: url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?q=80&w=600');"><span class="place-tag">أيقونة القحمة</span></div>
+                    <div class="place-img" style="background-image: url('https://i.ibb.co/rRNxnkvZ/IMG-6580.jpg');"><span class="place-tag">أيقونة القحمة</span></div>
                     <div class="place-info">
                         <h3>جزيرة كدمبل (الجبل البركاني)</h3>
                         <p>تتربع جزيرة كدمبل كأحد أهم المعالم السياحية في البحر الأحمر. تبعد حوالي 40 دقيقة بالقارب من المرسى. تتميز بوجود جبل بركاني يشمخ في وسط البحر، محاط برمال بيضاء نقية وشعاب مرجانية نادرة. تعتبر الجنة الخفية لهواة الغوص، التخييم الشتوي، وصيد الأسماك.</p>
-                        <a href="#" class="btn-action">📍 موقع مرسى الانطلاق</a>
+                        <a href="https://www.google.com/maps/search/جزيرة+كدمبل" target="_blank" class="btn-action map-btn">📍 موقع الجزيرة</a>
                     </div>
                 </div>
 
                 <div class="place-card">
-                    <div class="place-img" style="background-image: url('https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg');"><span class="place-tag">الواجهة الرئيسية</span></div>
+                    <div class="place-img" style="background-image: url('https://i.ibb.co/b5jxrrnc/IMG-6371.jpg');"><span class="place-tag">متنفس العائلة</span></div>
+                    <div class="place-info">
+                        <h3>حديقة القحمة العامة</h3>
+                        <p>متنفس أخضر جميل ومنسق بعناية. تضم مساحات خضراء واسعة، وممرات مشاة مرتبة، وأماكن جلوس مظللة تناسب العائلات والأطفال. تعتبر المكان الأمثل لقضاء أوقات مسائية هادئة بعيداً عن صخب الحياة، وتتوفر حولها المواقف والخدمات.</p>
+                        <a href="https://www.google.com/maps/search/حديقة+القحمة" target="_blank" class="btn-action map-btn">📍 موقع الحديقة</a>
+                    </div>
+                </div>
+
+                <div class="place-card">
+                    <div class="place-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600');"><span class="place-tag">الواجهة الرئيسية</span></div>
                     <div class="place-info">
                         <h3>كورنيش وواجهة القحمة البحرية</h3>
                         <p>يمتد الكورنيش على طول الساحل كشريط خلاب، مزود بجلسات عائلية مظللة، ألعاب أطفال، ومماشي رياضية. يعتبر الوجهة الأولى للأهالي والزوار لقضاء العصر ومشاهدة أروع لحظات غروب الشمس في عسير، مع توفر كافة الخدمات والمطاعم بالقرب منه.</p>
-                        <a href="#" class="btn-action">📍 افتح الخريطة</a>
+                        <a href="https://www.google.com/maps/search/كورنيش+القحمة" target="_blank" class="btn-action map-btn">📍 موقع الكورنيش</a>
                     </div>
                 </div>
 
                 <div class="place-card">
-                    <div class="place-img" style="background-image: url('https://i.ibb.co/cctNG7Lt/IMG-6449.jpg');"><span class="place-tag">صرح إيماني</span></div>
+                    <div class="place-img" style="background-image: url('https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?q=80&w=600');"><span class="place-tag">محمية طبيعية</span></div>
                     <div class="place-info">
-                        <h3>جامع القحمة الكبير</h3>
-                        <p>يعد جامع القحمة الكبير واحداً من أهم المعالم الدينية والمعمارية في المنطقة. يتميز بتصميمه العمراني الإسلامي الأنيق، ويتسع لأعداد كبيرة من المصلين. يعتبر مكاناً للسكينة والروحانية، ومحوراً للأنشطة الثقافية والدينية والتعليمية المجتمعية.</p>
-                        <a href="#" class="btn-action">📍 الموقع الجغرافي للجامع</a>
+                        <h3>غابات المانجروف (أشجار الشورى)</h3>
+                        <p>تنتشر أشجار الشورى الكثيفة على سواحل القحمة، مشكلة بيئة حيوية بحرية خلابة تسر الناظرين وتعمل كمصدات طبيعية للأمواج. تعتبر هذه الغابات محمية طبيعية وملاذاً آمناً لتكاثر الأسماك والروبيان.</p>
+                        <a href="https://www.google.com/maps/search/غابات+الشورى+القحمة" target="_blank" class="btn-action map-btn">📍 موقع غابات الشورى</a>
                     </div>
                 </div>
             </div>
@@ -220,7 +235,7 @@
                     <strong>الميناء التاريخي:</strong> كانت القحمة قديماً تعتبر من أهم الموانئ والمرافئ التجارية الحيوية على ساحل البحر الأحمر. كانت ترسو فيها السفن الشراعية (السنابيك) المحملة بالبضائع. 
                 </p>
                 <p class="text-block">
-                    <strong>حرفة الغوص وصيد اللؤلؤ:</strong> ارتبط إنسان القحمة بالبحر منذ القدم. امتدت رحلاتهم للغوص المحفوفة بالمخاطر لاستخراج اللؤلؤ والمحار.
+                    <strong>حرفة الغوص وصيد اللؤلؤ:</strong> ارتبط إنسان القحمة بالبحر منذ القدم. امتدت رحلاتهم للغوص المحفوف بالمخاطر لاستخراج اللؤلؤ والمحار.
                 </p>
             </div>
 
@@ -239,56 +254,62 @@
 
     <div id="services" class="tab-content">
         <div class="container">
-            <div class="card-pro" style="text-align: center; border-color: var(--primary-blue); background: #f0f9ff; padding: 30px 15px;">
-                <h2 style="margin:0; color:var(--primary-blue); font-size: 1.6rem; font-weight: 900;">دليل القحمة الخدمي 🧭</h2>
-                <p style="margin:10px 0 0; font-size:0.9rem; color:var(--text-secondary); font-weight: 700;">أهم أرقام ومواقع الخدمات لزوار وأهالي المنطقة</p>
+            <div class="card-pro" style="text-align: center; border-color: var(--primary-blue); background: linear-gradient(180deg, rgba(56, 189, 248, 0.1), transparent); padding: 30px 15px;">
+                <h2 style="margin:0; color:var(--primary-blue); font-size: 1.6rem; font-weight: 900;">دليل القحمة الخدمي والطبي 🏥</h2>
+                <p style="margin:10px 0 0; font-size:0.9rem; color:var(--text-secondary); font-weight: 700;">دليلك الشامل لجميع الأماكن الهامة والطارئة</p>
             </div>
 
-            <div class="section-header"><h2>🚨 الطوارئ والجهات الحكومية</h2><div class="section-line"></div></div>
-            <div class="card-pro" style="background: #fef2f2; border: 1px solid var(--danger); box-shadow: none;">
-                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #fecaca; padding-bottom: 12px; margin-bottom: 12px;">
-                    <span style="font-weight: 800; font-size:0.9rem; color:var(--text-primary);">حرس الحدود (تصاريح بحرية)</span><a href="tel:994" style="color:var(--danger); font-weight:900; font-size:1.1rem; text-decoration:none;">994 📞</a>
-                </div>
-                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #fecaca; padding-bottom: 12px; margin-bottom: 12px;">
-                    <span style="font-weight: 800; font-size:0.9rem; color:var(--text-primary);">مستشفى القحمة العام</span><a href="tel:997" style="color:var(--danger); font-weight:900; font-size:1.1rem; text-decoration:none;">997 📞</a>
-                </div>
-                <div style="display: flex; justify-content: space-between;">
-                    <span style="font-weight: 800; font-size:0.9rem; color:var(--text-primary);">الدفاع المدني</span><a href="tel:998" style="color:var(--danger); font-weight:900; font-size:1.1rem; text-decoration:none;">998 📞</a>
-                </div>
+            <div class="section-header"><h2>🚨 الصحة والطوارئ الحكومية</h2><div class="section-line"></div></div>
+            <div class="card-pro" style="border: 1px solid var(--danger); box-shadow: 0 0 15px rgba(239, 68, 68, 0.1);">
+                <ul class="list-info">
+                    <li><strong>مستشفى القحمة العام:</strong> متوفر قسم الطوارئ 24 ساعة لخدمة الأهالي والزوار. <a href="https://www.google.com/maps/search/مستشفى+القحمة+العام" target="_blank" style="margin-right:auto; color:var(--danger); text-decoration:none; font-weight:900;">📍 افتح الخريطة</a></li>
+                    <li><strong>الصيدليات المناوبة:</strong> تتوفر عدة صيدليات على الشارع العام. <a href="https://www.google.com/maps/search/صيدلية+القحمة" target="_blank" style="margin-right:auto; color:var(--primary-blue); text-decoration:none; font-weight:900;">📍 بحث</a></li>
+                    <li style="justify-content: space-between;"><strong>حرس الحدود (للبحر):</strong> للاتصال والطوارئ البحرية <a href="tel:994" style="color:var(--danger); text-decoration:none; font-weight:900; font-size:1.1rem; direction:ltr;">📞 994</a></li>
+                    <li style="justify-content: space-between;"><strong>الدفاع المدني:</strong> <a href="tel:998" style="color:var(--danger); text-decoration:none; font-weight:900; font-size:1.1rem; direction:ltr;">📞 998</a></li>
+                    <li style="justify-content: space-between; border:none;"><strong>البلدية (بلاغات):</strong> <a href="tel:940" style="color:var(--primary-blue); text-decoration:none; font-weight:900; font-size:1.1rem; direction:ltr;">📞 940</a></li>
+                </ul>
             </div>
 
-            <div class="section-header"><h2>⚓ الرحلات البحرية والغوص</h2><div class="section-line"></div></div>
+            <div class="section-header"><h2>⛽ محطات الوقود وخدمة المسافر</h2><div class="section-line"></div></div>
+            <div class="card-pro">
+                <ul class="list-info">
+                    <li><strong>محطات الوقود:</strong> تتوفر محطات وقود متكاملة (بنزين، ديزل، بنشر، تموينات) على الطريق الدولي الساحلي المار بالقحمة.</li>
+                    <li style="border:none;"><a href="https://www.google.com/maps/search/محطة+وقود+القحمة" target="_blank" class="btn-action map-btn" style="width:100%; margin-top:10px;">📍 عرض أقرب محطة وقود لك</a></li>
+                </ul>
+            </div>
+
+            <div class="section-header"><h2>⚓ الرحلات البحرية والصيد</h2><div class="section-line"></div></div>
             <div class="places-grid">
                 <div class="place-card">
                     <div class="place-info">
-                        <h3 style="color:var(--primary-blue); font-size: 1.1rem;">🚤 كباتن الرحلات والنزهة</h3>
+                        <h3 style="color:var(--accent-sand); font-size: 1.1rem;">🚤 كباتن الرحلات والنزهة</h3>
                         <p>رحلات لجزيرة كدمبل، وجولات بحرية وقت الغروب للعوائل والشباب.</p>
-                        <a href="tel:0500000000" class="btn-action" style="background:var(--primary-blue); color:#fff; border:none;">📞 تواصل وحجز رحلة</a>
+                        <a href="tel:0500000000" class="btn-action" style="border:none;">📞 تواصل وحجز رحلة</a>
                     </div>
                 </div>
                 <div class="place-card">
                     <div class="place-info">
-                        <h3 style="color:var(--primary-blue); font-size: 1.1rem;">🎣 رحلات الصيد (حداق)</h3>
-                        <p>قوارب مجهزة بأجهزة كشف الأسماك، وتوفير طعوم وسنارات.</p>
-                        <a href="tel:0500000000" class="btn-action" style="background:var(--primary-blue); color:#fff; border:none;">📞 تنسيق رحلة صيد</a>
+                        <h3 style="color:var(--accent-sand); font-size: 1.1rem;">🎣 رحلات الصيد (حداق)</h3>
+                        <p>قوارب مجهزة بأجهزة كشف الأسماك، وتوفير طعوم وسنارات للباحثين عن الصيد.</p>
+                        <a href="tel:0500000000" class="btn-action" style="border:none;">📞 تنسيق رحلة صيد</a>
                     </div>
                 </div>
             </div>
 
-            <div class="section-header"><h2>🏨 الإيواء السياحي والمطاعم</h2><div class="section-line"></div></div>
+            <div class="section-header"><h2>🏨 الإيواء والمطاعم</h2><div class="section-line"></div></div>
             <div class="places-grid">
                 <div class="place-card">
                     <div class="place-info">
-                        <h3 style="color:var(--accent-sand); font-size: 1.1rem;">🏨 الشاليهات والمنتجعات</h3>
+                        <h3 style="color:var(--primary-blue); font-size: 1.1rem;">🏨 الشاليهات والمنتجعات</h3>
                         <p>شاليهات ووحدات سكنية تطل مباشرة على البحر أو قريبة من الخدمات.</p>
-                        <a href="#" class="btn-action">📍 استعرض مواقع السكن</a>
+                        <a href="https://www.google.com/maps/search/شاليهات+القحمة" target="_blank" class="btn-action map-btn">📍 استعرض مواقع السكن</a>
                     </div>
                 </div>
                 <div class="place-card">
                     <div class="place-info">
-                        <h3 style="color:var(--accent-sand); font-size: 1.1rem;">🐟 سوق السمك المركزي</h3>
-                        <p>مزاد يومي للأسماك الطازجة، وتجهيز للقلي أو الشوي.</p>
-                        <a href="#" class="btn-action">📍 موقع السوق المركزي</a>
+                        <h3 style="color:var(--primary-blue); font-size: 1.1rem;">🐟 سوق السمك المركزي والمطاعم</h3>
+                        <p>مزاد يومي للأسماك الطازجة، وتجهيز للقلي أو الشوي، بالإضافة للمطاعم الشعبية.</p>
+                        <a href="https://www.google.com/maps/search/مطاعم+القحمة" target="_blank" class="btn-action map-btn">📍 دليل المطاعم والأسواق</a>
                     </div>
                 </div>
             </div>
@@ -334,8 +355,8 @@
                 </div>
             </div>
 
-            <div id="t-awards" class="sub-content card-pro" style="background: linear-gradient(135deg, var(--card-bg), #f0f9ff); border: 1px solid var(--primary-blue);">
-                <h3 style="margin: 0 0 15px; color: var(--primary-blue); font-size: 1.2rem; text-align: center;">جوائز وألقاب النسخة 28 🏅</h3>
+            <div id="t-awards" class="sub-content card-pro" style="background: linear-gradient(135deg, var(--card-bg), rgba(226, 183, 20, 0.05)); border: 1px solid var(--accent-sand);">
+                <h3 style="margin: 0 0 15px; color: var(--accent-sand); font-size: 1.2rem; text-align: center;">جوائز وألقاب النسخة 28 🏅</h3>
                 <ul class="list-info" style="font-size: 0.95rem;">
                     <li><strong>بطل النسخة:</strong> نادي الفيصلي (بركلات الترجيح 7-6).</li>
                     <li><strong>وصيف البطولة:</strong> نادي الوسام.</li>
@@ -356,7 +377,7 @@
         <div class="container">
             <div class="dev-card">
                 <div class="dev-avatar">👨‍💻</div>
-                <h2 style="margin:0 0 5px; color:var(--text-primary); font-weight:900; font-size:1.6rem;">إياد عسيري</h2>
+                <h2 style="margin:0 0 5px; color:var(--text-primary); font-weight:900; font-size:1.8rem;">إياد عسيري</h2>
                 <p style="color:var(--accent-sand); font-weight:900; font-size:1rem; margin-top:0;">مطور ومبرمج الموسوعة</p>
                 
                 <p style="font-size:0.9rem; color:var(--text-secondary); line-height: 1.8; margin: 20px 0; font-weight: 600;">
@@ -364,7 +385,7 @@
                     بُنيت <strong>"موسوعة القحمة الرقمية"</strong> بجهد شخصي لتكون المرجع الشامل الذي يخدم أهالي المنطقة ويدعم السياحة والرياضة.
                 </p>
 
-                <div style="background: #f1f5f9; border-radius: 16px; padding: 20px; margin: 25px 0; border: 1px solid var(--border-color);">
+                <div style="background: var(--bg-color); border-radius: 16px; padding: 20px; margin: 25px 0; border: 1px solid var(--border-color);">
                     <h4 style="margin:0 0 15px; color:var(--text-primary); font-size:1.1rem; font-weight: 900;">أبرز الخدمات التقنية:</h4>
                     <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
                         <span style="background:var(--card-bg); border:1px solid var(--primary-blue); padding:6px 12px; border-radius:20px; font-size:0.8rem; color:var(--primary-blue); font-weight:800;">برمجة المواقع والتطبيقات 🌐</span>
@@ -373,7 +394,7 @@
                     </div>
                 </div>
 
-                <a href="https://wa.me/966534987428" style="display:inline-block; background:var(--accent-sand); color:#fff; padding:12px 30px; border-radius:12px; text-decoration:none; font-weight:900; font-size:1rem; box-shadow: 0 4px 15px rgba(194,154,91,0.3); transition:0.3s; margin-bottom: 10px;">
+                <a href="https://wa.me/966534987428" style="display:inline-block; background:var(--accent-sand); color:#000; padding:12px 30px; border-radius:12px; text-decoration:none; font-weight:900; font-size:1rem; box-shadow: 0 4px 15px rgba(226,183,20,0.3); transition:0.3s; margin-bottom: 10px;">
                     💬 اطلب منصتك ومشروعك الآن
                 </a>
             </div>
@@ -433,7 +454,7 @@
         function renderTournamentData() {
             document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.75rem; color:var(--text-secondary); display:block; margin-top:4px;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
             document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = index===0?'🥇':index===1?'🥈':index===2?'🥉':''; return `<tr><td class="team-name-cell">${medal} ${s.n}<br><span style="color:var(--text-secondary); font-size:0.75rem;">${s.f}</span></td><td><span style="background:var(--bg-color); color:var(--text-primary); padding:6px 15px; border-radius:8px; font-weight:900; border:1px solid var(--border-color); font-size:1rem;">${s.g}</span></td></tr>`; }).join('');
-            document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-table-wrap"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>نقاط</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--text-primary); font-weight:900; font-size:1.05rem;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
+            document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="group-table-wrap"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>نقاط</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--primary-blue); font-weight:900; font-size:1.05rem;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
             
             const stats = {}; 
             archiveData.forEach(day => day.matches.forEach(m => { 
@@ -443,7 +464,7 @@
                 stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; 
                 stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; 
             }));
-            document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--text-primary); font-weight:900; font-size:1.05rem;">${s.f-s.a}</td></tr>`).join('');
+            document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--primary-blue); font-weight:900; font-size:1.05rem;">${s.f-s.a}</td></tr>`).join('');
             
             document.getElementById('rules-content').innerText = aboutRulesText;
         }
