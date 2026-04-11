@@ -11,9 +11,8 @@
     <meta name="theme-color" content="#0d1321">
     <link rel="apple-touch-icon" href="https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg">
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg">
-    <link rel="manifest" href='data:application/manifest+json,{"name":"دليل القحمة","short_name":"دليل القحمة","display":"standalone","start_url":".","background_color":"#0d1321","theme_color":"#0d1321","icons":[{"src":"https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg","sizes":"512x512","type":"image/jpeg"}]}'>
 
-    <title>دليل القحمة الرقمي | سياحة، تراث، وبطولات 🌊🏆</title>
+    <title>دليل القحمة الرقمي الموحد</title>
     
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -21,7 +20,7 @@
     <meta name="author" content="إياد عسيري">
 
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
+
     <style>
         /* الألوان - الوضع الداكن الفخم */
         :root { 
@@ -55,6 +54,7 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInTab { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* ========= التبويبات السفلية المؤمنة ========= */
         .tabs-nav { 
@@ -80,7 +80,6 @@
 
         .tab-content { display: none; padding: 15px 0 30px 0; animation: fadeInTab 0.3s ease-out; }
         .tab-content.active { display: block; }
-        @keyframes fadeInTab { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .container { max-width: 800px; margin: auto; padding: 0 15px; }
         .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: right; }
@@ -110,7 +109,7 @@
         .prayer-item.active-prayer b { color: var(--accent-sand); }
 
         .section-header { display: flex; align-items: center; gap: 10px; margin: 30px 0 15px; }
-        .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; }
+        .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; text-align: right; }
         .section-line { flex: 1; height: 1px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.5; }
 
         /* شبكة الكروت للأماكن والخدمات */
@@ -133,7 +132,10 @@
         .list-info li .text-side { display: flex; align-items: center; gap: 8px; }
         .list-info li .text-side::before { content: "📍"; font-size: 1rem; }
 
-        /* ========= ستايلات البطولة (التنسيق العرضي الجديد للنتائج) ========= */
+        /* إخلاء المسؤولية */
+        .disclaimer { font-size: 0.7rem; color: var(--text-secondary); padding: 15px; border-top: 1px solid var(--border-color); margin-top: 20px; text-align: center; line-height: 1.6; }
+
+        /* ========= ستايلات البطولة ========= */
         .sub-tabs-wrapper { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
         .sub-tabs-wrapper::-webkit-scrollbar { display: none; }
         .sub-tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; cursor: pointer; font-family: 'Cairo'; flex: 0 0 auto; outline: none; transition: 0.2s;}
@@ -144,7 +146,7 @@
 
         .search-input { width: 100%; padding: 10px 15px; border-radius: 8px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.8rem; margin-bottom: 15px; outline: none; text-align: right; }
         
-        .match-list-card { background: var(--bg-color); border-radius: 12px; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 12px; }
+        .match-list-card { background: var(--bg-color); border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 10px; text-align: center; }
         .teams-row-mini { display: flex; flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: nowrap; width: 100%; gap: 10px; }
         .team-mini { flex: 1; text-align: center; font-weight: 900; font-size: 0.9rem; color: var(--text-primary); }
         .score-mini { flex: 0 0 auto; min-width: 80px; background: var(--card-bg); color: var(--accent-sand); padding: 6px 12px; border-radius: 8px; font-weight: 900; border: 1px solid var(--border-color); font-size: 1.05rem; display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -167,7 +169,7 @@
         </div>
         <div class="welcome-text">
             <h2>مرحباً بك في القحمة</h2>
-            <p>WELCOME TO AL QAHMA</p>
+            <p>AL QAHMA DIGITAL GUIDE</p>
         </div>
     </div>
 
@@ -182,7 +184,7 @@
     <div id="guide" class="tab-content active">
         <div class="container">
             <div class="page-top-title">
-                <h1>دليل القحمة</h1>
+                <h1>دليل القحمة الرقمي</h1>
                 <p>مشتى عسير الأول، وواجهة البحر الأحمر</p>
             </div>
             
@@ -218,7 +220,7 @@
                     <div class="place-info">
                         <h3>مطل القحمة</h3>
                         <p>مطل جبلي يمنحك رؤية بانورامية ساحرة لساحل القحمة والبحر الأحمر. مكان مثالي لالتقاط الصور والاستمتاع بالهواء العليل والتأمل في إبداع الخالق.</p>
-                        <a href="https://www.google.com/maps/search/مطل+القحمة" target="_blank" class="btn-action map-btn">📍 افتح الخريطة للمطل</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=مطل+القحمة" target="_blank" class="btn-action map-btn">📍 موقع المطل</a>
                     </div>
                 </div>
 
@@ -227,7 +229,7 @@
                     <div class="place-info">
                         <h3>جزيرة كدمبل</h3>
                         <p>تتربع جزيرة كدمبل كأحد أهم المعالم في البحر الأحمر. جبل بركاني يشمخ وسط البحر محاط برمال بيضاء. الجنة الخفية لهواة الغوص والصيد.</p>
-                        <a href="https://www.google.com/maps/search/جزيرة+كدمبل+القحمة" target="_blank" class="btn-action map-btn">📍 موقع الجزيرة</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=جزيرة+كدمبل" target="_blank" class="btn-action map-btn">📍 موقع الجزيرة</a>
                     </div>
                 </div>
 
@@ -236,7 +238,7 @@
                     <div class="place-info">
                         <h3>كورنيش وواجهة القحمة</h3>
                         <p>يمتد الكورنيش كشريط خلاب، مزود بجلسات عائلية مظللة وأماكن ترفيهية. الوجهة الأولى للأهالي والزوار لمشاهدة الغروب مع توفر كافة الخدمات.</p>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة" target="_blank" class="btn-action map-btn">📍 موقع الكورنيش</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=كورنيش+القحمة" target="_blank" class="btn-action map-btn">📍 موقع الكورنيش</a>
                     </div>
                 </div>
 
@@ -245,7 +247,7 @@
                     <div class="place-info">
                         <h3>حديقة القحمة العامة</h3>
                         <p>متنفس أخضر جميل ومنسق بعناية. تضم مساحات خضراء واسعة وممرات مشاة تناسب العائلات والأطفال لقضاء أوقات مسائية هادئة.</p>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة" target="_blank" class="btn-action map-btn">📍 موقع الحديقة</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=حديقة+القحمة+العامة" target="_blank" class="btn-action map-btn">📍 موقع الحديقة</a>
                     </div>
                 </div>
             </div>
@@ -322,12 +324,12 @@
             <div class="card-pro">
                 <ul class="list-info">
                     <li>
-                        <div class="text-side"><b>مقر مركز القحمة</b></div>
-                        <a href="https://maps.app.goo.gl/QZxpqwrEuLguKKmt8?g_st=ic" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
+                        <div class="text-side"><b>مركز القحمة</b></div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=مركز+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
                     </li>
                     <li>
                         <div class="text-side"><b>مركز شرطة القحمة</b></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=صيدليات+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=شرطة+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
                     </li>
                     <li>
                         <div class="text-side"><b>بلدية الساحل (للبلاغات)</b></div>
@@ -364,14 +366,14 @@
                     <div class="place-info">
                         <h3 style="color:var(--success); font-size: 0.95rem;">ملعب الوسم بالقحمة</h3>
                         <p style="font-size:0.75rem;">الملعب الرئيسي لاحتضان كبرى البطولات الرمضانية والمباريات الرسمية.</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الوسم+القحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع الملعب</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الوسم+بالقحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع الملعب</a>
                     </div>
                 </div>
                 <div class="place-card">
                     <div class="place-info">
                         <h3 style="color:var(--success); font-size: 0.95rem;">ملعب الخيرية</h3>
                         <p style="font-size:0.75rem;">ملعب مخصص لتدريبات الأكاديميات والمباريات التنشيطية وتنمية المواهب.</p>
-                        <a href="https://maps.app.goo.gl/Mzxp8SWdU71uZoL18?g_st=ic" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع ملعب الخيرية</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الخيرية+بالقحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع ملعب الخيرية</a>
                     </div>
                 </div>
             </div>
@@ -402,7 +404,7 @@
                 <ul class="list-info">
                     <li>
                         <div class="text-side">مطاعم السمك والمأكولات الشعبية</div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=سوق+السمك+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">المواقع 🗺️</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=مطاعم+القحمة+سوق+السمك" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">المواقع 🗺️</a>
                     </li>
                 </ul>
             </div>
@@ -414,7 +416,7 @@
             
             <div class="page-top-title">
                 <h1>بطولات القحمة</h1>
-                <p>الأرشيف الرياضي الشامل لبطولاتنا</p>
+                <p>الأرشيف الرياضي الشامل</p>
             </div>
 
             <div class="sub-tabs-wrapper">
@@ -495,11 +497,16 @@
                     💬 تواصل لتنفيذ مشروعك
                 </a>
             </div>
+
+            <div class="disclaimer">
+                <b>إخلاء مسؤولية:</b><br>
+                هذه المنصة هي دليل معلوماتي سياحي وخدمي يهدف لتسهيل الوصول للخدمات، والمنصة غير مسؤولة عن أي تغييرات في المواقع أو الأرقام الرسمية الصادرة من الجهات المعنية.
+            </div>
         </div>
     </div>
 
     <script>
-        // === بيانات البطولة الأرشيفية (الكاملة والنهائية) ===
+        // === بيانات البطولة الأرشيفية كاملة 100% ===
         const archiveData = [
             { d: "النهائي (النسخة 28)", matches: [{t1:"الفيصلي", t2:"الوسام", r: "0 - 0", p: "(7) - (6) ترجيح"}] },
             { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
@@ -536,7 +543,7 @@
             {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
         ];
 
-        const aboutRulesText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م\n\nدور المجموعات وعدد مبارياته (18) مباراة\n* يشارك بالبطولة عدد (18) فريقاً ويتم تقسيم الفرق إلى (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة.\n* تقام مباريات البطولة بنظام المجموعات من دور واحد.\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعة إلى دور الثمانية ويصبح عدد المتأهلين (6) فرق.\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتأهل فريقين منهم لإكمال عدد فرق دور الثمانية.\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب: مجموع النقاط، فرق الأهداف، ثم الأهداف المسجلة.\n* في حال تعادل فرق المجموعة الواحدة يتم اللجوء إلى القرعة لحسم الموقف بحضور مندوبي الفرق.\n\n* جميع حقوق البطولة محفوظة لأكاديمية القحمة الرياضية واللجنة المنظمة.`;
+        const aboutRulesText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م\n\nدور المجموعات وعدد مبارياته (18) مباراة\n* يشارك بالبطولة عدد (18) فريقاً ويتم تقسيم الفرق إلى (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة.\n* تقام مباريات البطولة بنظام المجموعات من دور واحد.\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعة إلى دور الثمانية ويصبح عدد المتأهلين (6) فرق.\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتأهل فريقين منهم لإكمال عدد فرق دور الثمانية.\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب: مجموع النقاط، فرق الأهداف، ثم الأهداف المسجلة.\n* في حال تعادل فرق المجموعة الواحدة يتم اللجوء إلى القرعة لحسم الموقف بحضور مندوبي الفرق.\n\n* جميع حقوق البطولة محفوظة للجنة المنظمة.`;
 
         // === التهيئة والتشغيل ===
         window.onload = () => {
