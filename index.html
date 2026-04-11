@@ -68,9 +68,9 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        /* شاشة التحميل */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 9999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out; }
-        #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        /* شاشة التحميل (بحركة الموجة الجديدة) */
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 9999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transform: translateY(0); border-radius: 0; transition: transform 0.8s cubic-bezier(0.65, 0, 0.25, 1), opacity 0.8s ease, border-radius 0.5s ease; }
+        #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-100%); border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; }
         
         .preloader-wrapper { position: relative; width: 110px; height: 110px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
         .spinner-ring { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 3px solid rgba(234, 179, 8, 0.1); border-top-color: var(--accent-sand); animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; }
@@ -83,7 +83,6 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); height: 0; } to { opacity: 1; transform: translateY(0); height: auto; } }
         @keyframes fadeInTab { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* التبويبات السفلية */
@@ -114,17 +113,17 @@
         .container { max-width: 800px; margin: auto; padding: 0 15px; position: relative; }
         .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: right; }
 
-        /* ========= الهيدر السينمائي (الصورة الخافتة من أعلى الشاشة) ========= */
+        /* ========= الهيدر السينمائي ========= */
         #guide { position: relative; padding-top: 0; }
         
         .hero-header-bg {
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 340px;
-            background: url('https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg') center top/cover;
+            /* الصورة الجديدة للهيدر */
+            background: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg') center top/cover;
             z-index: 0;
         }
-        /* تدرج لوني عشان الصورة تصير خافتة وتندمج مع لون الخلفية */
         .hero-header-bg::after {
             content: '';
             position: absolute;
@@ -132,7 +131,6 @@
             background: linear-gradient(to bottom, rgba(13,19,33,0.3) 0%, rgba(13,19,33,0.7) 60%, var(--bg-color) 100%);
         }
 
-        /* حاوية المحتوى اللي تجي فوق الصورة */
         .guide-content-wrapper {
             position: relative;
             z-index: 2;
@@ -152,7 +150,7 @@
         .page-top-title-standard h1 { margin: 0; font-size: 1.8rem; color: var(--text-primary); font-weight: 900; }
         .page-top-title-standard p { margin: 5px 0 0; color: var(--accent-sand); font-size: 0.9rem; font-weight: 700; }
 
-        /* ========= المربعات (الطقس، البحر، الصلاة) مصغرة ومرتبة ========= */
+        /* ========= المربعات ========= */
         .live-widgets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 15px; }
         .widget-box { background: rgba(22, 32, 50, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; transition: 0.2s; }
         .widget-box:hover { border-color: var(--accent-sand); background: rgba(22, 32, 50, 1); }
@@ -160,9 +158,33 @@
         .widget-box h4 { margin: 0; font-size: 0.55rem; color: var(--text-secondary); font-weight: 700; }
         .widget-box p { margin: 1px 0 0; font-size: 0.75rem; font-weight: 900; color: var(--accent-sand); direction: ltr; }
 
-        /* القوائم المنسدلة للصلاة والبحر */
-        .full-dropdown { display: none; gap: 6px; overflow-x: auto; padding: 10px; margin: 0 0 15px 0; scrollbar-width: none; border: 1px dashed rgba(255,255,255,0.1); border-radius: 10px; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); }
-        .full-dropdown.show { display: flex; animation: slideDown 0.3s ease-out; }
+        /* ========= القوائم المنسدلة (بدون تهنيق) ========= */
+        /* طريقة سلسة جداً بدال الـ display: none */
+        .full-dropdown { 
+            display: flex; 
+            gap: 6px; 
+            overflow-x: auto; 
+            overflow-y: hidden;
+            padding: 0 10px; 
+            margin: 0; 
+            scrollbar-width: none; 
+            border-radius: 10px; 
+            background: rgba(0,0,0,0.3); 
+            backdrop-filter: blur(5px); 
+            max-height: 0; 
+            opacity: 0; 
+            transition: all 0.4s ease; 
+            pointer-events: none; 
+            border: none; 
+        }
+        .full-dropdown.show { 
+            max-height: 150px; 
+            opacity: 1; 
+            padding: 10px; 
+            margin: 0 0 15px 0; 
+            pointer-events: auto; 
+            border: 1px dashed rgba(255,255,255,0.1); 
+        }
         .full-dropdown::-webkit-scrollbar { display: none; }
         
         .drop-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 6px 12px; flex: 0 0 auto; text-align: center; display: flex; flex-direction: column; min-width: 60px; }
@@ -175,7 +197,7 @@
         .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; text-align: right; }
         .section-line { flex: 1; height: 1px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.5; }
 
-        /* شبكة الكروت للأماكن والخدمات */
+        /* شبكة الكروت */
         .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
         .place-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); display: flex; flex-direction: column; text-align: right; }
         .place-img { height: 140px; background-size: cover; background-position: center; position: relative; }
@@ -316,7 +338,7 @@
 
             <div class="places-grid">
                 <div class="place-card">
-                    <div class="place-img" style="background-image: url('https://i.ibb.co/fdWHvMmB/IMG-1068.jpg');"></div>
+                    <div class="place-img" style="background-image: url('https://i.ibb.co/fdmsp7QN/IMG-9512.jpg');"></div>
                     <div class="place-info">
                         <h3>مطل القحمة</h3>
                         <p>مطل جبلي يمنحك رؤية بانورامية ساحرة لساحل القحمة والبحر الأحمر. مكان مثالي لالتقاط الصور والاستمتاع بالهواء العليل والتأمل.</p>
@@ -718,7 +740,7 @@
             setTimeout(() => { document.body.style.top = '0px'; }, 500);
         }
 
-        // === بيانات البطولة الأرشيفية 100% ===
+        // === بيانات البطولة الأرشيفية ===
         const archiveData = [
             { d: "النهائي (النسخة 28)", matches: [{t1:"الفيصلي", t2:"الوسام", r: "0 - 0", p: "(7) - (6) ترجيح"}] },
             { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
@@ -771,13 +793,14 @@
             updateLiveData(); 
             setInterval(updateLiveData, 60000); 
 
+            // تم تقليص وقت شاشة التحميل إلى 1.5 ثانية
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
-                preloader.style.opacity = '0';
-                preloader.style.visibility = 'hidden';
-            }, 2000);
+                preloader.classList.add('hidden');
+            }, 1500);
         };
 
+        // دالة إظهار القوائم بشكل سلس وبدون تهنيق
         function togglePrayers() {
             document.getElementById('full-sea-container').classList.remove('show');
             document.getElementById('full-prayers-container').classList.toggle('show');
