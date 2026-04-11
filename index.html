@@ -14,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
+        /* الألوان - الوضع الداكن الفخم */
         :root { 
             --bg-color: #0d1321;          
             --card-bg: #162032;           
@@ -62,7 +63,7 @@
         }
         .tab-btn { background: none; border: none; color: var(--text-secondary); font-family: 'Cairo'; font-size: 0.65rem; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; transition: 0.3s; padding: 5px; outline: none; }
         .tab-btn.active { color: var(--accent-sand); transform: translateY(-2px); }
-        .tab-btn .icon { font-size: 1.2rem; filter: grayscale(100%) opacity(0.5); }
+        .tab-btn .icon { font-size: 1.2rem; filter: grayscale(100%) opacity(0.5); transition: 0.3s; }
         .tab-btn.active .icon { filter: grayscale(0%) opacity(1); drop-shadow: 0 0 8px var(--accent-sand); }
 
         .tab-content { display: none; padding: 15px 0 30px 0; animation: fadeIn 0.3s ease-out; }
@@ -82,8 +83,8 @@
         /* الطقس والصلاة */
         .live-widgets { display: flex; gap: 10px; margin-bottom: 10px; }
         .widget-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px; flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .widget-box h4 { margin: 0; font-size: 0.65rem; color: var(--text-secondary); font-weight: 700; }
-        .widget-box p { margin: 0; font-size: 0.9rem; font-weight: 900; color: var(--accent-sand); direction: ltr; }
+        .widget-box h4 { margin: 0; font-size: 0.65rem; color: var(--text-secondary); font-weight: 700; text-align: right; }
+        .widget-box p { margin: 0; font-size: 0.9rem; font-weight: 900; color: var(--accent-sand); direction: ltr; text-align: right; }
 
         .full-prayers { display: flex; gap: 6px; overflow-x: auto; padding: 5px; margin-bottom: 20px; scrollbar-width: none; }
         .full-prayers::-webkit-scrollbar { display: none; }
@@ -94,27 +95,31 @@
         .prayer-item.active-prayer b { color: var(--accent-sand); }
 
         .section-header { display: flex; align-items: center; gap: 10px; margin: 30px 0 15px; }
-        .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; }
+        .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; text-align: right; }
         .section-line { flex: 1; height: 1px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.5; }
 
         /* شبكة الكروت للأماكن والخدمات */
         .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-        .place-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .place-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); display: flex; flex-direction: column; text-align: right; }
         .place-img { height: 150px; background-size: cover; background-position: center; position: relative; }
-        .place-info { padding: 12px; flex: 1; display: flex; flex-direction: column; text-align: right; }
+        .place-info { padding: 12px; flex: 1; display: flex; flex-direction: column; }
         .place-info h3 { margin: 0 0 6px; font-size: 0.95rem; color: var(--accent-sand); font-weight: 900;}
         .place-info p { margin: 0 0 12px; font-size: 0.75rem; color: var(--text-secondary); line-height: 1.7; flex: 1; }
         
         .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: rgba(234, 179, 8, 0.1); color: var(--accent-sand); padding: 8px; border-radius: 8px; text-decoration: none; font-size: 0.75rem; font-weight: 800; border: 1px solid rgba(234, 179, 8, 0.3); transition: 0.2s; width: 100%; text-align: center; }
         .btn-action.map-btn { background: rgba(56, 189, 248, 0.1); color: var(--primary-blue); border-color: rgba(56, 189, 248, 0.3); }
 
-        .text-block { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.9; margin-bottom: 12px; text-align: justify; text-align-last: right; }
-        .text-block strong { color: var(--accent-sand); font-size: 0.85rem; }
+        /* تعديل النصوص للقراءة الصحيحة من اليمين لليسار */
+        .text-block { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.9; margin-bottom: 12px; text-align: right; }
+        .text-block strong { color: var(--accent-sand); font-size: 0.9rem; }
         
-        .list-info { list-style: none; padding: 0; margin: 0; }
-        .list-info li { padding: 8px 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 6px; justify-content: flex-start; flex-direction: row-reverse; }
+        .list-info { list-style: none; padding: 0; margin: 0; text-align: right; }
+        .list-info li { padding: 10px 0; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+        .list-info li:last-child { border-bottom: none; }
+        .list-info li .text-side { display: flex; align-items: center; gap: 8px; }
+        .list-info li .text-side::before { content: "📍"; font-size: 1rem; }
 
-        /* ========= ستايلات البطولة ========= */
+        /* ========= ستايلات البطولة (التبويبات العلوية) ========= */
         .sub-tabs-wrapper { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
         .sub-tabs-wrapper::-webkit-scrollbar { display: none; }
         .sub-tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; cursor: pointer; font-family: 'Cairo'; flex: 0 0 auto; outline: none; transition: 0.2s;}
@@ -153,7 +158,7 @@
         <button class="tab-btn active" onclick="openTab('guide')"><span class="icon">🌴</span><span>السياحة</span></button>
         <button class="tab-btn" onclick="openTab('history')"><span class="icon">📜</span><span>تراثنا</span></button>
         <button class="tab-btn" onclick="openTab('services')"><span class="icon">🏥</span><span>الخدمات</span></button>
-        <button class="tab-btn" onclick="openTab('tournament')"><span class="icon">⚽</span><span>بطولات القحمة</span></button>
+        <button class="tab-btn" onclick="openTab('tournament')"><span class="icon">⚽</span><span>البطولة</span></button>
         <button class="tab-btn" onclick="openTab('dev')"><span class="icon">💻</span><span>المطور</span></button>
     </nav>
 
@@ -195,8 +200,8 @@
                     <div class="place-img" style="background-image: url('https://i.ibb.co/fdWHvMmB/IMG-1068.jpg');"></div>
                     <div class="place-info">
                         <h3>مطل القحمة</h3>
-                        <p>مطل جبلي يمنحك رؤية بانورامية ساحرة لساحل القحمة والبحر الأحمر. مكان مثالي لالتقاط الصور والاستمتاع بالهواء العليل والتأمل.</p>
-                        <a href="https://maps.app.goo.gl/YourMatalLink" target="_blank" class="btn-action map-btn">📍 موقع المطل</a>
+                        <p>مطل جبلي يمنحك رؤية بانورامية ساحرة لساحل القحمة والبحر الأحمر. مكان مثالي لالتقاط الصور والاستمتاع بالهواء العليل والتأمل في إبداع الخالق.</p>
+                        <a href="https://www.google.com/maps/search/مطل+القحمة" target="_blank" class="btn-action map-btn">📍 افتح الخريطة للمطل</a>
                     </div>
                 </div>
 
@@ -205,7 +210,7 @@
                     <div class="place-info">
                         <h3>جزيرة كدمبل</h3>
                         <p>تتربع جزيرة كدمبل كأحد أهم المعالم في البحر الأحمر. جبل بركاني يشمخ وسط البحر محاط برمال بيضاء. الجنة الخفية لهواة الغوص والصيد.</p>
-                        <a href="https://maps.app.goo.gl/YourKadambalLink" target="_blank" class="btn-action map-btn">📍 موقع الجزيرة</a>
+                        <a href="https://www.google.com/maps/search/جزيرة+كدمبل+القحمة" target="_blank" class="btn-action map-btn">📍 موقع الجزيرة</a>
                     </div>
                 </div>
 
@@ -213,8 +218,8 @@
                     <div class="place-img" style="background-image: url('https://i.ibb.co/xSc3sLRq/IMG-9496.jpg');"></div>
                     <div class="place-info">
                         <h3>كورنيش وواجهة القحمة</h3>
-                        <p>يمتد الكورنيش كشريط خلاب، مزود بجلسات عائلية مظللة وأماكن ترفيهية. الوجهة الأولى للأهالي والزوار لمشاهدة الغروب.</p>
-                        <a href="https://maps.app.goo.gl/YourCornicheLink" target="_blank" class="btn-action map-btn">📍 موقع الكورنيش</a>
+                        <p>يمتد الكورنيش كشريط خلاب، مزود بجلسات عائلية مظللة وأماكن ترفيهية. الوجهة الأولى للأهالي والزوار لمشاهدة الغروب مع توفر كافة الخدمات.</p>
+                        <a href="https://www.google.com/maps/search/كورنيش+القحمة" target="_blank" class="btn-action map-btn">📍 موقع الكورنيش</a>
                     </div>
                 </div>
 
@@ -223,7 +228,7 @@
                     <div class="place-info">
                         <h3>حديقة القحمة العامة</h3>
                         <p>متنفس أخضر جميل ومنسق بعناية. تضم مساحات خضراء واسعة وممرات مشاة تناسب العائلات والأطفال لقضاء أوقات مسائية هادئة.</p>
-                        <a href="https://maps.app.goo.gl/YourParkLink" target="_blank" class="btn-action map-btn">📍 موقع الحديقة</a>
+                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة" target="_blank" class="btn-action map-btn">📍 موقع الحديقة</a>
                     </div>
                 </div>
             </div>
@@ -238,52 +243,52 @@
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--accent-sand); font-size:1rem; margin: 0 0 10px;">1. الموقع الاستراتيجي 🌍</h2>
+                <h2 style="color:var(--accent-sand); font-size:1.1rem; margin: 0 0 10px;">1. الموقع الاستراتيجي 🌍</h2>
                 <p class="text-block">تقع القحمة على الشريط الساحلي للبحر الأحمر تابعة لمنطقة عسير. تتميز بتنوعها الجغرافي الفريد الذي يجمع بين السهل الساحلي، الجبال المحاذية، والأودية التي تنحدر من جبال السروات لتصب في البحر.</p>
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--primary-blue); font-size:1rem; margin: 0 0 10px;">2. مناخها ومشتى عسير ☀️</h2>
+                <h2 style="color:var(--primary-blue); font-size:1.1rem; margin: 0 0 10px;">2. مناخها ومشتى عسير ☀️</h2>
                 <p class="text-block">نظراً لاعتدال مناخها ودفئه خلال فصل الشتاء مقارنة ببرودة السروات، أصبحت القحمة الملاذ والوجهة السياحية الأولى (المشتى) لأهالي منطقة عسير وزوارها، بحثاً عن الدفء والأنشطة البحرية.</p>
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--success); font-size:1rem; margin: 0 0 10px;">3. الميناء التاريخي ⚓</h2>
+                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">3. الميناء التاريخي ⚓</h2>
                 <p class="text-block">يعتبر ميناء القحمة من أقدم الموانئ الحيوية في جنوب البحر الأحمر. كان يغص بالسفن الشراعية (السنابيك) المحملة بالتوابل والبضائع القادمة من اليمن والقرن الأفريقي، مما جعلها مركزاً تجارياً نابضاً بالحياة.</p>
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--accent-sand); font-size:1rem; margin: 0 0 10px;">4. حرفة الغوص وصيد اللؤلؤ 🦪</h2>
+                <h2 style="color:var(--accent-sand); font-size:1.1rem; margin: 0 0 10px;">4. حرفة الغوص وصيد اللؤلؤ 🦪</h2>
                 <p class="text-block">لم يكن البحر مجرد مصدر للسمك، بل امتدت رحلات الأجداد لأعماق البحر الأحمر لاستخراج اللؤلؤ والمحار. مهنة الغوص كانت من المهن الشاقة التي سطرت ملاحم من الشجاعة لإنسان القحمة قديماً.</p>
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--primary-blue); font-size:1rem; margin: 0 0 10px;">5. الثروة السمكية 🐟</h2>
+                <h2 style="color:var(--primary-blue); font-size:1.1rem; margin: 0 0 10px;">5. الثروة السمكية 🐟</h2>
                 <p class="text-block">يزخر ساحل القحمة بتنوع سمكي هائل. يعتبر الصيد بالطرق التقليدية متوارثاً حتى اليوم، حيث تجد في سوق السمك يومياً أسماك الديراك (الكنعد)، الناجل، الشعور، والباغة التهامية الشهيرة.</p>
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--success); font-size:1rem; margin: 0 0 10px;">6. المطبخ التهامي (الميفا) 🍽️</h2>
+                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">6. المطبخ التهامي (الميفا) 🍽️</h2>
                 <p class="text-block">يتميز المطبخ في القحمة بطابعه التهامي الأصيل. يعتبر <strong>"السمك الميفا"</strong> (المشوي داخل التنور الفخاري) مع أقراص <strong>"الخمير"</strong> (خبز الذرة) الوجبة الرسمية التي لا تكتمل الزيارة إلا بتذوقها.</p>
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--accent-sand); font-size:1rem; margin: 0 0 10px;">7. الفنون والموروث الشعبي 🥁</h2>
+                <h2 style="color:var(--accent-sand); font-size:1.1rem; margin: 0 0 10px;">7. الفنون والموروث الشعبي 🥁</h2>
                 <p class="text-block">تتزين احتفالات الأهالي بالفنون الشعبية الأصيلة مثل <strong>الخطوة التهامية</strong> والدمة. وهي رقصات جماعية تعبر عن التكاتف وتؤدى على إيقاعات الزير والطبول في الأعياد والمناسبات.</p>
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--primary-blue); font-size:1rem; margin: 0 0 10px;">8. الزراعة والأودية الخصبة 🌴</h2>
+                <h2 style="color:var(--primary-blue); font-size:1.1rem; margin: 0 0 10px;">8. الزراعة والأودية الخصبة 🌴</h2>
                 <p class="text-block">رغم طبيعتها الساحلية، تخترق القحمة أودية شهيرة مثل وادي حمضة، والتي تكتسي باللون الأخضر بعد الأمطار، وكان الأهالي يعتمدون عليها قديماً في زراعة الدخن والسمسم.</p>
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--success); font-size:1rem; margin: 0 0 10px;">9. مهرجان القحمة الشتوي 🎉</h2>
+                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">9. مهرجان القحمة الشتوي 🎉</h2>
                 <p class="text-block">حدث سنوي ترعاه إمارة المنطقة، يشمل فعاليات ضخمة تجمع بين سباقات القوارب، العروض الشعبية، وتسويق الأسر المنتجة لتعزيز الهوية السياحية للمركز.</p>
             </div>
 
             <div class="card-pro">
-                <h2 style="color:var(--accent-sand); font-size:1rem; margin: 0 0 10px;">10. الحياة الفطرية والطيور المهاجرة 🦅</h2>
+                <h2 style="color:var(--accent-sand); font-size:1.1rem; margin: 0 0 10px;">10. الحياة الفطرية والطيور المهاجرة 🦅</h2>
                 <p class="text-block">تمثل غابات المانجروف والجزر المجاورة بيئة مثالية وتوقفاً آمناً للطيور المهاجرة، خاصة أسراب الصقور والنوارس، مما يجعلها بيئة بكر تستقطب الباحثين والمصورين من كل مكان.</p>
             </div>
         </div>
@@ -299,19 +304,40 @@
             <div class="section-header" style="margin-top:10px;"><h2>🏛️ الجهات الحكومية</h2><div class="section-line"></div></div>
             <div class="card-pro">
                 <ul class="list-info">
-                    <li><strong>مقر مركز إمارة القحمة:</strong> <a href="https://maps.app.goo.gl/YourEmarahLink" target="_blank" style="margin-right:auto; color:var(--primary-blue); text-decoration:none; font-size:0.8rem;">📍 الموقع</a></li>
-                    <li><strong>مركز شرطة القحمة:</strong> <a href="https://maps.app.goo.gl/YourPoliceLink" target="_blank" style="margin-right:auto; color:var(--primary-blue); text-decoration:none; font-size:0.8rem;">📍 الموقع</a></li>
-                    <li><strong>بلدية الساحل:</strong> <a href="tel:940" style="margin-right:auto; color:var(--primary-blue); text-decoration:none; font-weight:900; direction:ltr;">📞 940</a></li>
+                    <li>
+                        <div class="text-side"><b>إمارة مركز القحمة</b></div>
+                        <a href="https://www.google.com/maps/search/مركز+امارة+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">افتح الخريطة 🗺️</a>
+                    </li>
+                    <li>
+                        <div class="text-side"><b>مركز شرطة القحمة</b></div>
+                        <a href="https://www.google.com/maps/search/شرطة+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">افتح الخريطة 🗺️</a>
+                    </li>
+                    <li>
+                        <div class="text-side"><b>بلدية الساحل (للبلاغات)</b></div>
+                        <a href="tel:940" style="color:var(--primary-blue); text-decoration:none; font-weight:900; direction:ltr;">📞 940</a>
+                    </li>
                 </ul>
             </div>
 
             <div class="section-header"><h2>🚨 الصحة والطوارئ</h2><div class="section-line"></div></div>
             <div class="card-pro" style="border: 1px solid var(--danger);">
                 <ul class="list-info">
-                    <li>🏥 <strong>مستشفى القحمة العام:</strong> <a href="https://maps.app.goo.gl/YourHospitalLink" target="_blank" style="margin-right:auto; color:var(--danger); text-decoration:none; font-size:0.8rem;">📍 الخريطة</a></li>
-                    <li>💊 <strong>صيدليات القحمة:</strong> <a href="https://maps.app.goo.gl/search/%D8%B5%D9%8A%D8%AF%D9%84%D9%8A%D8%A9+%D8%A7%D9%84%D9%82%D8%AD%D9%85%D8%A9" target="_blank" style="margin-right:auto; color:var(--primary-blue); text-decoration:none; font-size:0.8rem;">📍 بحث</a></li>
-                    <li style="justify-content: space-between;">🚤 <strong>حرس الحدود:</strong> <a href="tel:994" style="color:var(--danger); text-decoration:none; font-weight:900; direction:ltr;">📞 994</a></li>
-                    <li style="justify-content: space-between;">🚒 <strong>الدفاع المدني:</strong> <a href="tel:998" style="color:var(--danger); text-decoration:none; font-weight:900; direction:ltr;">📞 998</a></li>
+                    <li>
+                        <div class="text-side">🏥 <b>مستشفى القحمة العام</b></div>
+                        <a href="https://www.google.com/maps/search/مستشفى+القحمة+العام" target="_blank" style="color:var(--danger); text-decoration:none; font-size:0.8rem; font-weight:800;">افتح الخريطة 🗺️</a>
+                    </li>
+                    <li>
+                        <div class="text-side">💊 <b>صيدليات القحمة</b></div>
+                        <a href="https://www.google.com/maps/search/صيدلية+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">بحث 🔍</a>
+                    </li>
+                    <li>
+                        <div class="text-side">🚤 <b>حرس الحدود (بحر)</b></div>
+                        <a href="tel:994" style="color:var(--danger); text-decoration:none; font-weight:900; direction:ltr;">📞 994</a>
+                    </li>
+                    <li>
+                        <div class="text-side">🚒 <b>الدفاع المدني</b></div>
+                        <a href="tel:998" style="color:var(--danger); text-decoration:none; font-weight:900; direction:ltr;">📞 998</a>
+                    </li>
                 </ul>
             </div>
 
@@ -320,15 +346,15 @@
                 <div class="place-card">
                     <div class="place-info">
                         <h3 style="color:var(--success); font-size: 0.95rem;">ملعب الوسم بالقحمة</h3>
-                        <p style="font-size:0.75rem;">الملعب الرئيسي لاحتضان كبرى البطولات والمباريات الرسمية.</p>
-                        <a href="https://maps.app.goo.gl/YourWasmLink" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع الملعب</a>
+                        <p style="font-size:0.75rem;">الملعب الرئيسي لاحتضان كبرى البطولات الرمضانية والمباريات الرسمية.</p>
+                        <a href="https://www.google.com/maps/search/ملعب+الوسم+بالقحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع الملعب</a>
                     </div>
                 </div>
                 <div class="place-card">
                     <div class="place-info">
                         <h3 style="color:var(--success); font-size: 0.95rem;">ملعب الخيرية</h3>
                         <p style="font-size:0.75rem;">ملعب مخصص لتدريبات الأكاديميات والمباريات التنشيطية وتنمية المواهب.</p>
-                        <a href="https://maps.app.goo.gl/YourKhairiyahLink" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع ملعب الخيرية</a>
+                        <a href="https://www.google.com/maps/search/ملعب+الخيرية+بالقحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع ملعب الخيرية</a>
                     </div>
                 </div>
             </div>
@@ -338,7 +364,7 @@
                 <div class="place-card">
                     <div class="place-info">
                         <h3 style="color:var(--accent-sand); font-size: 0.95rem;">كباتن نزهة وصيد</h3>
-                        <p style="font-size:0.75rem;">للتنسيق وحجز الرحلات البحرية لجزيرة كدمبل.</p>
+                        <p style="font-size:0.75rem;">للتنسيق وحجز الرحلات البحرية لجزيرة كدمبل والجولات البحرية.</p>
                         <a href="https://wa.me/966534987428" class="btn-action" style="background:#25D366; color:#fff; border:none;">💬 تواصل واتساب</a>
                     </div>
                 </div>
@@ -347,14 +373,20 @@
             <div class="section-header"><h2>⛽ محطات الوقود والمسافر</h2><div class="section-line"></div></div>
             <div class="card-pro">
                 <ul class="list-info">
-                    <li>محطات متكاملة على الطريق الدولي (بنزين/ديزل). <a href="https://maps.app.goo.gl/search/%D9%85%D8%AD%D8%B7%D8%A9+%D9%88%D9%82%D9%88%D8%AF+%D8%A7%D9%84%D9%82%D8%AD%D9%85%D8%A9" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; margin-right:auto;">📍 الخريطة</a></li>
+                    <li>
+                        <div class="text-side">محطات بنزين وديزل متكاملة</div>
+                        <a href="https://www.google.com/maps/search/محطات+وقود+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
+                    </li>
                 </ul>
             </div>
 
             <div class="section-header"><h2>🍽️ المطاعم والتموينات</h2><div class="section-line"></div></div>
             <div class="card-pro">
                 <ul class="list-info">
-                    <li>أشهر مطاعم السمك والمأكولات الشعبية. <a href="https://maps.app.goo.gl/search/%D9%85%D8%B7%D8%A7%D8%B9%D9%85+%D8%A7%D9%84%D9%82%D8%AD%D9%85%D8%A9" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; margin-right:auto;">📍 المواقع</a></li>
+                    <li>
+                        <div class="text-side">مطاعم السمك والمأكولات الشعبية</div>
+                        <a href="https://www.google.com/maps/search/مطاعم+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">المواقع 🗺️</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -404,15 +436,15 @@
 
             <div id="t-awards" class="sub-content card-pro" style="background: rgba(234, 179, 8, 0.05); border-color: var(--accent-sand);">
                 <h3 style="margin: 0 0 10px; color: var(--accent-sand); font-size: 1rem; text-align: center;">جوائز النسخة 28 🏅</h3>
-                <ul class="list-info" style="font-size: 0.8rem;">
-                    <li>🏆 <strong>بطل النسخة:</strong> نادي الفيصلي (بركلات الترجيح 7-6).</li>
-                    <li>🥈 <strong>الوصيف:</strong> نادي الوسام.</li>
-                    <li>⚽ <strong>الهداف:</strong> أحمد شعبان (نادي عمق) - 3 أهداف.</li>
+                <ul class="list-info" style="font-size: 0.85rem; display:block; text-align:right;">
+                    <li style="justify-content: flex-start;">🏆 <strong>بطل النسخة:</strong> نادي الفيصلي (بركلات الترجيح 7-6).</li>
+                    <li style="justify-content: flex-start;">🥈 <strong>الوصيف:</strong> نادي الوسام.</li>
+                    <li style="justify-content: flex-start; border:none;">⚽ <strong>الهداف:</strong> أحمد شعبان (نادي عمق) - 3 أهداف.</li>
                 </ul>
             </div>
 
             <div id="t-rules" class="sub-content card-pro">
-                <div class="text-block" id="rules-content" style="font-size: 0.8rem; margin:0; line-height: 2;"></div>
+                <div class="text-block" id="rules-content" style="font-size: 0.85rem; margin:0; line-height: 2;"></div>
             </div>
 
         </div>
@@ -428,7 +460,7 @@
                 <div style="width:70px; height:70px; margin:0 auto 15px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; background:var(--bg-color); border:2px solid var(--accent-sand); border-radius:50%;">👨‍💻</div>
                 <h2 style="margin:0 0 5px; color:var(--text-primary); font-weight:900; font-size:1.4rem;">إياد عسيري</h2>
                 
-                <p style="font-size:0.8rem; color:var(--text-secondary); line-height: 1.8; margin: 15px 0;">
+                <p style="font-size:0.85rem; color:var(--text-secondary); line-height: 1.8; margin: 15px 0;">
                     مصمم جرافيك، مطور ويب، وشغوف بصناعة الألعاب (Unity).<br>
                     بُنيت <strong>"موسوعة القحمة الرقمية"</strong> كمرجع متكامل يخدم أهالي المنطقة ويدعم السياحة بلمسة تقنية.
                 </p>
@@ -436,9 +468,9 @@
                 <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; margin: 20px 0; border: 1px solid var(--border-color);">
                     <h4 style="margin:0 0 10px; color:var(--text-primary); font-size:0.9rem;">أبرز الخدمات التقنية:</h4>
                     <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:6px;">
-                        <span style="background:var(--card-bg); border:1px solid var(--primary-blue); padding:4px 10px; border-radius:15px; font-size:0.7rem; color:var(--primary-blue);">برمجة المواقع 🌐</span>
-                        <span style="background:var(--card-bg); border:1px solid var(--accent-sand); padding:4px 10px; border-radius:15px; font-size:0.7rem; color:var(--accent-sand);">تصميم الجرافيك 🎨</span>
-                        <span style="background:var(--card-bg); border:1px solid var(--success); padding:4px 10px; border-radius:15px; font-size:0.7rem; color:var(--success);">تطوير ألعاب 🎮</span>
+                        <span style="background:var(--card-bg); border:1px solid var(--primary-blue); padding:4px 10px; border-radius:15px; font-size:0.75rem; color:var(--primary-blue);">برمجة المواقع 🌐</span>
+                        <span style="background:var(--card-bg); border:1px solid var(--accent-sand); padding:4px 10px; border-radius:15px; font-size:0.75rem; color:var(--accent-sand);">تصميم الجرافيك 🎨</span>
+                        <span style="background:var(--card-bg); border:1px solid var(--success); padding:4px 10px; border-radius:15px; font-size:0.75rem; color:var(--success);">تطوير ألعاب 🎮</span>
                     </div>
                 </div>
 
@@ -450,7 +482,7 @@
     </div>
 
     <script>
-        // === بيانات البطولة الأرشيفية (النسخة الكاملة) ===
+        // === بيانات البطولة الأرشيفية كاملة 100% ===
         const archiveData = [
             { d: "النهائي (النسخة 28)", matches: [{t1:"الفيصلي", t2:"الوسام", r: "0 - 0", p: "(7) - (6) ترجيح"}] },
             { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
@@ -492,9 +524,7 @@
         // === التهيئة والتشغيل ===
         window.onload = () => {
             renderTournamentData();
-            updateLiveData(); // تحديث فوري
-            
-            // تحديث تلقائي للطقس والصلاة كل 60 ثانية (لايف)
+            updateLiveData(); 
             setInterval(updateLiveData, 60000);
 
             setTimeout(() => {
@@ -526,7 +556,6 @@
             document.getElementById('rules-content').style.whiteSpace = "pre-wrap";
         }
 
-        // التبديل بين التبويبات الرئيسية السفلية
         function openTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -535,7 +564,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // التبديل بين تبويبات البطولة الفرعية
         function openSubTab(evt, subName) {
             document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
@@ -543,7 +571,6 @@
             evt.currentTarget.classList.add('active');
         }
 
-        // نظام البحث
         function searchList(type) {
             let input = document.getElementById(type === 'scorers' ? 'search-scorers' : 'search-matches');
             let filter = input.value.toUpperCase();
@@ -554,7 +581,6 @@
             }
         }
 
-        // جلب الطقس المباشر
         async function fetchWeather() {
             try {
                 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=17.99&longitude=41.67&current_weather=true');
@@ -570,19 +596,15 @@
                 document.getElementById('weather-temp').innerText = `${temp}°C`;
                 document.getElementById('weather-desc').innerText = desc;
                 document.getElementById('weather-icon').innerText = icon;
-            } catch (e) {
-                // صامت في حال الخطأ
-            }
+            } catch (e) {}
         }
 
-        // جلب جميع مواقيت الصلاة والصلاة القادمة
         async function fetchPrayerTimes() {
             try {
                 const d = new Date();
                 const res = await fetch(`https://api.aladhan.com/v1/timings/${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}?latitude=17.99&longitude=41.67&method=4`);
                 const timings = (await res.json()).data.timings;
                 
-                // تعبئة الشريط الكامل
                 document.getElementById('pt-fajr').innerText = formatTime(timings.Fajr);
                 document.getElementById('pt-sunrise').innerText = formatTime(timings.Sunrise);
                 document.getElementById('pt-dhuhr').innerText = formatTime(timings.Dhuhr);
@@ -590,7 +612,6 @@
                 document.getElementById('pt-maghrib').innerText = formatTime(timings.Maghrib);
                 document.getElementById('pt-isha').innerText = formatTime(timings.Isha);
 
-                // حساب الصلاة القادمة
                 const now = d.getHours() * 60 + d.getMinutes();
                 const pr = [
                     {n:'الفجر',t:timings.Fajr, id:'pt-fajr'},
@@ -600,7 +621,6 @@
                     {n:'العشاء',t:timings.Isha, id:'pt-isha'}
                 ];
                 
-                // إزالة التمييز السابق
                 document.querySelectorAll('.prayer-item').forEach(el => el.classList.remove('active-prayer'));
 
                 let nxt = pr[0];
@@ -609,19 +629,13 @@
                     if((Number(h)*60+Number(m)) > now) { nxt=p; break; } 
                 }
                 
-                // تمييز الصلاة القادمة في الشريط
-                if(nxt.id) {
-                    document.getElementById(nxt.id).parentElement.classList.add('active-prayer');
-                }
+                if(nxt.id) { document.getElementById(nxt.id).parentElement.classList.add('active-prayer'); }
 
                 document.getElementById('next-prayer').innerText = formatTime(nxt.t);
                 document.getElementById('prayer-name').innerText = `صلاة ${nxt.n}`;
-            } catch (e) {
-                // فشل الجلب
-            }
+            } catch (e) {}
         }
 
-        // دالة مساعدة لتنسيق الوقت بصيغة 12 ساعة
         function formatTime(time24) {
             let [h, m] = time24.split(':').map(Number);
             let ampm = h >= 12 ? 'م' : 'ص';
