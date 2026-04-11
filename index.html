@@ -43,7 +43,7 @@
         .goog-te-banner-frame.skiptranslate, .goog-te-gadget-icon { display: none !important; }
         body { top: 0px !important; }
 
-        /* ========= شريط اللغات (فوق يسار بدون إطار) ========= */
+        /* ========= شريط اللغات ========= */
         .custom-lang-switcher {
             position: absolute;
             top: 20px;
@@ -121,7 +121,7 @@
         .hero-guide { background: url('https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg'); background-size: cover; background-position: center; height: 260px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 1px solid var(--border-color); position: relative; }
         .hero-badge { position: absolute; bottom: 15px; right: 15px; background: rgba(13, 19, 33, 0.9); color: var(--accent-sand); padding: 4px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; border: 1px solid var(--accent-sand); }
 
-        /* الطقس، حالة البحر، والصلاة (3 مربعات) */
+        /* الطقس والصلاة */
         .live-widgets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
         .widget-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); cursor: pointer; transition: 0.2s; }
         .widget-box:hover { border-color: var(--accent-sand); }
@@ -129,7 +129,6 @@
         .widget-box h4 { margin: 0; font-size: 0.6rem; color: var(--text-secondary); font-weight: 700; }
         .widget-box p { margin: 2px 0 0; font-size: 0.85rem; font-weight: 900; color: var(--accent-sand); direction: ltr; }
 
-        /* شريط كل الصلوات (مخفي ويظهر عند الضغط) */
         .full-prayers { display: none; gap: 6px; overflow-x: auto; padding: 10px 5px; margin-bottom: 15px; scrollbar-width: none; border: 1px dashed var(--border-color); border-radius: 10px; background: rgba(0,0,0,0.2); }
         .full-prayers.show { display: flex; animation: slideDown 0.3s ease-out; }
         .full-prayers::-webkit-scrollbar { display: none; }
@@ -154,7 +153,6 @@
         .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: rgba(234, 179, 8, 0.1); color: var(--accent-sand); padding: 8px; border-radius: 8px; text-decoration: none; font-size: 0.75rem; font-weight: 800; border: 1px solid rgba(234, 179, 8, 0.3); transition: 0.2s; width: 100%; text-align: center; cursor: pointer;}
         .btn-action.map-btn { background: rgba(56, 189, 248, 0.1); color: var(--primary-blue); border-color: rgba(56, 189, 248, 0.3); }
 
-        /* حاسبة المسافات */
         .calc-select { width: 100%; padding: 10px; border-radius: 8px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.85rem; outline: none; margin-bottom: 10px; }
         .calc-result { text-align: center; color: var(--accent-sand); font-weight: 900; font-size: 0.9rem; line-height: 1.8; min-height: 40px; }
 
@@ -167,10 +165,23 @@
         .list-info li .text-side { display: flex; align-items: center; gap: 8px; }
         .list-info li .text-side::before { content: "📍"; font-size: 1rem; }
 
-        /* إخلاء المسؤولية */
         .disclaimer { font-size: 0.7rem; color: var(--text-secondary); padding: 15px; border-top: 1px solid var(--border-color); margin-top: 20px; text-align: center; line-height: 1.6; }
 
-        /* ========= ستايلات البطولة ========= */
+        /* ========= ستايلات البطولة (المكتبة الدائرية الجديدة) ========= */
+        
+        /* شريط البحث الموحد */
+        .search-input { width: 100%; padding: 12px 15px; border-radius: 8px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.85rem; margin-bottom: 20px; outline: none; text-align: right; transition: 0.3s; }
+        .search-input:focus { border-color: var(--primary-blue); box-shadow: 0 0 8px rgba(56, 189, 248, 0.2); }
+
+        /* شبكة الدوائر للبطولات */
+        .tournaments-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: flex-start; margin-top: 10px; }
+        .t-circle-item { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; cursor: pointer; width: 100px; transition: 0.3s; animation: fadeInTab 0.4s ease-out; }
+        .t-circle-item:hover { transform: translateY(-5px); }
+        .t-circle-icon { width: 85px; height: 85px; border-radius: 50%; background: var(--card-bg); border: 2px solid var(--border-color); display: flex; justify-content: center; align-items: center; font-size: 2.5rem; margin-bottom: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; }
+        .t-circle-item:hover .t-circle-icon { border-color: var(--accent-sand); box-shadow: 0 4px 20px rgba(234, 179, 8, 0.3); }
+        .t-circle-item span { font-size: 0.75rem; font-weight: 800; color: var(--text-primary); text-align: center; line-height: 1.4; }
+
+        /* القوائم العلوية لداخل البطولة */
         .sub-tabs-wrapper { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; direction: rtl;}
         .sub-tabs-wrapper::-webkit-scrollbar { display: none; }
         .sub-tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; cursor: pointer; font-family: 'Cairo'; flex: 0 0 auto; outline: none; transition: 0.2s;}
@@ -178,8 +189,6 @@
         
         .sub-content { display: none; animation: fadeInTab 0.3s; }
         .sub-content.active { display: block; }
-
-        .search-input { width: 100%; padding: 10px 15px; border-radius: 8px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.8rem; margin-bottom: 15px; outline: none; text-align: right; }
         
         .match-list-card { background: var(--bg-color); border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 10px; text-align: center; }
         .teams-row-mini { display: flex; flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: nowrap; width: 100%; gap: 10px; }
@@ -198,7 +207,6 @@
 <body>
 
     <div id="google_translate_element" style="display:none;"></div>
-
     <div class="custom-lang-switcher">
         <span onclick="changeLang('ar')" class="active-lang">AR</span>
         <span onclick="changeLang('en')">EN</span>
@@ -284,7 +292,7 @@
                     <div class="place-img" style="background-image: url('https://i.ibb.co/fdWHvMmB/IMG-1068.jpg');"></div>
                     <div class="place-info">
                         <h3>مطل القحمة</h3>
-                        <p>مطل جبلي يمنحك رؤية بانورامية ساحرة لساحل القحمة والبحر الأحمر. مكان مثالي لالتقاط الصور والاستمتاع بالهواء العليل والتأمل في إبداع الخالق.</p>
+                        <p>مطل جبلي يمنحك رؤية بانورامية ساحرة لساحل القحمة والبحر الأحمر. مكان مثالي لالتقاط الصور والاستمتاع بالهواء العليل والتأمل.</p>
                         <a href="https://www.google.com/maps/search/مطل+القحمة" target="_blank" class="btn-action map-btn">📍 افتح الخريطة للمطل</a>
                     </div>
                 </div>
@@ -480,58 +488,73 @@
         <div class="container">
             
             <div class="page-top-title">
-                <h1>بطولات القحمة</h1>
-                <p>الأرشيف الرياضي الشامل لبطولاتنا</p>
+                <h1>مكتبة الفعاليات والبطولات</h1>
+                <p>الأرشيف الرياضي والفعاليات بالقحمة</p>
             </div>
 
-            <div class="sub-tabs-wrapper">
-                <button class="sub-tab-btn active" onclick="openSubTab(event, 't-matches')">المباريات</button>
-                <button class="sub-tab-btn" onclick="openSubTab(event, 't-scorers')">الهدافين</button>
-                <button class="sub-tab-btn" onclick="openSubTab(event, 't-groups')">المجموعات</button>
-                <button class="sub-tab-btn" onclick="openSubTab(event, 't-teams')">سجل الأندية</button>
-                <button class="sub-tab-btn" onclick="openSubTab(event, 't-awards')">الجوائز</button>
-                <button class="sub-tab-btn" onclick="openSubTab(event, 't-rules')">لائحة البطولة</button>
+            <div id="tournaments-directory">
+                <input type="text" class="search-input" id="search-tournaments" placeholder="🔍 ابحث عن بطولة أو فعالية..." onkeyup="searchDirectory()">
+                
+                <div class="tournaments-grid">
+                    <div class="t-circle-item" onclick="openTournamentDetails('t28')">
+                        <div class="t-circle-icon">🏆</div>
+                        <span>بطولة القحمة 28</span>
+                    </div>
+                    
+                    </div>
             </div>
 
-            <div id="t-matches" class="sub-content active card-pro">
-                <input type="text" class="search-input" id="search-matches" placeholder="🔍 ابحث عن فريق..." onkeyup="searchList('matches')">
-                <div id="archive-area"></div>
-            </div>
+            <div id="tournament-details" style="display: none;">
+                <button class="btn-action" style="margin-bottom: 20px; width: auto; padding: 6px 15px; font-size: 0.85rem;" onclick="closeTournamentDetails()">🔙 العودة لمكتبة البطولات</button>
 
-            <div id="t-scorers" class="sub-content card-pro">
-                <input type="text" class="search-input" id="search-scorers" placeholder="🔍 ابحث عن لاعب..." onkeyup="searchList('scorers')">
-                <div style="border:1px solid var(--border-color); border-radius:8px; overflow:hidden;">
-                    <table class="group-table" id="players-table"></table>
+                <div class="sub-tabs-wrapper">
+                    <button class="sub-tab-btn active" onclick="openSubTab(event, 't-matches')">المباريات</button>
+                    <button class="sub-tab-btn" onclick="openSubTab(event, 't-scorers')">الهدافين</button>
+                    <button class="sub-tab-btn" onclick="openSubTab(event, 't-groups')">المجموعات</button>
+                    <button class="sub-tab-btn" onclick="openSubTab(event, 't-teams')">سجل الأندية</button>
+                    <button class="sub-tab-btn" onclick="openSubTab(event, 't-awards')">الجوائز</button>
+                    <button class="sub-tab-btn" onclick="openSubTab(event, 't-rules')">لائحة البطولة</button>
                 </div>
-            </div>
 
-            <div id="t-groups" class="sub-content card-pro">
-                <div id="groups-area"></div>
-            </div>
-
-            <div id="t-teams" class="sub-content card-pro">
-                <div style="border:1px solid var(--border-color); border-radius:8px; overflow:hidden;">
-                    <table class="group-table">
-                        <thead><tr><th class="team-name-cell">الفريق</th><th>لعب</th><th>سجل</th><th>استقبل</th><th>الفرق</th></tr></thead>
-                        <tbody id="teams-tbody"></tbody>
-                    </table>
+                <div id="t-matches" class="sub-content active card-pro">
+                    <input type="text" class="search-input" id="search-matches" placeholder="🔍 ابحث عن فريق..." onkeyup="searchList('matches')">
+                    <div id="archive-area"></div>
                 </div>
-            </div>
 
-            <div id="t-awards" class="sub-content card-pro" style="background: rgba(234, 179, 8, 0.05); border-color: var(--accent-sand);">
-                <h3 style="margin: 0 0 10px; color: var(--accent-sand); font-size: 1rem; text-align: center;">جوائز النسخة 28 🏅</h3>
-                <ul class="list-info" style="font-size: 0.85rem; display:block; text-align:right;">
-                    <li style="justify-content: flex-start;">🏆 <strong>بطل النسخة:</strong> نادي الفيصلي (بركلات الترجيح 7-6).</li>
-                    <li style="justify-content: flex-start;">🥈 <strong>الوصيف:</strong> نادي الوسام.</li>
-                    <li style="justify-content: flex-start; border:none;">⚽ <strong>الهداف:</strong> أحمد شعبان (نادي عمق) - 3 أهداف.</li>
-                </ul>
-            </div>
+                <div id="t-scorers" class="sub-content card-pro">
+                    <input type="text" class="search-input" id="search-scorers" placeholder="🔍 ابحث عن لاعب..." onkeyup="searchList('scorers')">
+                    <div style="border:1px solid var(--border-color); border-radius:8px; overflow:hidden;">
+                        <table class="group-table" id="players-table"></table>
+                    </div>
+                </div>
 
-            <div id="t-rules" class="sub-content card-pro">
-                <div class="text-block" id="rules-content" style="font-size: 0.85rem; margin:0; line-height: 2;"></div>
-            </div>
+                <div id="t-groups" class="sub-content card-pro">
+                    <div id="groups-area"></div>
+                </div>
 
-        </div>
+                <div id="t-teams" class="sub-content card-pro">
+                    <div style="border:1px solid var(--border-color); border-radius:8px; overflow:hidden;">
+                        <table class="group-table">
+                            <thead><tr><th class="team-name-cell">الفريق</th><th>لعب</th><th>سجل</th><th>استقبل</th><th>الفرق</th></tr></thead>
+                            <tbody id="teams-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="t-awards" class="sub-content card-pro" style="background: rgba(234, 179, 8, 0.05); border-color: var(--accent-sand);">
+                    <h3 style="margin: 0 0 10px; color: var(--accent-sand); font-size: 1rem; text-align: center;">جوائز النسخة 28 🏅</h3>
+                    <ul class="list-info" style="font-size: 0.85rem; display:block; text-align:right;">
+                        <li style="justify-content: flex-start;">🏆 <strong>بطل النسخة:</strong> نادي الفيصلي (بركلات الترجيح 7-6).</li>
+                        <li style="justify-content: flex-start;">🥈 <strong>الوصيف:</strong> نادي الوسام.</li>
+                        <li style="justify-content: flex-start; border:none;">⚽ <strong>الهداف:</strong> أحمد شعبان (نادي عمق) - 3 أهداف.</li>
+                    </ul>
+                </div>
+
+                <div id="t-rules" class="sub-content card-pro">
+                    <div class="text-block" id="rules-content" style="font-size: 0.85rem; margin:0; line-height: 2;"></div>
+                </div>
+
+            </div> </div>
     </div>
 
     <div id="dev" class="tab-content">
@@ -654,10 +677,25 @@
             }, 2000);
         };
 
+        // فتح وإغلاق الصلاة
         function togglePrayers() {
             document.getElementById('full-prayers-container').classList.toggle('show');
         }
 
+        // فتح وإغلاق تفاصيل البطولة
+        function openTournamentDetails(id) {
+            document.getElementById('tournaments-directory').style.display = 'none';
+            document.getElementById('tournament-details').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeTournamentDetails() {
+            document.getElementById('tournament-details').style.display = 'none';
+            document.getElementById('tournaments-directory').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // حساب المسافة
         function calculateDistance() {
             const val = document.getElementById('distance-calc').value;
             const res = document.getElementById('distance-result');
@@ -697,6 +735,13 @@
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
+            
+            // اغلاق تفاصيل البطولة اذا فتحت تبويب اخر
+            if(tabId !== 'tournament') {
+                document.getElementById('tournament-details').style.display = 'none';
+                document.getElementById('tournaments-directory').style.display = 'block';
+            }
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -707,6 +752,7 @@
             evt.currentTarget.classList.add('active');
         }
 
+        // بحث المباريات
         function searchList(type) {
             let input = document.getElementById(type === 'scorers' ? 'search-scorers' : 'search-matches');
             let filter = input.value.toUpperCase();
@@ -714,6 +760,17 @@
             for (let i = 0; i < cards.length; i++) {
                 let txt = cards[i].textContent || cards[i].innerText;
                 cards[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+            }
+        }
+        
+        // بحث الدوائر (البطولات)
+        function searchDirectory() {
+            let input = document.getElementById('search-tournaments');
+            let filter = input.value.toUpperCase();
+            let items = document.getElementsByClassName('t-circle-item');
+            for (let i = 0; i < items.length; i++) {
+                let txt = items[i].textContent || items[i].innerText;
+                items[i].style.display = txt.toUpperCase().indexOf(filter) > -1 ? "flex" : "none";
             }
         }
 
