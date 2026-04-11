@@ -45,7 +45,7 @@
         .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
         #google_translate_element { display: none !important; }
 
-        /* شريط اللغة الذكي (يظهر في الرئيسية فقط) */
+        /* شريط اللغة الذكي */
         .custom-lang-switcher {
             position: absolute;
             top: calc(20px + env(safe-area-inset-top, 20px)); 
@@ -110,38 +110,63 @@
 
         .tab-content { display: none; padding: 0 0 30px 0; animation: fadeInTab 0.3s ease-out; min-height: 100vh;}
         .tab-content.active { display: block; }
-
+        
         .container { max-width: 800px; margin: auto; padding: 0 15px; position: relative; }
         .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: right; }
 
-        /* ========= العناوين الرئيسية (محاذاة لليمين) ========= */
+        /* ========= الهيدر السينمائي (الصورة الخافتة من أعلى الشاشة) ========= */
+        #guide { position: relative; padding-top: 0; }
+        
+        .hero-header-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 340px;
+            background: url('https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg') center top/cover;
+            z-index: 0;
+        }
+        /* تدرج لوني عشان الصورة تصير خافتة وتندمج مع لون الخلفية */
+        .hero-header-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(13,19,33,0.3) 0%, rgba(13,19,33,0.7) 60%, var(--bg-color) 100%);
+        }
+
+        /* حاوية المحتوى اللي تجي فوق الصورة */
+        .guide-content-wrapper {
+            position: relative;
+            z-index: 2;
+            padding-top: calc(70px + env(safe-area-inset-top, 20px));
+        }
+
+        /* العناوين الرئيسية */
         .page-top-title { 
             text-align: right; 
-            margin-bottom: 12px; 
-            padding-top: calc(25px + env(safe-area-inset-top, 15px)); 
+            margin-bottom: 15px; 
             padding-right: 5px;
         }
-        .page-top-title h1 { margin: 0; font-size: 1.8rem; color: var(--text-primary); font-weight: 900; }
-        .page-top-title p { margin: 2px 0 0; color: var(--accent-sand); font-size: 0.85rem; font-weight: 700; }
+        .page-top-title h1 { margin: 0; font-size: 2rem; color: #fff; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .page-top-title p { margin: 2px 0 0; color: var(--accent-sand); font-size: 0.95rem; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 
-        /* المربعات (الطقس، البحر، الصلاة) - تصغير وتنسيق متلاصق */
-        .live-widgets { display: flex; gap: 8px; margin-bottom: 15px; justify-content: flex-start; }
-        .widget-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 8px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); cursor: pointer; transition: 0.2s; flex: 1; max-width: 110px; }
-        .widget-box:hover { border-color: var(--accent-sand); }
-        .widget-box span.icon { font-size: 1.1rem; filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.3)); margin-bottom: 2px; }
+        .page-top-title-standard { text-align: right; margin-bottom: 15px; padding-top: calc(25px + env(safe-area-inset-top, 15px)); padding-right: 5px;}
+        .page-top-title-standard h1 { margin: 0; font-size: 1.8rem; color: var(--text-primary); font-weight: 900; }
+        .page-top-title-standard p { margin: 5px 0 0; color: var(--accent-sand); font-size: 0.9rem; font-weight: 700; }
+
+        /* ========= المربعات (الطقس، البحر، الصلاة) مصغرة ومرتبة ========= */
+        .live-widgets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 15px; }
+        .widget-box { background: rgba(22, 32, 50, 0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; transition: 0.2s; }
+        .widget-box:hover { border-color: var(--accent-sand); background: rgba(22, 32, 50, 1); }
+        .widget-box span.icon { font-size: 1.1rem; filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.4)); margin-bottom: 2px; }
         .widget-box h4 { margin: 0; font-size: 0.55rem; color: var(--text-secondary); font-weight: 700; }
-        .widget-box p { margin: 2px 0 0; font-size: 0.75rem; font-weight: 900; color: var(--accent-sand); direction: ltr; }
-
-        .hero-guide { background: url('https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg'); background-size: cover; background-position: center; height: 200px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 1px solid var(--border-color); position: relative; }
-        .hero-badge { position: absolute; bottom: 12px; right: 12px; background: rgba(13, 19, 33, 0.9); color: var(--accent-sand); padding: 4px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 800; border: 1px solid var(--accent-sand); }
+        .widget-box p { margin: 1px 0 0; font-size: 0.75rem; font-weight: 900; color: var(--accent-sand); direction: ltr; }
 
         /* القوائم المنسدلة للصلاة والبحر */
-        .full-dropdown { display: none; gap: 6px; overflow-x: auto; padding: 10px; margin: 0 0 15px 0; scrollbar-width: none; border: 1px dashed var(--border-color); border-radius: 10px; background: rgba(0,0,0,0.2); }
+        .full-dropdown { display: none; gap: 6px; overflow-x: auto; padding: 10px; margin: 0 0 15px 0; scrollbar-width: none; border: 1px dashed rgba(255,255,255,0.1); border-radius: 10px; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); }
         .full-dropdown.show { display: flex; animation: slideDown 0.3s ease-out; }
         .full-dropdown::-webkit-scrollbar { display: none; }
         
         .drop-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 6px 12px; flex: 0 0 auto; text-align: center; display: flex; flex-direction: column; min-width: 60px; }
-        .drop-item span { font-size: 0.6rem; color: var(--text-secondary); font-weight: 700; margin-bottom: 2px; }
+        .drop-item span { font-size: 0.55rem; color: var(--text-secondary); font-weight: 700; margin-bottom: 2px; }
         .drop-item b { font-size: 0.75rem; color: var(--text-primary); font-weight: 900; direction: ltr; }
         .drop-item.active-item { border-color: var(--accent-sand); background: rgba(234, 179, 8, 0.1); }
         .drop-item.active-item b { color: var(--accent-sand); }
@@ -174,14 +199,11 @@
         .list-info li .text-side::before { content: "📍"; font-size: 1rem; }
 
         /* القائمة القابلة للتمرير للمساجد */
-        .mosque-list-container { max-height: 350px; overflow-y: auto; padding-right: 5px; scrollbar-width: thin; scrollbar-color: var(--accent-sand) var(--bg-color); }
-        .mosque-list-container::-webkit-scrollbar { width: 4px; }
-        .mosque-list-container::-webkit-scrollbar-thumb { background-color: var(--accent-sand); border-radius: 10px; }
-        
-        .mosque-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .mosque-list-container { padding-right: 5px; }
+        .mosque-item { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
         .mosque-item:last-child { border: none; }
-        .mosque-name { font-size: 0.8rem; font-weight: 700; color: var(--text-primary); }
-        .mosque-type { font-size: 0.65rem; color: var(--accent-sand); background: rgba(234,179,8,0.1); padding: 2px 8px; border-radius: 12px; margin-right: 5px;}
+        .mosque-name { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
+        .mosque-type { font-size: 0.65rem; color: var(--bg-color); background: var(--accent-sand); padding: 3px 8px; border-radius: 12px; margin-left: 8px; font-weight: 900;}
 
         .disclaimer { font-size: 0.7rem; color: var(--text-secondary); padding: 15px; border-top: 1px solid var(--border-color); margin-top: 20px; text-align: center; line-height: 1.6; }
 
@@ -229,7 +251,7 @@
         </div>
         <div class="welcome-text">
             <h2>مرحباً بك في القحمة</h2>
-            <p>AL QAHMA DIGITAL GUIDE</p>
+            <p>AL-QAHMAH DIGITAL GUIDE</p>
         </div>
     </div>
 
@@ -243,15 +265,17 @@
 
     <div id="guide" class="tab-content active">
         
-        <div class="custom-lang-switcher" id="lang-switcher-container">
-            <span id="lang-toggle-btn" onclick="toggleLanguage()">English</span>
-        </div>
+        <div class="hero-header-bg"></div>
 
-        <div class="container">
+        <div class="guide-content-wrapper container">
             
+            <div class="custom-lang-switcher" id="lang-switcher-container">
+                <span id="lang-toggle-btn" onclick="toggleLanguage()">English</span>
+            </div>
+
             <div class="page-top-title">
                 <h1>دليل القحمة</h1>
-                <p>مشتى عسير الأول، وواجهة البحر</p>
+                <p>مشتى عسير الأول، وواجهة البحر الأحمر</p>
             </div>
 
             <div class="live-widgets">
@@ -288,36 +312,8 @@
                 <div class="drop-item"><span>العشاء</span><b id="pt-isha">--:--</b></div>
             </div>
 
-            <div class="hero-guide">
-                <div class="hero-badge">لؤلؤة الساحل</div>
-            </div>
+            <div class="section-header" style="margin-top: 10px;"><h2>أبرز المعالم السياحية</h2><div class="section-line"></div></div>
 
-            <div class="section-header"><h2>🏨 شاليهات ومنتجعات القحمة</h2><div class="section-line"></div></div>
-            <div class="places-grid">
-                <div class="place-card">
-                    <div class="place-info" style="padding-top: 15px;">
-                        <h3>شاليهات كدمبل السياحية</h3>
-                        <p>شاليهات راقية بإطلالة مباشرة على البحر، مجهزة بمسابح خاصة وجلسات عائلية متكاملة لراحة الزوار.</p>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/0" target="_blank" class="btn-action map-btn">📍 موقع الشاليهات</a>
-                    </div>
-                </div>
-                <div class="place-card">
-                    <div class="place-info" style="padding-top: 15px;">
-                        <h3>منتجع ليالي الساحل</h3>
-                        <p>منتجع يتميز بالهدوء وتوفر غرف فندقية مطلة، مع خدمات متكاملة ومساحات خضراء مناسبة للعوائل.</p>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/1" target="_blank" class="btn-action map-btn">📍 موقع المنتجع</a>
-                    </div>
-                </div>
-                <div class="place-card">
-                    <div class="place-info" style="padding-top: 15px;">
-                        <h3>استراحات القحمة الخاصة</h3>
-                        <p>مجموعة من الاستراحات الخاصة بالأهالي والمستثمرين، توفر الخصوصية التامة ومجالس تراثية تهامية.</p>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/2" target="_blank" class="btn-action map-btn">📍 بحث في الخريطة</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-header"><h2>أبرز المعالم السياحية</h2><div class="section-line"></div></div>
             <div class="places-grid">
                 <div class="place-card">
                     <div class="place-img" style="background-image: url('https://i.ibb.co/fdWHvMmB/IMG-1068.jpg');"></div>
@@ -357,7 +353,7 @@
 
     <div id="history" class="tab-content">
         <div class="container">
-            <div class="page-top-title">
+            <div class="page-top-title-standard">
                 <h1>موسوعة القحمة</h1>
                 <p>عراقة الماضي وإشراقة المستقبل</p>
             </div>
@@ -416,7 +412,7 @@
 
     <div id="services" class="tab-content">
         <div class="container">
-            <div class="page-top-title">
+            <div class="page-top-title-standard">
                 <h1>دليل الخدمات</h1>
                 <p>دليلك الشامل لجميع الأماكن الهامة والطارئة</p>
             </div>
@@ -434,6 +430,40 @@
                     <option value="muhayil">محايل عسير</option>
                 </select>
                 <div id="distance-result" class="calc-result"></div>
+            </div>
+
+            <div class="section-header"><h2>🕌 دليل جوامع القحمة</h2><div class="section-line"></div></div>
+            <div class="card-pro">
+                <div class="mosque-list-container">
+                    <div class="mosque-item">
+                        <div style="display: flex; align-items: center;">
+                            <span class="mosque-type">جامع</span>
+                            <span class="mosque-name">جامع أبو بكر الصديق</span>
+                        </div>
+                        <a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" class="btn-action map-btn" style="width:auto; padding: 4px 10px; font-size: 0.65rem;">📍 خريطة</a>
+                    </div>
+                    <div class="mosque-item">
+                        <div style="display: flex; align-items: center;">
+                            <span class="mosque-type">جامع</span>
+                            <span class="mosque-name">جامع موضي البراهيم - رحمها الله</span>
+                        </div>
+                        <a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" class="btn-action map-btn" style="width:auto; padding: 4px 10px; font-size: 0.65rem;">📍 خريطة</a>
+                    </div>
+                    <div class="mosque-item">
+                        <div style="display: flex; align-items: center;">
+                            <span class="mosque-type">جامع</span>
+                            <span class="mosque-name">جامع الفاروق بصوالحة</span>
+                        </div>
+                        <a href="https://maps.app.goo.gl/YuKZ4H4d9TcgYuSp7?g_st=ic" target="_blank" class="btn-action map-btn" style="width:auto; padding: 4px 10px; font-size: 0.65rem;">📍 خريطة</a>
+                    </div>
+                    <div class="mosque-item">
+                        <div style="display: flex; align-items: center;">
+                            <span class="mosque-type">جامع</span>
+                            <span class="mosque-name">جامع مخطط بن جربوع</span>
+                        </div>
+                        <a href="https://maps.app.goo.gl/rCN3k8LPiSBsujRW6?g_st=ic" target="_blank" class="btn-action map-btn" style="width:auto; padding: 4px 10px; font-size: 0.65rem;">📍 خريطة</a>
+                    </div>
+                </div>
             </div>
 
             <div class="section-header"><h2>🏛️ الجهات الحكومية</h2><div class="section-line"></div></div>
@@ -474,96 +504,6 @@
                         <a href="tel:998" style="color:var(--danger); text-decoration:none; font-weight:900; direction:ltr;">📞 998</a>
                     </li>
                 </ul>
-            </div>
-
-            <div class="section-header"><h2>🕌 دليل جوامع ومساجد القحمة</h2><div class="section-line"></div></div>
-            <div class="card-pro">
-                <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:0;">قائمة بأبرز المساجد المعتمدة (مرتبة حسب الجوامع)</p>
-                <div class="mosque-list-container">
-                    <div class="mosque-item">
-                        <div>
-                            <span class="mosque-type">جامع</span>
-                            <span class="mosque-name">جامع القحمة الكبير (الرئيسي)</span>
-                        </div>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/3" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div>
-                            <span class="mosque-type">جامع</span>
-                            <span class="mosque-name">جامع الملك فهد بالقحمة</span>
-                        </div>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/4" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div>
-                            <span class="mosque-type">جامع</span>
-                            <span class="mosque-name">جامع السوق</span>
-                        </div>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/5" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div>
-                            <span class="mosque-type">جامع</span>
-                            <span class="mosque-name">جامع عمق</span>
-                        </div>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/6" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div>
-                            <span class="mosque-type">جامع</span>
-                            <span class="mosque-name">جامع صقلية</span>
-                        </div>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/7" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div>
-                            <span class="mosque-type">جامع</span>
-                            <span class="mosque-name">جامع دبسا</span>
-                        </div>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/8" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد الكورنيش والواجهة</span></div>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة/9" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد حي الخيرية</span></div>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة/0" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد حي الوسم</span></div>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة/1" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد ساحل مغزل</span></div>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة/2" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد جندلة</span></div>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة/3" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد الفيض</span></div>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة/4" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد الرقة</span></div>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة/5" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد السلطان</span></div>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة/6" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد عرمرم</span></div>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة/7" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                    <div class="mosque-item">
-                        <div><span class="mosque-name">مسجد حرس الحدود</span></div>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة/8" target="_blank" class="map-link">📍 خريطة</a>
-                    </div>
-                </div>
             </div>
 
             <div class="section-header"><h2>⚽ الملاعب الرياضية</h2><div class="section-line"></div></div>
@@ -620,7 +560,7 @@
     <div id="tournament" class="tab-content">
         <div class="container">
             
-            <div class="page-top-title">
+            <div class="page-top-title-standard">
                 <h1>الفعاليات والبطولات</h1>
                 <p>مكتبة الأرشيف الرياضي والفعاليات بالقحمة</p>
             </div>
@@ -692,7 +632,7 @@
 
     <div id="dev" class="tab-content">
         <div class="container">
-            <div class="page-top-title">
+            <div class="page-top-title-standard">
                 <h1>عن المطور</h1>
                 <p>مُبرمج ومصمم الموسوعة</p>
             </div>
@@ -735,7 +675,7 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        // === برمجة زر اللغة الذكي (يظهر فقط في السياحة) ===
+        // === برمجة زر اللغة الذكي ===
         let currentLang = 'ar';
         
         let cookieMatch = document.cookie.match(/(^|;) ?googtrans=([^;]*)(;|$)/);
@@ -778,7 +718,7 @@
             setTimeout(() => { document.body.style.top = '0px'; }, 500);
         }
 
-        // === بيانات البطولة الأرشيفية ===
+        // === بيانات البطولة الأرشيفية 100% ===
         const archiveData = [
             { d: "النهائي (النسخة 28)", matches: [{t1:"الفيصلي", t2:"الوسام", r: "0 - 0", p: "(7) - (6) ترجيح"}] },
             { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
@@ -962,8 +902,8 @@
                 if(wind > 25) { seaStatus = "مضطرب ⚠️"; wave = "2.5"; }
                 
                 document.getElementById('sea-status').innerText = seaStatus;
-                document.getElementById('sea-wind').innerText = `${wind}`;
-                document.getElementById('sea-wave').innerText = `${wave}`;
+                document.getElementById('sea-wind').innerText = `${wind} كم`;
+                document.getElementById('sea-wave').innerText = `${wave} م`;
                 
                 const hours = new Date().getHours();
                 document.getElementById('sea-tide').innerText = (hours + 4) % 24 + ":00";
