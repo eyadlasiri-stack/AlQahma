@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>موسوعة القحمة الرقمية | سياحة، تراث، وبطولات 🌊🏆</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="دليل القحمة">
+    <meta name="application-name" content="دليل القحمة">
+    <meta name="theme-color" content="#0d1321">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg">
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg">
+    <link rel="manifest" href='data:application/manifest+json,{"name":"دليل القحمة","short_name":"دليل القحمة","display":"standalone","start_url":".","background_color":"#0d1321","theme_color":"#0d1321","icons":[{"src":"https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg","sizes":"512x512","type":"image/jpeg"}]}'>
+
+    <title>دليل القحمة الرقمي | سياحة، تراث، وبطولات 🌊🏆</title>
     
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -11,8 +21,7 @@
     <meta name="author" content="إياد عسيري">
 
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
+    
     <style>
         /* الألوان - الوضع الداكن الفخم */
         :root { 
@@ -28,22 +37,24 @@
         }
         
         html { touch-action: manipulation; }
-        body { margin: 0; padding: 0; padding-bottom: calc(90px + env(safe-area-inset-bottom)); background-color: var(--bg-color); color: var(--text-primary); font-family: 'Cairo', sans-serif; overflow-x: hidden; scroll-behavior: smooth; text-align: right; }
+        body { margin: 0; padding: 0; padding-bottom: calc(90px + env(safe-area-inset-bottom)); background-color: var(--bg-color); color: var(--text-primary); font-family: 'Cairo', sans-serif; overflow-x: hidden; scroll-behavior: smooth; text-align: right; -webkit-tap-highlight-color: transparent; }
         * { box-sizing: border-box; }
 
         /* ========= شاشة التحميل والترحيب ========= */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: 0.5s; }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out; }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        .welcome-text { text-align: center; margin-bottom: 25px; z-index: 3; }
-        .welcome-text h2 { color: var(--accent-sand); font-size: 1.2rem; margin: 0 0 5px; font-weight: 900; }
-        .welcome-text p { color: var(--text-secondary); font-size: 0.8rem; margin: 0; font-family: sans-serif; letter-spacing: 1px; }
-        .preloader-wrapper { position: relative; width: 110px; height: 110px; display: flex; justify-content: center; align-items: center; }
-        .spinner-ring { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 3px solid rgba(234, 179, 8, 0.1); border-top-color: var(--accent-sand); animation: spin 1s linear infinite; }
+        
+        .preloader-wrapper { position: relative; width: 110px; height: 110px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
+        .spinner-ring { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 3px solid rgba(234, 179, 8, 0.1); border-top-color: var(--accent-sand); animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; }
         .preloader-logo { width: 85px; height: 85px; object-fit: cover; border-radius: 50%; z-index: 2; animation: pulse 2s infinite; box-shadow: 0 0 20px rgba(234, 179, 8, 0.3); border: 2px solid var(--accent-sand); }
+        
+        .welcome-text { text-align: center; z-index: 3; animation: fadeIn 1.5s ease-out; }
+        .welcome-text h2 { color: var(--text-primary); font-size: 1.4rem; margin: 0 0 5px; font-weight: 900; letter-spacing: 0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .welcome-text p { color: var(--accent-sand); font-size: 0.85rem; margin: 0; font-family: sans-serif; letter-spacing: 1.5px; font-weight: 700; }
         
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
 
         /* ========= التبويبات السفلية المؤمنة ========= */
         .tabs-nav { 
@@ -53,6 +64,7 @@
             width: 100%; 
             background: rgba(13, 19, 33, 0.98); 
             backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
             display: flex; 
             justify-content: space-around; 
             padding: 8px 2px;
@@ -64,10 +76,11 @@
         .tab-btn { background: none; border: none; color: var(--text-secondary); font-family: 'Cairo'; font-size: 0.65rem; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; transition: 0.3s; padding: 5px; outline: none; }
         .tab-btn.active { color: var(--accent-sand); transform: translateY(-2px); }
         .tab-btn .icon { font-size: 1.2rem; filter: grayscale(100%) opacity(0.5); transition: 0.3s; }
-        .tab-btn.active .icon { filter: grayscale(0%) opacity(1); drop-shadow: 0 0 8px var(--accent-sand); }
+        .tab-btn.active .icon { filter: grayscale(0%) opacity(1); drop-shadow: 0 0 8px rgba(234, 179, 8, 0.5); }
 
-        .tab-content { display: none; padding: 15px 0 30px 0; animation: fadeIn 0.3s ease-out; }
+        .tab-content { display: none; padding: 15px 0 30px 0; animation: fadeInTab 0.3s ease-out; }
         .tab-content.active { display: block; }
+        @keyframes fadeInTab { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .container { max-width: 800px; margin: auto; padding: 0 15px; }
         .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: right; }
@@ -83,8 +96,10 @@
         /* الطقس والصلاة */
         .live-widgets { display: flex; gap: 10px; margin-bottom: 10px; }
         .widget-box { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px; flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .widget-box h4 { margin: 0; font-size: 0.65rem; color: var(--text-secondary); font-weight: 700; text-align: right; }
-        .widget-box p { margin: 0; font-size: 0.9rem; font-weight: 900; color: var(--accent-sand); direction: ltr; text-align: right; }
+        .widget-box span.icon { font-size: 1.5rem; filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.3)); }
+        .widget-box div { text-align: right; }
+        .widget-box h4 { margin: 0; font-size: 0.65rem; color: var(--text-secondary); font-weight: 700; }
+        .widget-box p { margin: 0; font-size: 0.9rem; font-weight: 900; color: var(--accent-sand); direction: ltr; }
 
         .full-prayers { display: flex; gap: 6px; overflow-x: auto; padding: 5px; margin-bottom: 20px; scrollbar-width: none; }
         .full-prayers::-webkit-scrollbar { display: none; }
@@ -95,7 +110,7 @@
         .prayer-item.active-prayer b { color: var(--accent-sand); }
 
         .section-header { display: flex; align-items: center; gap: 10px; margin: 30px 0 15px; }
-        .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; text-align: right; }
+        .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; }
         .section-line { flex: 1; height: 1px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.5; }
 
         /* شبكة الكروت للأماكن والخدمات */
@@ -109,7 +124,6 @@
         .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: rgba(234, 179, 8, 0.1); color: var(--accent-sand); padding: 8px; border-radius: 8px; text-decoration: none; font-size: 0.75rem; font-weight: 800; border: 1px solid rgba(234, 179, 8, 0.3); transition: 0.2s; width: 100%; text-align: center; }
         .btn-action.map-btn { background: rgba(56, 189, 248, 0.1); color: var(--primary-blue); border-color: rgba(56, 189, 248, 0.3); }
 
-        /* تعديل النصوص للقراءة الصحيحة من اليمين لليسار */
         .text-block { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.9; margin-bottom: 12px; text-align: right; }
         .text-block strong { color: var(--accent-sand); font-size: 0.9rem; }
         
@@ -119,19 +133,22 @@
         .list-info li .text-side { display: flex; align-items: center; gap: 8px; }
         .list-info li .text-side::before { content: "📍"; font-size: 1rem; }
 
-        /* ========= ستايلات البطولة (التبويبات العلوية) ========= */
+        /* ========= ستايلات البطولة (التنسيق العرضي الجديد للنتائج) ========= */
         .sub-tabs-wrapper { display: flex; gap: 8px; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
         .sub-tabs-wrapper::-webkit-scrollbar { display: none; }
         .sub-tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; cursor: pointer; font-family: 'Cairo'; flex: 0 0 auto; outline: none; transition: 0.2s;}
         .sub-tab-btn.active { background: rgba(234, 179, 8, 0.1); color: var(--accent-sand); border-color: var(--accent-sand); }
         
-        .sub-content { display: none; animation: fadeIn 0.3s; }
+        .sub-content { display: none; animation: fadeInTab 0.3s; }
         .sub-content.active { display: block; }
 
         .search-input { width: 100%; padding: 10px 15px; border-radius: 8px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.8rem; margin-bottom: 15px; outline: none; text-align: right; }
         
-        .match-list-card { background: var(--bg-color); border-radius: 8px; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 10px; text-align: center; }
-        .score-mini { background: var(--card-bg); color: var(--accent-sand); padding: 4px 12px; border-radius: 6px; font-weight: 900; border: 1px solid var(--border-color); font-size: 1rem; }
+        .match-list-card { background: var(--bg-color); border-radius: 12px; border: 1px solid var(--border-color); padding: 12px; margin-bottom: 12px; }
+        .teams-row-mini { display: flex; flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: nowrap; width: 100%; gap: 10px; }
+        .team-mini { flex: 1; text-align: center; font-weight: 900; font-size: 0.9rem; color: var(--text-primary); }
+        .score-mini { flex: 0 0 auto; min-width: 80px; background: var(--card-bg); color: var(--accent-sand); padding: 6px 12px; border-radius: 8px; font-weight: 900; border: 1px solid var(--border-color); font-size: 1.05rem; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
         .day-header { color: #000; background: var(--accent-sand); padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; font-weight: 900; margin: 15px 0 10px; display: inline-block; }
         
         .group-table { width: 100%; border-collapse: collapse; text-align: center; }
@@ -144,13 +161,13 @@
 <body>
 
     <div id="preloader">
-        <div class="welcome-text">
-            <h2>مرحباً بك في القحمة</h2>
-            <p>Welcome to Al Qahma</p>
-        </div>
         <div class="preloader-wrapper">
             <div class="spinner-ring"></div>
             <img src="https://i.ibb.co/qYSLmL3Z/IMG-2431.jpg" class="preloader-logo" alt="شعار القحمة">
+        </div>
+        <div class="welcome-text">
+            <h2>مرحباً بك في القحمة</h2>
+            <p>WELCOME TO AL QAHMA</p>
         </div>
     </div>
 
@@ -165,7 +182,7 @@
     <div id="guide" class="tab-content active">
         <div class="container">
             <div class="page-top-title">
-                <h1>القحمة</h1>
+                <h1>دليل القحمة</h1>
                 <p>مشتى عسير الأول، وواجهة البحر الأحمر</p>
             </div>
             
@@ -284,7 +301,7 @@
 
             <div class="card-pro">
                 <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">9. مهرجان القحمة الشتوي 🎉</h2>
-                <p class="text-block">حدث سنوي ترعاه إمارة المنطقة، يشمل فعاليات ضخمة تجمع بين سباقات القوارب، العروض الشعبية، وتسويق الأسر المنتجة لتعزيز الهوية السياحية للمركز.</p>
+                <p class="text-block">حدث سنوي تقيمه وتدعمه الجهات المختصة، يشمل فعاليات ضخمة تجمع بين سباقات القوارب، العروض الشعبية، وتسويق الأسر المنتجة لتعزيز الهوية السياحية للمركز.</p>
             </div>
 
             <div class="card-pro">
@@ -305,12 +322,12 @@
             <div class="card-pro">
                 <ul class="list-info">
                     <li>
-                        <div class="text-side"><b>مركز القحمة</b></div>
-                        <a href="https://www.google.com/maps/search/مركزالقحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">افتح الخريطة 🗺️</a>
+                        <div class="text-side"><b>مقر مركز القحمة</b></div>
+                        <a href="https://maps.app.goo.gl/QZxpqwrEuLguKKmt8?g_st=ic" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
                     </li>
                     <li>
                         <div class="text-side"><b>مركز شرطة القحمة</b></div>
-                        <a href="https://www.google.com/maps/search/شرطة+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">افتح الخريطة 🗺️</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=صيدليات+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
                     </li>
                     <li>
                         <div class="text-side"><b>بلدية الساحل (للبلاغات)</b></div>
@@ -324,11 +341,11 @@
                 <ul class="list-info">
                     <li>
                         <div class="text-side">🏥 <b>مستشفى القحمة العام</b></div>
-                        <a href="https://www.google.com/maps/search/مستشفى+القحمة+العام" target="_blank" style="color:var(--danger); text-decoration:none; font-size:0.8rem; font-weight:800;">افتح الخريطة 🗺️</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=مستشفى+القحمة+العام" target="_blank" style="color:var(--danger); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
                     </li>
                     <li>
                         <div class="text-side">💊 <b>صيدليات القحمة</b></div>
-                        <a href="https://www.google.com/maps/search/صيدلية+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">بحث 🔍</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=صيدلية+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">بحث 🔍</a>
                     </li>
                     <li>
                         <div class="text-side">🚤 <b>حرس الحدود (بحر)</b></div>
@@ -347,14 +364,14 @@
                     <div class="place-info">
                         <h3 style="color:var(--success); font-size: 0.95rem;">ملعب الوسم بالقحمة</h3>
                         <p style="font-size:0.75rem;">الملعب الرئيسي لاحتضان كبرى البطولات الرمضانية والمباريات الرسمية.</p>
-                        <a href="https://www.google.com/maps/search/ملعب+الوسم+بالقحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع الملعب</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الوسم+القحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع الملعب</a>
                     </div>
                 </div>
                 <div class="place-card">
                     <div class="place-info">
                         <h3 style="color:var(--success); font-size: 0.95rem;">ملعب الخيرية</h3>
                         <p style="font-size:0.75rem;">ملعب مخصص لتدريبات الأكاديميات والمباريات التنشيطية وتنمية المواهب.</p>
-                        <a href="https://www.google.com/maps/search/ملعب+الخيرية+بالقحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع ملعب الخيرية</a>
+                        <a href="https://maps.app.goo.gl/Mzxp8SWdU71uZoL18?g_st=ic" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع ملعب الخيرية</a>
                     </div>
                 </div>
             </div>
@@ -375,7 +392,7 @@
                 <ul class="list-info">
                     <li>
                         <div class="text-side">محطات بنزين وديزل متكاملة</div>
-                        <a href="https://www.google.com/maps/search/محطات+وقود+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=محطة+وقود+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">الخريطة 🗺️</a>
                     </li>
                 </ul>
             </div>
@@ -385,7 +402,7 @@
                 <ul class="list-info">
                     <li>
                         <div class="text-side">مطاعم السمك والمأكولات الشعبية</div>
-                        <a href="https://www.google.com/maps/search/مطاعم+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">المواقع 🗺️</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=سوق+السمك+القحمة" target="_blank" style="color:var(--primary-blue); text-decoration:none; font-size:0.8rem; font-weight:800;">المواقع 🗺️</a>
                     </li>
                 </ul>
             </div>
@@ -397,7 +414,7 @@
             
             <div class="page-top-title">
                 <h1>بطولات القحمة</h1>
-                <p>الأرشيف الرياضي الشامل</p>
+                <p>الأرشيف الرياضي الشامل لبطولاتنا</p>
             </div>
 
             <div class="sub-tabs-wrapper">
@@ -462,11 +479,11 @@
                 
                 <p style="font-size:0.85rem; color:var(--text-secondary); line-height: 1.8; margin: 15px 0;">
                     مصمم جرافيك، مطور ويب، وشغوف بصناعة الألعاب (Unity).<br>
-                    بُنيت <strong>"موسوعة القحمة الرقمية"</strong> كمرجع متكامل يخدم أهالي المنطقة ويدعم السياحة بلمسة تقنية.
+                    بُنيت <strong>"موسوعة القحمة الرقمية"</strong> كمرجع متكامل يخدم أهالي المنطقة ويدعم السياحة بلمسة تقنية واحترافية.
                 </p>
 
                 <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; margin: 20px 0; border: 1px solid var(--border-color);">
-                    <h4 style="margin:0 0 10px; color:var(--text-primary); font-size:0.9rem;">أبرز الخدمات التقنية:</h4>
+                    <h4 style="margin:0 0 10px; color:var(--text-primary); font-size:0.9rem;">أبرز الخدمات التقنية التي أقدمها:</h4>
                     <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:6px;">
                         <span style="background:var(--card-bg); border:1px solid var(--primary-blue); padding:4px 10px; border-radius:15px; font-size:0.75rem; color:var(--primary-blue);">برمجة المواقع 🌐</span>
                         <span style="background:var(--card-bg); border:1px solid var(--accent-sand); padding:4px 10px; border-radius:15px; font-size:0.75rem; color:var(--accent-sand);">تصميم الجرافيك 🎨</span>
@@ -482,7 +499,7 @@
     </div>
 
     <script>
-        // === بيانات البطولة الأرشيفية كاملة 100% ===
+        // === بيانات البطولة الأرشيفية (الكاملة والنهائية) ===
         const archiveData = [
             { d: "النهائي (النسخة 28)", matches: [{t1:"الفيصلي", t2:"الوسام", r: "0 - 0", p: "(7) - (6) ترجيح"}] },
             { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
@@ -525,11 +542,14 @@
         window.onload = () => {
             renderTournamentData();
             updateLiveData(); 
-            setInterval(updateLiveData, 60000);
+            setInterval(updateLiveData, 60000); // تحديث الطقس والصلاة كل دقيقة
 
+            // التلاشي لشاشة التحميل بعد ثانيتين (2000ms)
             setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
-            }, 1200);
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+            }, 2000);
         };
 
         function updateLiveData() {
@@ -538,10 +558,16 @@
         }
 
         function renderTournamentData() {
+            // المباريات
             document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.65rem; color:var(--text-secondary); display:block; margin-top:2px;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
+            
+            // الهدافين
             document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = index===0?'🥇':index===1?'🥈':index===2?'🥉':''; return `<tr><td class="team-name-cell">${medal} ${s.n}<br><span style="color:var(--text-secondary); font-size:0.65rem;">${s.f}</span></td><td><span style="background:var(--bg-color); color:var(--accent-sand); padding:4px 10px; border-radius:6px; font-weight:900; border:1px solid var(--border-color);">${s.g}</span></td></tr>`; }).join('');
+            
+            // المجموعات
             document.getElementById('groups-area').innerHTML = groupData.map(g => `<div style="border:1px solid var(--border-color); border-radius:8px; overflow:hidden; margin-bottom:15px;"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>نقاط</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--primary-blue); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
             
+            // احصائيات الاندية
             const stats = {}; 
             archiveData.forEach(day => day.matches.forEach(m => { 
                 const res = m.r.split(' - ').map(Number); 
@@ -552,6 +578,7 @@
             }));
             document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--primary-blue); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
             
+            // القوانين
             document.getElementById('rules-content').innerText = aboutRulesText;
             document.getElementById('rules-content').style.whiteSpace = "pre-wrap";
         }
@@ -581,6 +608,7 @@
             }
         }
 
+        // جلب الطقس المباشر
         async function fetchWeather() {
             try {
                 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=17.99&longitude=41.67&current_weather=true');
@@ -599,6 +627,7 @@
             } catch (e) {}
         }
 
+        // جلب جميع مواقيت الصلاة
         async function fetchPrayerTimes() {
             try {
                 const d = new Date();
@@ -629,7 +658,9 @@
                     if((Number(h)*60+Number(m)) > now) { nxt=p; break; } 
                 }
                 
-                if(nxt.id) { document.getElementById(nxt.id).parentElement.classList.add('active-prayer'); }
+                if(nxt.id) {
+                    document.getElementById(nxt.id).parentElement.classList.add('active-prayer');
+                }
 
                 document.getElementById('next-prayer').innerText = formatTime(nxt.t);
                 document.getElementById('prayer-name').innerText = `صلاة ${nxt.n}`;
