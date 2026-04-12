@@ -58,23 +58,22 @@
         /* شريط اللغة الذكي */
         .custom-lang-switcher {
             position: absolute;
-            top: calc(20px + env(safe-area-inset-top, 20px)); 
-            left: 20px;
+            top: calc(15px + env(safe-area-inset-top, 15px)); 
+            left: 15px;
             z-index: 99999;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 900;
         }
         .custom-lang-switcher span {
             cursor: pointer;
             color: var(--accent-sand);
-            background: rgba(0, 0, 0, 0.6);
-            padding: 6px 15px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 4px 12px;
             border-radius: 20px;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid var(--border-color);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            border: 1px solid rgba(255,255,255,0.1);
             display: inline-block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         /* شاشة التحميل (موجة انسيابية) */
@@ -103,6 +102,7 @@
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInTab { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); height: 0; } to { opacity: 1; transform: translateY(0); height: auto; } }
 
         /* التبويبات السفلية */
         .tabs-nav { 
@@ -132,74 +132,87 @@
         .container { max-width: 800px; margin: auto; padding: 0 15px; position: relative; }
         .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: right; }
 
-        /* ========= الهيدر الديناميكي المدمج ========= */
+        /* ========= الهيدر الديناميكي المدمج (تعديل لإظهار القارب) ========= */
         #guide { position: relative; padding-top: 0; }
         
         .hero-header-bg {
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 380px;
-            background: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg') center 10%/cover;
+            /* الصورة الأصلية مع القارب في الوسط */
+            background: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg') center center/cover;
             z-index: 0;
         }
         .hero-header-bg::after {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(13,19,33,0.1) 0%, rgba(13,19,33,0.8) 65%, var(--bg-color) 100%);
+            background: linear-gradient(to bottom, rgba(13,19,33,0.1) 0%, rgba(13,19,33,0.5) 60%, var(--bg-color) 100%);
         }
 
         .guide-content-wrapper {
             position: relative;
             z-index: 2;
-            padding-top: calc(80px + env(safe-area-inset-top, 20px));
+            padding-top: calc(40px + env(safe-area-inset-top, 20px)); /* تم رفع المحتوى قليلاً */
         }
 
         .page-top-title { 
             text-align: right; 
-            margin-bottom: 20px; 
+            margin-bottom: 0; /* تم إزالة الهامش لترك مساحة للقارب */
             padding-right: 5px;
         }
-        .page-top-title h1 { margin: 0; font-size: 2.2rem; color: #fff; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        .page-top-title p { margin: 2px 0 0; color: var(--accent-sand); font-size: 0.95rem; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .page-top-title h1 { margin: 0; font-size: 2rem; color: #fff; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .page-top-title p { margin: 2px 0 0; color: var(--accent-sand); font-size: 0.9rem; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 
-        .page-top-title-standard { text-align: right; margin-bottom: 15px; padding-top: calc(25px + env(safe-area-inset-top, 15px)); padding-right: 5px;}
-        .page-top-title-standard h1 { margin: 0; font-size: 1.8rem; color: var(--text-primary); font-weight: 900; }
-        .page-top-title-standard p { margin: 5px 0 0; color: var(--accent-sand); font-size: 0.9rem; font-weight: 700; }
+        /* ========= المربعات المصغرة الذكية (خافتة ومزاحة للأسفل) ========= */
+        .live-widgets { 
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; 
+            margin-top: 110px; /* دفع المربعات للأسفل لتوضيح القارب */
+            margin-bottom: 15px; 
+            position: relative; z-index: 20; 
+        }
+        /* الشفافية العالية لتأثير زجاجي خافت جداً */
+        .widget-box { 
+            background: rgba(0, 0, 0, 0.25); 
+            backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 10px; padding: 6px 2px; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2); cursor: pointer; 
+        }
+        .widget-box:hover { border-color: rgba(234, 179, 8, 0.5); background: rgba(0, 0, 0, 0.4); }
+        .widget-box span.icon { font-size: 1rem; filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.4)); margin-bottom: 2px; }
+        .widget-box h4 { margin: 0; font-size: 0.55rem; color: #e2e8f0; font-weight: 700; }
+        .widget-box p { margin: 1px 0 0; font-size: 0.7rem; font-weight: 900; color: var(--accent-sand); direction: ltr; }
 
-        /* ========= المربعات المصغرة الذكية ========= */
-        .live-widgets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 15px; }
-        .widget-box { background: rgba(22, 32, 50, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); cursor: pointer; }
-        .widget-box:hover { border-color: var(--accent-sand); background: rgba(22, 32, 50, 1); }
-        .widget-box span.icon { font-size: 1.2rem; filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.4)); margin-bottom: 4px; }
-        .widget-box h4 { margin: 0; font-size: 0.55rem; color: var(--text-secondary); font-weight: 700; }
-        .widget-box p { margin: 2px 0 0; font-size: 0.75rem; font-weight: 900; color: var(--accent-sand); direction: ltr; }
-
-        /* ========= القوائم المنسدلة السلسة (Smooth Transition) ========= */
+        /* ========= القوائم المنسدلة السلسة ========= */
         .full-dropdown { 
             display: flex; gap: 8px; overflow-x: auto; overflow-y: hidden;
             padding: 0 10px; margin: 0; scrollbar-width: none; 
             border-radius: 12px; background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); 
             max-height: 0; opacity: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             pointer-events: none; border: 0 solid var(--border-color);
+            position: relative; z-index: 15;
         }
         .full-dropdown.show { 
-            max-height: 150px; opacity: 1; padding: 12px; margin: 0 0 20px 0; 
-            pointer-events: auto; border-width: 1px;
+            max-height: 120px; opacity: 1; padding: 10px; margin: 0 0 15px 0; 
+            pointer-events: auto; border-width: 1px dashed rgba(255,255,255,0.1);
         }
         .full-dropdown::-webkit-scrollbar { display: none; }
         
-        .drop-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 8px 12px; flex: 0 0 auto; text-align: center; display: flex; flex-direction: column; min-width: 65px; }
-        .drop-item span { font-size: 0.6rem; color: var(--text-secondary); font-weight: 700; margin-bottom: 2px; }
-        .drop-item b { font-size: 0.8rem; color: var(--text-primary); font-weight: 900; direction: ltr; }
-        .drop-item.active-item { border-color: var(--accent-sand); background: rgba(234, 179, 8, 0.1); }
-        .drop-item.active-item b { color: var(--accent-sand); }
+        .drop-item { background: rgba(22, 32, 50, 0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 6px 10px; flex: 0 0 auto; text-align: center; display: flex; flex-direction: column; min-width: 55px; }
+        .drop-item span { font-size: 0.55rem; color: var(--text-secondary); font-weight: 700; margin-bottom: 2px; }
+        .drop-item b { font-size: 0.75rem; color: var(--text-primary); font-weight: 900; direction: ltr; }
 
-        .section-header { display: flex; align-items: center; gap: 10px; margin: 25px 0 15px; }
+        .page-top-title-standard { text-align: right; margin-bottom: 15px; padding-top: calc(25px + env(safe-area-inset-top, 15px)); padding-right: 5px;}
+        .page-top-title-standard h1 { margin: 0; font-size: 1.8rem; color: var(--text-primary); font-weight: 900; }
+        .page-top-title-standard p { margin: 5px 0 0; color: var(--accent-sand); font-size: 0.9rem; font-weight: 700; }
+
+        .section-header { display: flex; align-items: center; gap: 10px; margin: 20px 0 15px; position: relative; z-index: 10;}
         .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; text-align: right; }
         .section-line { flex: 1; height: 1px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.5; }
 
-        .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
+        .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; position: relative; z-index: 10; }
         .place-card { background: var(--card-bg); border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); display: flex; flex-direction: column; text-align: right; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .place-img { height: 160px; background-size: cover; background-position: center; position: relative; }
         .place-info { padding: 15px; flex: 1; display: flex; flex-direction: column; }
@@ -225,7 +238,7 @@
         .mosque-item { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
         .mosque-item:last-child { border: none; }
         .mosque-name { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); }
-        .mosque-type { font-size: 0.65rem; color: var(--bg-color); background: var(--accent-sand); padding: 3px 10px; border-radius: 12px; margin-left: 10px; font-weight: 900;}
+        .mosque-type { font-size: 0.65rem; color: #000; background: var(--accent-sand); padding: 3px 10px; border-radius: 12px; margin-left: 10px; font-weight: 900;}
 
         .disclaimer { font-size: 0.75rem; color: var(--text-secondary); padding: 15px; border-top: 1px solid var(--border-color); margin-top: 25px; text-align: center; line-height: 1.6; }
 
@@ -322,20 +335,20 @@
                 </div>
             </div>
 
-            <div class="full-dropdown" id="aqi-detail">
+            <div class="full-dropdown" id="aqi-container">
                 <div class="drop-item"><span>المؤشر</span><b id="aqi-index">--</b></div>
                 <div class="drop-item"><span>الغبار</span><b id="aqi-dust">--</b></div>
                 <div class="drop-item"><span>الحالة</span><b id="aqi-desc">--</b></div>
             </div>
 
-            <div class="full-dropdown" id="sea-detail">
+            <div class="full-dropdown" id="sea-container">
                 <div class="drop-item"><span>الرياح</span><b id="sea-wind">-- كم</b></div>
                 <div class="drop-item"><span>الموج</span><b id="sea-wave">-- م</b></div>
                 <div class="drop-item"><span>المد</span><b id="sea-tide">14:30</b></div>
                 <div class="drop-item"><span>الجزر</span><b id="sea-ebb">08:15</b></div>
             </div>
 
-            <div class="full-dropdown" id="pray-detail">
+            <div class="full-dropdown" id="pray-container">
                 <div class="drop-item"><span>الفجر</span><b id="pt-fajr">--:--</b></div>
                 <div class="drop-item"><span>الشروق</span><b id="pt-sunrise">--:--</b></div>
                 <div class="drop-item"><span>الظهر</span><b id="pt-dhuhr">--:--</b></div>
@@ -344,7 +357,7 @@
                 <div class="drop-item"><span>العشاء</span><b id="pt-isha">--:--</b></div>
             </div>
 
-            <div class="section-header" style="margin-top: 10px;"><h2>أبرز المعالم السياحية</h2><div class="section-line"></div></div>
+            <div class="section-header"><h2>أبرز المعالم السياحية</h2><div class="section-line"></div></div>
 
             <div class="places-grid">
                 <div class="place-card">
@@ -605,7 +618,7 @@
             </div>
 
             <div id="tournament-details" style="display: none;">
-                <button class="btn-action" style="margin-bottom: 20px; width: auto; padding: 8px 18px; font-size: 0.85rem;" onclick="closeTournamentDetails()">🔙 العودة للمكتبة</button>
+                <button class="btn-action" style="margin-bottom: 20px; width: auto; padding: 6px 15px; font-size: 0.85rem;" onclick="closeTournamentDetails()">🔙 العودة للمكتبة</button>
 
                 <div class="sub-tabs-wrapper">
                     <button class="sub-tab-btn active" onclick="openSubTab(event, 't-matches')">المباريات</button>
@@ -703,7 +716,7 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        // تفاعل الهزاز (Haptic Feedback) لكل نقرة على أيقونة أو زر
+        // تفاعل الهزاز (Haptic Feedback)
         document.addEventListener('click', function(e) {
             const t = e.target.closest('.widget-box, .tab-btn, .btn-action, .t-circle-item, .custom-lang-switcher span');
             if(t && window.navigator && window.navigator.vibrate) {
@@ -711,7 +724,6 @@
             }
         });
 
-        // زر اللغة
         let currentLang = 'ar';
         let cookieMatch = document.cookie.match(/(^|;) ?googtrans=([^;]*)(;|$)/);
         if (cookieMatch && cookieMatch[2].includes('/en')) currentLang = 'en';
@@ -744,7 +756,7 @@
             setTimeout(() => { document.body.style.top = '0px'; }, 500);
         }
 
-        // إغلاق وفتح القوائم بانسيابية
+        // إغلاق وفتح القوائم بانسيابية (بدون تعليق)
         function closeAllDash() {
             document.querySelectorAll('.full-dropdown').forEach(el => el.classList.remove('show'));
         }
@@ -756,11 +768,6 @@
             if(!isShowing) target.classList.add('show');
         }
 
-        function toggleSea() { toggleDash('full-sea'); }
-        function toggleAqi() { toggleDash('full-aqi'); }
-        function togglePrayers() { toggleDash('full-prayers'); }
-
-        // التبويبات والملاحة
         function openTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
