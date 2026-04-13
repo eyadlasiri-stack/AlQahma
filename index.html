@@ -63,6 +63,7 @@
             border-radius: 20px; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); border: 1px solid rgba(255,255,255,0.1); display: inline-block;
         }
 
+        /* شاشة التحميل (بحركة الموجة) */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 9999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transform: translateY(0); transition: transform 0.8s cubic-bezier(0.65, 0, 0.25, 1), opacity 0.8s ease, border-radius 0.5s ease; }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-100%); border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; }
         
@@ -78,6 +79,7 @@
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
 
+        /* التبويبات السفلية */
         .tabs-nav { 
             position: fixed !important; bottom: 0 !important; left: 0; width: 100%; 
             background: rgba(13, 19, 33, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -95,10 +97,12 @@
         .container { max-width: 800px; margin: auto; padding: 0 15px; position: relative; z-index: 2; }
         .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: right; }
 
-        /* ========= الهيدر الرئيسي المشترك ========= */
+        /* ========= الهيدر الرئيسي (صورة القارب) ========= */
+        #guide { position: relative; padding-top: 0; }
+        
         .hero-header-bg {
             position: absolute; top: 0; left: 0; right: 0; height: 350px;
-            background-size: cover; background-position: center center;
+            background: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg') center center/cover;
             z-index: 0; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;
         }
         .hero-header-bg::after {
@@ -112,10 +116,14 @@
         .page-top-title h1 { margin: 0; font-size: 1.8rem; color: #fff; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;}
         .page-top-title p { margin: 2px 0 0; color: var(--accent-sand); font-size: 0.85rem; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 
-        /* ========= الشريط الذكي (مصغر ومنسق) ========= */
-        .smart-dashboard-section { position: relative; z-index: 10; margin-top: -30px; padding: 0 15px; }
-        .smart-bar-wrapper { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
+        /* الشريط الذكي: نازل تحت فوق المعالم مباشرة */
+        .smart-dashboard-section {
+            position: relative; z-index: 10; margin-top: -30px; padding: 0 15px;
+        }
         
+        .smart-bar-wrapper {
+            display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px;
+        }
         .smart-item {
             background: rgba(18, 26, 41, 0.75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 5px 12px;
@@ -146,7 +154,7 @@
         .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; text-align: right; }
         .section-line { flex: 1; height: 1px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.5; }
 
-        /* ========= أزرار الخرائط المصغرة 2026 ========= */
+        /* أزرار الخرائط الحديثة 2026 */
         .btn-map-2026 {
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(234, 179, 8, 0.05));
             border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
@@ -156,7 +164,7 @@
         }
         .btn-map-2026 i { font-style: normal; font-size: 0.8rem; font-weight: 900; line-height: 1;}
 
-        /* كروت المعالم السياحية والمفضلة المصغرة */
+        /* كروت المعالم السياحية والمفضلة */
         .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .place-card-modern {
             position: relative; height: 200px; border-radius: 16px; overflow: hidden;
@@ -171,7 +179,6 @@
         .place-card-modern h3 { margin: 0 0 4px; color: #fff; font-size: 1.05rem; font-weight: 900; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
         .place-card-modern p { margin: 0 0 10px; color: #cbd5e1; font-size: 0.7rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
         
-        /* أيقونة القلب مصغرة ومحسنة */
         .fav-btn { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); border-radius: 50%; width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); z-index: 5; color: #fff;}
 
         /* البوصلة */
@@ -273,7 +280,7 @@
                 </div>
             </div>
 
-            <div class="bottom-hero-section container">
+            <div class="smart-dashboard-section container">
                 <div class="smart-bar-wrapper">
                     <div class="smart-item" onclick="toggleDash('weather')">
                         <span class="icon">⛅</span> <b id="weather-temp">--°</b>
@@ -354,7 +361,7 @@
                 </div>
             </div>
 
-            <div class="bottom-hero-section container">
+            <div class="smart-dashboard-section container">
                 <div class="smart-bar-wrapper">
                     <div class="smart-item" onclick="toggleDash('sea2')">
                         <span class="icon">🌊</span> <b id="sea-status2">--</b>
@@ -525,6 +532,24 @@
                         <span>بطولة القحمة 28</span>
                     </div>
                 </div>
+
+                <div class="section-header" style="margin-top: 25px;"><h2>⚽ الملاعب الرياضية</h2><div class="section-line"></div></div>
+                <div class="place-card-modern" style="height: 180px; margin-bottom:15px; border-color: var(--success);">
+                    <span class="fav-btn" onclick="toggleFav(this, 'stadium_wasem')">🤍</span>
+                    <div class="bg-img" style="background-image: url('https://i.ibb.co/b5jxrrnc/IMG-6371.jpg');"></div>
+                    <div class="overlay">
+                        <h3 style="color:var(--success);">ملعب الوسم بالقحمة</h3>
+                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الوسم+بالقحمة" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="border-color:var(--success); color:var(--success);"><i>↗</i> الاتجاهات</a>
+                    </div>
+                </div>
+                <div class="place-card-modern" style="height: 180px; margin-bottom:15px; border-color: var(--success);">
+                    <span class="fav-btn" onclick="toggleFav(this, 'stadium_khayriya')">🤍</span>
+                    <div class="bg-img" style="background-image: url('https://i.ibb.co/xSc3sLRq/IMG-9496.jpg');"></div>
+                    <div class="overlay">
+                        <h3 style="color:var(--success);">ملعب الخيرية</h3>
+                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الخيرية+بالقحمة" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="border-color:var(--success); color:var(--success);"><i>↗</i> الاتجاهات</a>
+                    </div>
+                </div>
             </div>
 
             <div id="tournament-details" style="display: none;">
@@ -573,23 +598,6 @@
                 </div>
             </div>
 
-            <div class="section-header" style="margin-top: 25px;"><h2>⚽ الملاعب الرياضية</h2><div class="section-line"></div></div>
-            <div class="place-card-modern" style="height: 180px; margin-bottom:15px; border-color: var(--success);">
-                <span class="fav-btn" onclick="toggleFav(this, 'stadium_wasem')">🤍</span>
-                <div class="bg-img" style="background-image: url('https://i.ibb.co/b5jxrrnc/IMG-6371.jpg');"></div>
-                <div class="overlay">
-                    <h3 style="color:var(--success);">ملعب الوسم بالقحمة</h3>
-                    <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الوسم+بالقحمة" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="border-color:var(--success); color:var(--success);"><i>↗</i> الاتجاهات</a>
-                </div>
-            </div>
-            <div class="place-card-modern" style="height: 180px; margin-bottom:15px; border-color: var(--success);">
-                <span class="fav-btn" onclick="toggleFav(this, 'stadium_khayriya')">🤍</span>
-                <div class="bg-img" style="background-image: url('https://i.ibb.co/xSc3sLRq/IMG-9496.jpg');"></div>
-                <div class="overlay">
-                    <h3 style="color:var(--success);">ملعب الخيرية</h3>
-                    <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الخيرية+بالقحمة" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="border-color:var(--success); color:var(--success);"><i>↗</i> الاتجاهات</a>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -640,6 +648,46 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
+        // إعداد الصفحة الأولية بشكل فوري لمنع التعليق
+        window.addEventListener('DOMContentLoaded', () => {
+            // 1. اللغة
+            let currentLang = 'ar';
+            let cookieMatch = document.cookie.match(/(^|;) ?googtrans=([^;]*)(;|$)/);
+            if (cookieMatch && cookieMatch[2].includes('/en')) {
+                currentLang = 'en';
+                document.getElementById('lang-toggle-btn').innerText = 'عربي';
+                document.querySelectorAll('.eyad-name').forEach(el => el.innerText = 'Eyad');
+            }
+            
+            // 2. إخفاء شريط جوجل
+            setTimeout(() => {
+                let gtFrame = document.querySelector('.goog-te-banner-frame');
+                if(gtFrame) gtFrame.style.display = 'none';
+                document.body.style.top = '0px';
+            }, 1000);
+
+            // 3. استرجاع المفضلة
+            let favs = JSON.parse(localStorage.getItem('qahmah_favs') || '[]');
+            document.querySelectorAll('.fav-btn').forEach(btn => {
+                let onclickAttr = btn.getAttribute('onclick');
+                if(onclickAttr) {
+                    let match = onclickAttr.match(/'([^']+)'/);
+                    if(match && favs.includes(match[1])) btn.innerText = '❤️';
+                }
+            });
+
+            // 4. جلب البيانات
+            renderTournamentData();
+            updateLiveData(); 
+            setInterval(updateLiveData, 60000);
+
+            // 5. فتح إجباري لشاشة التحميل بعد ثانية ونص مهما كانت حالة النت
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                if(preloader) preloader.classList.add('hidden');
+            }, 1500);
+        });
+
         // الهزاز
         document.addEventListener('click', function(e) {
             const t = e.target.closest('.smart-item, .tab-btn, .btn-map-2026, .t-circle-item, .custom-lang-switcher span, .fav-btn');
@@ -675,30 +723,8 @@
             }
         }
 
-        let currentLang = 'ar';
-        let cookieMatch = document.cookie.match(/(^|;) ?googtrans=([^;]*)(;|$)/);
-        if (cookieMatch && cookieMatch[2].includes('/en')) currentLang = 'en';
-
-        window.addEventListener('DOMContentLoaded', () => {
-            if (currentLang === 'en') {
-                document.getElementById('lang-toggle-btn').innerText = 'عربي';
-                document.querySelectorAll('.eyad-name').forEach(el => el.innerText = 'Eyad');
-            }
-            setTimeout(() => {
-                let gtFrame = document.querySelector('.goog-te-banner-frame');
-                if(gtFrame) gtFrame.style.display = 'none';
-                document.body.style.top = '0px';
-            }, 1000);
-
-            let favs = JSON.parse(localStorage.getItem('qahmah_favs') || '[]');
-            document.querySelectorAll('.fav-btn').forEach(btn => {
-                let id = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
-                if(favs.includes(id)) btn.innerText = '❤️';
-            });
-        });
-
         function toggleLanguage() {
-            let targetLang = currentLang === 'ar' ? 'en' : 'ar';
+            let targetLang = document.getElementById('lang-toggle-btn').innerText === 'English' ? 'en' : 'ar';
             let selectField = document.querySelector(".goog-te-combo");
             if(selectField) {
                 selectField.value = targetLang;
@@ -707,9 +733,9 @@
                 document.cookie = "googtrans=/ar/" + targetLang + "; path=/";
                 window.location.reload();
             }
-            currentLang = targetLang;
-            document.getElementById('lang-toggle-btn').innerText = currentLang === 'ar' ? 'English' : 'عربي';
-            document.querySelectorAll('.eyad-name').forEach(el => el.innerText = currentLang === 'ar' ? 'إياد عسيري' : 'Eyad');
+            
+            document.getElementById('lang-toggle-btn').innerText = targetLang === 'ar' ? 'English' : 'عربي';
+            document.querySelectorAll('.eyad-name').forEach(el => el.innerText = targetLang === 'ar' ? 'إياد عسيري' : 'Eyad');
             setTimeout(() => { document.body.style.top = '0px'; }, 500);
         }
 
@@ -719,6 +745,7 @@
 
         function toggleDash(type) {
             const target = document.getElementById(type + '-container');
+            if(!target) return;
             const isShowing = target.classList.contains('show');
             closeAllDash();
             if(!isShowing) target.classList.add('show');
@@ -776,11 +803,44 @@
             }
         }
 
-        // الأرشيف وبيانات البطولات (محفوظة بالكامل)
-        const archiveData = [{ d: "النهائي (النسخة 28)", matches: [{t1:"الفيصلي", t2:"الوسام", r: "0 - 0", p: "(7) - (6) ترجيح"}] }, { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] }];
-        const scorers = [{n:"أحمد شعبان", f:"عمق", g:3}];
-        const groupData = [{n:"الأولى", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6}]}];
-        const aboutRulesText = `تذكير بنظام بطولة القحمة...`;
+        // الأرشيف وبيانات البطولات الكاملة
+        const archiveData = [
+            { d: "النهائي (النسخة 28)", matches: [{t1:"الفيصلي", t2:"الوسام", r: "0 - 0", p: "(7) - (6) ترجيح"}] },
+            { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
+            { d: "الجمعة 24 رمضان", matches: [{t1:"الصقر", t2:"الفيصلي", r: "1 - 1", p: "(11) - (12)"}] },
+            { d: "الأربعاء 22 رمضان", matches: [{t1:"صقلية", t2:"الفيصلي", r: "0 - 1"}] },
+            { d: "الثلاثاء 21 رمضان", matches: [{t1:"الوسام", t2:"عمق", r: "1 - 1", p: "(20) - (19)"}] },
+            { d: "الجمعة 17 رمضان", matches: [{t1:"الصقر", t2:"السوق", r:"1 - 0"}, {t1:"ساحل مغزل", t2:"الساحل الرياضي", r:"1 - 0"}] },
+            { d: "الخميس 16 رمضان", matches: [{t1:"الفيصلي", t2:"دبسا", r:"1 - 0"}] },
+            { d: "الاثنين 13 رمضان", matches: [{t1:"عمق", t2:"مستقبل عرمرم", r:"3 - 0"}] },
+            { d: "الأحد 12 رمضان", matches: [{t1:"صقلية", t2:"عرمرم", r:"4 - 1"}, {t1:"الفيصلي", t2:"الوسام", r:"0 - 1"}] },
+            { d: "السبت 11 رمضان", matches: [{t1:"الصقر", t2:"العرق", r:"1 - 0"}, {t1:"البرك", t2:"ساحل مغزل", r:"0 - 1"}] },
+            { d: "الجمعة 10 رمضان", matches: [{t1:"جندلة", t2:"الفيض", r:"2 - 2"}] },
+            { d: "الخميس 09 رمضان", matches: [{t1:"الساحل الرياضي", t2:"السلطان", r:"2 - 1"}, {t1:"صقلية", t2:"دبسا", r:"0 - 0"}] },
+            { d: "الأربعاء 08 رمضان", matches: [{t1:"الصقر", t2:"عمق", r:"2 - 1"}] },
+            { d: "الثلاثاء 07 رمضان", matches: [{t1:"السوق", t2:"الفيض", r:"1 - 0"}, {t1:"دبسا", t2:"عرمرم", r:"2 - 0"}] },
+            { d: "الاثنين 06 رمضان", matches: [{t1:"الوسام", t2:"خليج الصوالحة", r:"4 - 1"}, {t1:"عمق", t2:"العرق", r:"4 - 0"}] },
+            { d: "الأحد 05 رمضان", matches: [{t1:"مستقبل عرمرم", t2:"السلطان", r:"2 - 0"}, {t1:"ساحل مغزل", t2:"وحدة الرقة", r:"3 - 1"}] },
+            { d: "السبت 04 رمضان", matches: [{t1:"السوق", t2:"جندلة", r:"2 - 0"}] },
+            { d: "الجمعة 03 رمضان", matches: [{t1:"الفيصلي", t2:"خليج الصوالحة", r:"2 - 0"}] },
+            { d: "الخميس 02 رمضان", matches: [{t1:"الساحل الرياضي", t2:"مستقبل عرمرم", r:"2 - 1"}] },
+            { d: "الأربعاء 01 رمضان", matches: [{t1:"البرك", t2:"وحدة الرقة", r:"2 - 1"}] }
+        ];
+
+        const scorers = [
+            {n:"أحمد شعبان", f:"عمق", g:3}, {n:"عمر المعشي", f:"عمق", g:2}, {n:"عبدالله عجيم", f:"ساحل مغزل", g:2}, {n:"عبدالله معفري", f:"الوسام", g:2}, {n:"عامر حزبي", f:"صقلية", g:2}, {n:"عبدالله العقيلي", f:"السوق", g:2}, {n:"إبراهيم يحيى", f:"الساحل الرياضي", g:2}, {n:"يحيى القوزي", f:"عمق", g:2}, {n:"عبدالله يحيى", f:"مستقبل عرمرم", g:2}, {n:"فهد عبده", f:"الفيصلي", g:1}, {n:"عبدالله خلاف", f:"الفيصلي", g:1}, {n:"عبدالوهاب الصبيحي", f:"الفيصلي", g:1}, {n:"علي البارقي", f:"الوسام", g:2}, {n:"علي ملهي", f:"الصقر", g:1}, {n:"ريان عسيري", f:"الصقر", g:1}, {n:"حماده شامي", f:"الصقر", g:1}, {n:"عواض الغشمي", f:"صقلية", g:1}, {n:"حسين معفري", f:"صقلية", g:1}, {n:"متعب معفري", f:"الوسام", g:1}, {n:"سلطان معفري", f:"الوسام", g:1}, {n:"محمد ابراهيم", f:"الوسام", g:1}, {n:"مشعي مفرح", f:"عرمرم", g:1}, {n:"هادي عبدالرحمن", f:"وحدة الرقة", g:1}, {n:"رامي شوهان", f:"مستقبل عرمرم", g:1}, {n:"يحيى مهدلي", f:"الساحل الرياضي", g:1}, {n:"داني", f:"الساحل الرياضي", g:1}, {n:"ابراهيم الزيادي", f:"السلطان", g:1}, {n:"عبدالرحيم الهلالي", f:"دبسا", g:1}, {n:"سعيد علي الهلالي", f:"دبسا", g:1}, {n:"احمد مبارك", f:"خليج الصوالحة", g:1}, {n:"حسن هداش", f:"ساحل مغزل", g:1}, {n:"مشعل الحسين", f:"جندلة", g:1}, {n:"محمد الحسين", f:"جندلة", g:1}, {n:"حسن علي", f:"الفيض", g:1}, {n:"محمد سالم", f:"الفيض", g:1}, {n:"نافع الفضيلي", f:"الفيصلي", g:2}, {n:"سلطان عسيري", f:"الصقر", g:1}
+        ];
+
+        const groupData = [
+            {n:"الأولى", teams:[{t:"السوق",l:2,f:2,te:0,x:0,p:6},{t:"الفيض",l:2,f:0,te:1,x:1,p:1},{t:"جندلة",l:2,f:0,te:1,x:1,p:1}]},
+            {n:"الثانية", teams:[{t:"ساحل مغزل",l:2,f:2,te:0,x:0,p:6},{t:"البرك",l:2,f:1,te:0,x:1,p:3},{t:"وحدة الرقة",l:2,f:0,te:0,x:2,p:0}]},
+            {n:"الثالثة", teams:[{t:"الصقر",l:2,f:2,te:0,x:0,p:6},{t:"عمق",l:2,f:1,te:0,x:1,p:3},{t:"العرق",l:2,f:0,te:0,x:2,p:0}]},
+            {n:"الرابعة", teams:[{t:"الساحل الرياضي",l:2,f:2,te:0,x:0,p:6},{t:"مستقبل عرمرم",l:2,f:1,te:0,x:1,p:3},{t:"السلطان",l:2,f:0,te:0,x:2,p:0}]},
+            {n:"الخامسة", teams:[{t:"الوسام",l:2,f:2,te:0,x:0,p:6},{t:"الفيصلي",l:2,f:1,te:0,x:1,p:3},{t:"خليج الصوالحة",l:2,f:0,te:0,x:2,p:0}]},
+            {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
+        ];
+
+        const aboutRulesText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م\n\nدور المجموعات وعدد مبارياته (18) مباراة\n* يشارك بالبطولة عدد (18) فريقاً ويتم تقسيم الفرق إلى (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة.\n* تقام مباريات البطولة بنظام المجموعات من دور واحد.\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعة إلى دور الثمانية ويصبح عدد المتأهلين (6) فرق.\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتأهل فريقين منهم لإكمال عدد فرق دور الثمانية.\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب: مجموع النقاط، فرق الأهداف، ثم الأهداف المسجلة.\n* في حال تعادل فرق المجموعة الواحدة يتم اللجوء إلى القرعة لحسم الموقف بحضور مندوبي الفرق.\n\n* جميع حقوق البطولة محفوظة للجنة المنظمة.`;
 
         const distData = {
             'abha': { d: 'حوالي 160 كم', t: 'ساعتين تقريباً' },
@@ -789,16 +849,6 @@
             'jazan': { d: 'حوالي 200 كم', t: 'ساعتين ونصف' },
             'jeddah': { d: 'حوالي 550 كم', t: '6 ساعات تقريباً' },
             'muhayil': { d: 'حوالي 120 كم', t: 'ساعة ونصف' }
-        };
-
-        window.onload = () => {
-            renderTournamentData();
-            updateLiveData(); 
-            setInterval(updateLiveData, 60000); 
-
-            setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
-            }, 1500);
         };
 
         function calculateDistance() {
@@ -811,15 +861,23 @@
             }
         }
 
-        function updateLiveData() {
-            fetchWeather();
-            fetchPrayerTimes();
-            fetchAQI();
-        }
-
         function renderTournamentData() {
-            // (أكواد رندر البطولة محفوظة تماماً كما هي في النسخ السابقة)
-            document.getElementById('rules-content').innerText = aboutRulesText;
+            document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.65rem; color:var(--text-secondary); display:block; margin-top:2px;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
+            document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = index===0?'🥇':index===1?'🥈':index===2?'🥉':''; return `<tr><td class="team-name-cell">${medal} ${s.n}<br><span style="color:var(--text-secondary); font-size:0.65rem;">${s.f}</span></td><td><span style="background:var(--bg-color); color:var(--accent-sand); padding:4px 10px; border-radius:6px; font-weight:900; border:1px solid var(--border-color);">${s.g}</span></td></tr>`; }).join('');
+            document.getElementById('groups-area').innerHTML = groupData.map(g => `<div style="border:1px solid var(--border-color); border-radius:8px; overflow:hidden; margin-bottom:15px;"><div class="group-header">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>نقاط</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--primary-blue); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
+            
+            const stats = {}; 
+            archiveData.forEach(day => day.matches.forEach(m => { 
+                const res = m.r.split(' - ').map(Number); 
+                if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; 
+                if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; 
+                stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; 
+                stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; 
+            }));
+            document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--primary-blue); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
+            
+            let rulesContent = document.getElementById('rules-content');
+            if(rulesContent) rulesContent.innerText = aboutRulesText;
         }
 
         async function fetchWeather() {
@@ -835,15 +893,14 @@
                 if(code >= 51 && code <= 67) icon = "🌧️";
                 if(code >= 95) icon = "⛈️";
 
-                document.getElementById('weather-temp').innerText = `${temp}°C`;
+                let weatherTempEl = document.getElementById('weather-temp');
+                if(weatherTempEl) weatherTempEl.innerText = `${temp}°C`;
                 
-                let seaStatus = "هادئ ⛵"; let wave = "0.5"; let fishStatus = "ممتازة 🎣";
-                if(wind > 15) { seaStatus = "متوسط 🌊"; wave = "1.2"; fishStatus = "جيدة 🐟"; }
-                if(wind > 25) { seaStatus = "مضطرب ⚠️"; wave = "2.5"; fishStatus = "صعبة 🛑"; }
+                let seaStatus = "هادئ ⛵"; let wave = "0.5"; let fishStatus = "ممتازة 🎣 (بحر هادئ)";
+                if(wind > 15) { seaStatus = "متوسط 🌊"; wave = "1.2"; fishStatus = "جيدة 🐟 (موج متوسط)"; }
+                if(wind > 25) { seaStatus = "مضطرب ⚠️"; wave = "2.5"; fishStatus = "صعبة 🛑 (رياح قوية)"; }
                 
-                // تحديث للسياحة
                 if(document.getElementById('sea-status')) document.getElementById('sea-status').innerText = seaStatus;
-                // تحديث للبحر
                 if(document.getElementById('sea-status2')) document.getElementById('sea-status2').innerText = seaStatus;
                 
                 document.querySelectorAll('#sea-wind, #sea-wind2').forEach(el => el.innerText = `${wind} كم`);
@@ -852,12 +909,16 @@
                 if(document.getElementById('fishing-status')) document.getElementById('fishing-status').innerText = fishStatus;
                 
                 let visKm = (visibility / 1000).toFixed(1);
-                document.getElementById('weather-vis').innerText = `${visKm} كم`;
+                if(document.getElementById('weather-vis')) document.getElementById('weather-vis').innerText = `${visKm} كم`;
                 
                 let alertText = "سليم"; let alertColor = "var(--success)";
                 if(visKm < 2) { alertText = "ضباب/غبار ⚠️"; alertColor = "var(--danger)"; }
-                document.getElementById('weather-alert').innerText = alertText;
-                document.getElementById('weather-alert').style.color = alertColor;
+                
+                let weatherAlertEl = document.getElementById('weather-alert');
+                if(weatherAlertEl) {
+                    weatherAlertEl.innerText = alertText;
+                    weatherAlertEl.style.color = alertColor;
+                }
 
                 const hours = new Date().getHours();
                 document.querySelectorAll('#sea-tide, #sea-tide2').forEach(el => el.innerText = (hours + 4) % 24 + ":00");
@@ -872,8 +933,11 @@
                 const aqi = data.current.european_aqi;
                 const dust = data.current.dust;
                 
-                document.getElementById('aqi-index').innerText = Math.round(aqi);
-                document.getElementById('aqi-dust').innerText = Math.round(dust) + ' μg';
+                let aqiIndexEl = document.getElementById('aqi-index');
+                let aqiDustEl = document.getElementById('aqi-dust');
+                
+                if(aqiIndexEl) aqiIndexEl.innerText = Math.round(aqi);
+                if(aqiDustEl) aqiDustEl.innerText = Math.round(dust) + ' μg';
                 
                 let desc = "ممتاز 🟢";
                 if(aqi > 20) desc = "جيد 🟡";
@@ -882,8 +946,11 @@
                 if(aqi > 80) desc = "سيء 🟤";
                 if(dust > 100) desc = "غبار 🌫️";
                 
-                document.getElementById('aqi-status').innerText = desc.split(' ')[0];
-                document.getElementById('aqi-desc').innerText = desc;
+                let aqiStatusEl = document.getElementById('aqi-status');
+                let aqiDescEl = document.getElementById('aqi-desc');
+                
+                if(aqiStatusEl) aqiStatusEl.innerText = desc.split(' ')[0];
+                if(aqiDescEl) aqiDescEl.innerText = desc;
             } catch (e) {}
         }
 
@@ -893,12 +960,12 @@
                 const res = await fetch(`https://api.aladhan.com/v1/timings/${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}?latitude=17.99&longitude=41.67&method=4`);
                 const timings = (await res.json()).data.timings;
                 
-                document.getElementById('pt-fajr').innerText = formatTime(timings.Fajr);
-                document.getElementById('pt-sunrise').innerText = formatTime(timings.Sunrise);
-                document.getElementById('pt-dhuhr').innerText = formatTime(timings.Dhuhr);
-                document.getElementById('pt-asr').innerText = formatTime(timings.Asr);
-                document.getElementById('pt-maghrib').innerText = formatTime(timings.Maghrib);
-                document.getElementById('pt-isha').innerText = formatTime(timings.Isha);
+                if(document.getElementById('pt-fajr')) document.getElementById('pt-fajr').innerText = formatTime(timings.Fajr);
+                if(document.getElementById('pt-sunrise')) document.getElementById('pt-sunrise').innerText = formatTime(timings.Sunrise);
+                if(document.getElementById('pt-dhuhr')) document.getElementById('pt-dhuhr').innerText = formatTime(timings.Dhuhr);
+                if(document.getElementById('pt-asr')) document.getElementById('pt-asr').innerText = formatTime(timings.Asr);
+                if(document.getElementById('pt-maghrib')) document.getElementById('pt-maghrib').innerText = formatTime(timings.Maghrib);
+                if(document.getElementById('pt-isha')) document.getElementById('pt-isha').innerText = formatTime(timings.Isha);
 
                 const now = d.getHours() * 60 + d.getMinutes();
                 const pr = [
@@ -918,9 +985,11 @@
                 }
                 
                 if(nxt.id) {
-                    document.getElementById(nxt.id).parentElement.classList.add('active-prayer');
+                    let activeEl = document.getElementById(nxt.id);
+                    if(activeEl && activeEl.parentElement) activeEl.parentElement.classList.add('active-prayer');
                 }
-                document.getElementById('next-prayer').innerText = formatTime(nxt.t);
+                
+                if(document.getElementById('next-prayer')) document.getElementById('next-prayer').innerText = formatTime(nxt.t);
             } catch (e) {}
         }
 
