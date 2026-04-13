@@ -45,11 +45,11 @@
         .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
         #google_translate_element { display: none !important; }
 
-        /* ========= تفاعل اللمس (Haptic & Scale) ========= */
-        .widget-box, .btn-action, .tab-btn, .t-circle-item, .place-card, .custom-lang-switcher span {
+        /* تفاعل اللمس */
+        .btn-action, .tab-btn, .custom-lang-switcher span, .smart-item {
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .widget-box:active, .btn-action:active, .tab-btn:active, .t-circle-item:active, .custom-lang-switcher span:active {
+        .btn-action:active, .tab-btn:active, .custom-lang-switcher span:active, .smart-item:active {
             transform: scale(0.92) !important;
             opacity: 0.8;
             transition: 0.1s;
@@ -65,18 +65,13 @@
             font-weight: 900;
         }
         .custom-lang-switcher span {
-            cursor: pointer;
-            color: var(--accent-sand);
-            background: rgba(0, 0, 0, 0.4);
-            padding: 4px 12px;
-            border-radius: 20px;
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-            border: 1px solid rgba(255,255,255,0.1);
-            display: inline-block;
+            cursor: pointer; color: var(--accent-sand);
+            background: rgba(0, 0, 0, 0.4); padding: 4px 12px;
+            border-radius: 20px; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+            border: 1px solid rgba(255,255,255,0.1); display: inline-block;
         }
 
-        /* شاشة التحميل (موجة انسيابية) */
+        /* شاشة التحميل (ثانية ونصف بموجة انسيابية) */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 9999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transform: translateY(0); transition: transform 0.8s cubic-bezier(0.65, 0, 0.25, 1), opacity 0.8s ease, border-radius 0.5s ease; }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-100%); border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; }
         
@@ -85,114 +80,72 @@
         .preloader-logo { width: 85px; height: 85px; object-fit: cover; border-radius: 50%; z-index: 2; animation: pulse 2s infinite; box-shadow: 0 0 20px rgba(234, 179, 8, 0.3); border: 2px solid var(--accent-sand); }
         
         .welcome-text { text-align: center; z-index: 3; animation: fadeIn 1.5s ease-out; }
-        .welcome-text h2 { color: var(--text-primary); font-size: 1.4rem; margin: 0 0 5px; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .welcome-text p { color: var(--accent-sand); font-size: 0.85rem; margin: 0; font-family: sans-serif; letter-spacing: 1.5px; font-weight: 700; }
+        .welcome-text h2 { color: var(--text-primary); font-size: 1.4rem; margin: 0 0 5px; font-weight: 900; }
+        .welcome-text p { color: var(--accent-sand); font-size: 0.85rem; margin: 0; font-weight: 700; }
 
-        /* حركات الأيقونات الذكية */
-        @keyframes wave-animation { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px) rotate(5deg); } }
-        .icon-sea { animation: wave-animation 3s ease-in-out infinite; display: inline-block; }
-        @keyframes sun-glow { 0%, 100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.1); filter: brightness(1.2); } }
-        .icon-weather { animation: sun-glow 4s ease-in-out infinite; display: inline-block; }
-        @keyframes prayer-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(0.95); } }
-        .icon-prayer { animation: prayer-pulse 2.5s ease-in-out infinite; display: inline-block; }
-        @keyframes float-dust { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px) translateX(2px); } }
-        .icon-aqi { animation: float-dust 3s ease-in-out infinite; display: inline-block; }
-        
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInTab { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); height: 0; } to { opacity: 1; transform: translateY(0); height: auto; } }
 
         /* التبويبات السفلية */
         .tabs-nav { 
-            position: fixed !important; 
-            bottom: 0 !important; 
-            left: 0; 
-            width: 100%; 
-            background: rgba(13, 19, 33, 0.95); 
-            backdrop-filter: blur(20px); 
-            -webkit-backdrop-filter: blur(20px);
-            display: flex; 
-            justify-content: space-around; 
-            padding: 8px 2px;
+            position: fixed !important; bottom: 0 !important; left: 0; width: 100%; 
+            background: rgba(13, 19, 33, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            display: flex; justify-content: space-around; padding: 8px 2px;
             padding-bottom: calc(10px + env(safe-area-inset-bottom)); 
-            border-top: 1px solid var(--border-color); 
-            z-index: 9000; 
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.6); 
+            border-top: 1px solid var(--border-color); z-index: 9000; box-shadow: 0 -4px 20px rgba(0,0,0,0.6); 
         }
         .tab-btn { background: none; border: none; color: var(--text-secondary); font-family: 'Cairo'; font-size: 0.65rem; font-weight: 700; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; outline: none; }
         .tab-btn.active { color: var(--accent-sand); transform: translateY(-2px); }
         .tab-btn .icon { font-size: 1.2rem; filter: grayscale(100%) opacity(0.5); transition: 0.3s; }
         .tab-btn.active .icon { filter: grayscale(0%) opacity(1); drop-shadow: 0 0 8px rgba(234, 179, 8, 0.5); }
 
-        .tab-content { display: none; padding: 0 0 30px 0; animation: fadeInTab 0.3s ease-out; min-height: 100vh;}
+        .tab-content { display: none; padding: 0 0 30px 0; animation: fadeIn 0.3s ease-out; min-height: 100vh;}
         .tab-content.active { display: block; }
         
-        .container { max-width: 800px; margin: auto; padding: 0 15px; position: relative; }
+        .container { max-width: 800px; margin: auto; padding: 0 15px; position: relative; z-index: 2; }
         .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: right; }
 
-        /* ========= الهيدر الديناميكي المدمج (تعديل لإظهار القارب) ========= */
+        /* ========= الهيدر الرئيسي (صورة القارب كاملة بدون زحمة مربعات) ========= */
         #guide { position: relative; padding-top: 0; }
         
         .hero-header-bg {
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 380px;
-            /* الصورة الأصلية مع القارب في الوسط */
+            position: absolute; top: 0; left: 0; right: 0; height: 380px;
             background: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg') center center/cover;
-            z-index: 0;
+            z-index: 0; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;
         }
         .hero-header-bg::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(13,19,33,0.1) 0%, rgba(13,19,33,0.5) 60%, var(--bg-color) 100%);
+            content: ''; position: absolute; inset: 0; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;
+            background: linear-gradient(to bottom, rgba(13,19,33,0.1) 0%, rgba(13,19,33,0.4) 60%, var(--bg-color) 100%);
         }
 
-        .guide-content-wrapper {
-            position: relative;
-            z-index: 2;
-            padding-top: calc(40px + env(safe-area-inset-top, 20px)); /* تم رفع المحتوى قليلاً */
-        }
+        .guide-content-wrapper { position: relative; z-index: 2; padding-top: calc(230px + env(safe-area-inset-top, 20px)); }
 
-        .page-top-title { 
-            text-align: right; 
-            margin-bottom: 0; /* تم إزالة الهامش لترك مساحة للقارب */
-            padding-right: 5px;
-        }
-        .page-top-title h1 { margin: 0; font-size: 2rem; color: #fff; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .page-top-title { text-align: right; margin-bottom: 10px; padding-right: 5px; }
+        .page-top-title h1 { margin: 0; font-size: 2rem; color: #fff; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;}
         .page-top-title p { margin: 2px 0 0; color: var(--accent-sand); font-size: 0.9rem; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 
-        /* ========= المربعات المصغرة الذكية (خافتة ومزاحة للأسفل) ========= */
-        .live-widgets { 
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; 
-            margin-top: 110px; /* دفع المربعات للأسفل لتوضيح القارب */
-            margin-bottom: 15px; 
-            position: relative; z-index: 20; 
+        /* ========= الشريط الذكي (البديل المريح للمربعات المزدحمة) ========= */
+        .smart-bar-wrapper {
+            display: flex; gap: 8px; justify-content: flex-start; margin-bottom: 20px;
         }
-        /* الشفافية العالية لتأثير زجاجي خافت جداً */
-        .widget-box { 
-            background: rgba(0, 0, 0, 0.25); 
-            backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            border-radius: 10px; padding: 6px 2px; 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2); cursor: pointer; 
+        .smart-item {
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 6px 12px;
+            display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 800;
+            color: #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .widget-box:hover { border-color: rgba(234, 179, 8, 0.5); background: rgba(0, 0, 0, 0.4); }
-        .widget-box span.icon { font-size: 1rem; filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.4)); margin-bottom: 2px; }
-        .widget-box h4 { margin: 0; font-size: 0.55rem; color: #e2e8f0; font-weight: 700; }
-        .widget-box p { margin: 1px 0 0; font-size: 0.7rem; font-weight: 900; color: var(--accent-sand); direction: ltr; }
+        .smart-item span.icon { font-size: 1rem; filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.5)); }
+        .smart-item b { color: var(--accent-sand); font-weight: 900; }
 
-        /* ========= القوائم المنسدلة السلسة ========= */
+        /* القوائم المنسدلة الانسيابية */
         .full-dropdown { 
             display: flex; gap: 8px; overflow-x: auto; overflow-y: hidden;
             padding: 0 10px; margin: 0; scrollbar-width: none; 
             border-radius: 12px; background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); 
             max-height: 0; opacity: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             pointer-events: none; border: 0 solid var(--border-color);
-            position: relative; z-index: 15;
         }
         .full-dropdown.show { 
             max-height: 120px; opacity: 1; padding: 10px; margin: 0 0 15px 0; 
@@ -208,19 +161,40 @@
         .page-top-title-standard h1 { margin: 0; font-size: 1.8rem; color: var(--text-primary); font-weight: 900; }
         .page-top-title-standard p { margin: 5px 0 0; color: var(--accent-sand); font-size: 0.9rem; font-weight: 700; }
 
-        .section-header { display: flex; align-items: center; gap: 10px; margin: 20px 0 15px; position: relative; z-index: 10;}
+        .section-header { display: flex; align-items: center; gap: 10px; margin: 20px 0 15px; }
         .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; text-align: right; }
         .section-line { flex: 1; height: 1px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.5; }
 
-        .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; position: relative; z-index: 10; }
-        .place-card { background: var(--card-bg); border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); display: flex; flex-direction: column; text-align: right; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .place-img { height: 160px; background-size: cover; background-position: center; position: relative; }
-        .place-info { padding: 15px; flex: 1; display: flex; flex-direction: column; }
-        .place-info h3 { margin: 0 0 6px; font-size: 1rem; color: var(--accent-sand); font-weight: 900;}
-        .place-info p { margin: 0 0 15px; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.8; flex: 1; }
-        
-        .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 5px; background: rgba(234, 179, 8, 0.1); color: var(--accent-sand); padding: 10px; border-radius: 10px; text-decoration: none; font-size: 0.8rem; font-weight: 800; border: 1px solid rgba(234, 179, 8, 0.3); width: 100%; text-align: center; cursor: pointer;}
-        .btn-action.map-btn { background: rgba(56, 189, 248, 0.1); color: var(--primary-blue); border-color: rgba(56, 189, 248, 0.3); }
+        /* ========= كروت المعالم (التصميم الفخم الخفيف من تحت الصورة) ========= */
+        .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .place-card-modern {
+            position: relative;
+            height: 220px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+        .place-card-modern:active { transform: scale(0.96); }
+        .place-card-modern .bg-img {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+        }
+        /* الطبقة الزجاجية الخافتة من الأسفل للأعلى */
+        .place-card-modern .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(8, 12, 20, 0.95) 0%, rgba(8, 12, 20, 0.5) 45%, transparent 100%);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 15px; text-align: right;
+        }
+        .place-card-modern h3 { margin: 0 0 4px; color: #fff; font-size: 1.1rem; font-weight: 900; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .place-card-modern p { margin: 0 0 12px; color: #cbd5e1; font-size: 0.75rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+        .place-card-modern .btn-map { 
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+            color: var(--accent-sand); padding: 6px 15px; border-radius: 20px; text-decoration: none; 
+            font-size: 0.75rem; font-weight: 800; align-self: flex-start; border: 1px solid rgba(234,179,8,0.4); 
+            display: inline-flex; align-items: center; gap: 5px;
+        }
 
         .calc-select { width: 100%; padding: 12px; border-radius: 10px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.85rem; outline: none; margin-bottom: 12px; }
         .calc-result { text-align: center; color: var(--accent-sand); font-weight: 900; font-size: 0.95rem; line-height: 1.8; min-height: 40px; }
@@ -257,7 +231,7 @@
         .sub-tab-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 18px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; cursor: pointer; font-family: 'Cairo'; flex: 0 0 auto; outline: none; }
         .sub-tab-btn.active { background: rgba(234, 179, 8, 0.1); color: var(--accent-sand); border-color: var(--accent-sand); }
         
-        .sub-content { display: none; animation: fadeInTab 0.3s; }
+        .sub-content { display: none; animation: fadeIn 0.3s; }
         .sub-content.active { display: block; }
         
         .match-list-card { background: var(--bg-color); border-radius: 10px; border: 1px solid var(--border-color); padding: 15px; margin-bottom: 12px; text-align: center; }
@@ -309,36 +283,26 @@
 
             <div class="page-top-title">
                 <h1>دليل القحمة</h1>
-                <p>مشتى عسير الأول، وواجهة البحر الأحمر</p>
+                <p>مشتى عسير الأول، وواجهة البحر</p>
             </div>
 
-            <div class="live-widgets">
-                <div class="widget-box">
-                    <span class="icon icon-weather" id="weather-icon">⛅</span>
-                    <h4>الطقس</h4>
-                    <p id="weather-temp">--°C</p>
+            <div class="smart-bar-wrapper">
+                <div class="smart-item" onclick="toggleDash('weather')">
+                    <span class="icon">⛅</span> <b id="weather-temp">--°</b>
                 </div>
-                <div class="widget-box" onclick="toggleDash('aqi')">
-                    <span class="icon icon-aqi">💨</span>
-                    <h4>الهواء <span style="font-size:0.5rem">▼</span></h4>
-                    <p id="aqi-status">--</p>
+                <div class="smart-item" onclick="toggleDash('sea')">
+                    <span class="icon">🌊</span> <b id="sea-status">--</b>
                 </div>
-                <div class="widget-box" onclick="toggleDash('sea')">
-                    <span class="icon icon-sea">🌊</span>
-                    <h4>البحر <span style="font-size:0.5rem">▼</span></h4>
-                    <p id="sea-status">--</p>
+                <div class="smart-item" onclick="toggleDash('pray')">
+                    <span class="icon">🕌</span> <b id="next-prayer">--:--</b>
                 </div>
-                <div class="widget-box" onclick="toggleDash('pray')">
-                    <span class="icon icon-prayer">🕌</span>
-                    <h4>الصلاة <span style="font-size:0.5rem">▼</span></h4>
-                    <p id="next-prayer">--:--</p>
+                <div class="smart-item" onclick="toggleDash('aqi')">
+                    <span class="icon">💨</span> <b id="aqi-status">--</b>
                 </div>
             </div>
 
-            <div class="full-dropdown" id="aqi-container">
-                <div class="drop-item"><span>المؤشر</span><b id="aqi-index">--</b></div>
-                <div class="drop-item"><span>الغبار</span><b id="aqi-dust">--</b></div>
-                <div class="drop-item"><span>الحالة</span><b id="aqi-desc">--</b></div>
+            <div class="full-dropdown" id="weather-container">
+                <div class="drop-item" style="width:100%; text-align:center;"><span>حالة الطقس حالياً في القحمة، مناسبة للتنزه.</span></div>
             </div>
 
             <div class="full-dropdown" id="sea-container">
@@ -346,6 +310,12 @@
                 <div class="drop-item"><span>الموج</span><b id="sea-wave">-- م</b></div>
                 <div class="drop-item"><span>المد</span><b id="sea-tide">14:30</b></div>
                 <div class="drop-item"><span>الجزر</span><b id="sea-ebb">08:15</b></div>
+            </div>
+
+            <div class="full-dropdown" id="aqi-container">
+                <div class="drop-item"><span>المؤشر</span><b id="aqi-index">--</b></div>
+                <div class="drop-item"><span>الغبار</span><b id="aqi-dust">--</b></div>
+                <div class="drop-item"><span>الحالة</span><b id="aqi-desc">--</b></div>
             </div>
 
             <div class="full-dropdown" id="pray-container">
@@ -357,39 +327,42 @@
                 <div class="drop-item"><span>العشاء</span><b id="pt-isha">--:--</b></div>
             </div>
 
-            <div class="section-header"><h2>أبرز المعالم السياحية</h2><div class="section-line"></div></div>
+            <div class="section-header" style="margin-top: 15px;"><h2>أبرز المعالم السياحية</h2><div class="section-line"></div></div>
 
             <div class="places-grid">
-                <div class="place-card">
-                    <div class="place-img" style="background-image: url('https://i.ibb.co/fdmsp7QN/IMG-9512.jpg');"></div>
-                    <div class="place-info">
+                <div class="place-card-modern">
+                    <div class="bg-img" style="background-image: url('https://i.ibb.co/fdmsp7QN/IMG-9512.jpg');"></div>
+                    <div class="overlay">
                         <h3>مطل القحمة</h3>
-                        <p>مطل جبلي يمنحك رؤية بانورامية ساحرة لساحل القحمة والبحر الأحمر. مكان مثالي لالتقاط الصور والاستمتاع بالهواء العليل والتأمل.</p>
-                        <a href="https://www.google.com/maps/search/مطل+القحمة" target="_blank" class="btn-action map-btn">📍 افتح الخريطة للمطل</a>
+                        <p>إطلالة بانورامية ساحرة تجمع بين الجبل والبحر الأحمر، المكان المثالي لمشاهدة الغروب.</p>
+                        <a href="https://www.google.com/maps/search/مطل+القحمة" target="_blank" class="btn-map">📍 فتح الموقع</a>
                     </div>
                 </div>
-                <div class="place-card">
-                    <div class="place-img" style="background-image: url('https://i.ibb.co/rRNxnkvZ/IMG-6580.jpg');"></div>
-                    <div class="place-info">
+
+                <div class="place-card-modern">
+                    <div class="bg-img" style="background-image: url('https://i.ibb.co/rRNxnkvZ/IMG-6580.jpg');"></div>
+                    <div class="overlay">
                         <h3>جزيرة كدمبل</h3>
-                        <p>تتربع جزيرة كدمبل كأحد أهم المعالم في البحر الأحمر. جبل بركاني يشمخ وسط البحر محاط برمال بيضاء. الجنة الخفية لهواة الغوص والصيد.</p>
-                        <a href="https://www.google.com/maps/search/جزيرة+كدمبل+القحمة" target="_blank" class="btn-action map-btn">📍 موقع الجزيرة</a>
+                        <p>جبل بركاني شامخ محاط برمال بيضاء، الجنة الخفية لهواة الغوص والصيد.</p>
+                        <a href="https://www.google.com/maps/search/جزيرة+كدمبل+القحمة" target="_blank" class="btn-map">📍 موقع الجزيرة</a>
                     </div>
                 </div>
-                <div class="place-card">
-                    <div class="place-img" style="background-image: url('https://i.ibb.co/xSc3sLRq/IMG-9496.jpg');"></div>
-                    <div class="place-info">
+
+                <div class="place-card-modern">
+                    <div class="bg-img" style="background-image: url('https://i.ibb.co/xSc3sLRq/IMG-9496.jpg');"></div>
+                    <div class="overlay">
                         <h3>كورنيش وواجهة القحمة</h3>
-                        <p>يمتد الكورنيش كشريط خلاب، مزود بجلسات عائلية مظللة وأماكن ترفيهية. الوجهة الأولى للأهالي والزوار لمشاهدة الغروب.</p>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة" target="_blank" class="btn-action map-btn">📍 موقع الكورنيش</a>
+                        <p>شريط خلاب مزود بجلسات عائلية مظللة، الوجهة الأولى للأهالي والزوار.</p>
+                        <a href="https://www.google.com/maps/search/كورنيش+القحمة" target="_blank" class="btn-map">📍 موقع الكورنيش</a>
                     </div>
                 </div>
-                <div class="place-card">
-                    <div class="place-img" style="background-image: url('https://i.ibb.co/b5jxrrnc/IMG-6371.jpg');"></div>
-                    <div class="place-info">
+
+                <div class="place-card-modern">
+                    <div class="bg-img" style="background-image: url('https://i.ibb.co/b5jxrrnc/IMG-6371.jpg');"></div>
+                    <div class="overlay">
                         <h3>حديقة القحمة العامة</h3>
-                        <p>متنفس أخضر جميل ومنسق بعناية. تضم مساحات خضراء واسعة وممرات مشاة تناسب العائلات والأطفال لقضاء أوقات مسائية هادئة.</p>
-                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة" target="_blank" class="btn-action map-btn">📍 موقع الحديقة</a>
+                        <p>متنفس أخضر جميل وتضم مساحات خضراء واسعة وممرات مشاة تناسب العائلات.</p>
+                        <a href="https://www.google.com/maps/search/حديقة+القحمة+العامة" target="_blank" class="btn-map">📍 موقع الحديقة</a>
                     </div>
                 </div>
             </div>
@@ -548,26 +521,26 @@
             </div>
 
             <div class="section-header"><h2>⚽ الملاعب الرياضية</h2><div class="section-line"></div></div>
-            <div class="places-grid">
-                <div class="place-card">
-                    <div class="place-info">
-                        <h3 style="color:var(--success); font-size: 0.95rem;">ملعب الوسم بالقحمة</h3>
-                        <p style="font-size:0.75rem;">الملعب الرئيسي لاحتضان كبرى البطولات الرمضانية والمباريات الرسمية.</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الوسم+بالقحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع الملعب</a>
-                    </div>
+            <div class="place-card-modern" style="height: 180px; margin-bottom:12px;">
+                <div class="bg-img" style="background-image: url('https://i.ibb.co/b5jxrrnc/IMG-6371.jpg');"></div>
+                <div class="overlay">
+                    <h3 style="color:var(--success);">ملعب الوسم بالقحمة</h3>
+                    <p>الملعب الرئيسي لاحتضان كبرى البطولات الرمضانية والمباريات الرسمية.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الوسم+بالقحمة" target="_blank" class="btn-map" style="border-color:var(--success); color:var(--success);">📍 موقع الملعب</a>
                 </div>
-                <div class="place-card">
-                    <div class="place-info">
-                        <h3 style="color:var(--success); font-size: 0.95rem;">ملعب الخيرية</h3>
-                        <p style="font-size:0.75rem;">ملعب مخصص لتدريبات الأكاديميات والمباريات التنشيطية وتنمية المواهب.</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الخيرية+بالقحمة" target="_blank" class="btn-action" style="border:none; background: rgba(16, 185, 129, 0.1); color: var(--success);">📍 موقع ملعب الخيرية</a>
-                    </div>
+            </div>
+            <div class="place-card-modern" style="height: 180px; margin-bottom:12px;">
+                <div class="bg-img" style="background-image: url('https://i.ibb.co/xSc3sLRq/IMG-9496.jpg');"></div>
+                <div class="overlay">
+                    <h3 style="color:var(--success);">ملعب الخيرية</h3>
+                    <p>ملعب مخصص لتدريبات الأكاديميات والمباريات التنشيطية وتنمية المواهب.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الخيرية+بالقحمة" target="_blank" class="btn-map" style="border-color:var(--success); color:var(--success);">📍 موقع ملعب الخيرية</a>
                 </div>
             </div>
 
             <div class="section-header"><h2>⚓ السياحة والرحلات</h2><div class="section-line"></div></div>
             <div class="places-grid">
-                <div class="place-card">
+                <div class="place-card" style="height: auto;">
                     <div class="place-info">
                         <h3 style="color:var(--accent-sand); font-size: 0.95rem;">كباتن نزهة وصيد</h3>
                         <p style="font-size:0.75rem;">للتنسيق وحجز الرحلات البحرية لجزيرة كدمبل والجولات البحرية.</p>
@@ -716,9 +689,9 @@
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        // تفاعل الهزاز (Haptic Feedback)
+        // تفاعل الهزاز (Haptic Feedback) لجميع العناصر التفاعلية
         document.addEventListener('click', function(e) {
-            const t = e.target.closest('.widget-box, .tab-btn, .btn-action, .t-circle-item, .custom-lang-switcher span');
+            const t = e.target.closest('.smart-item, .tab-btn, .btn-action, .t-circle-item, .custom-lang-switcher span');
             if(t && window.navigator && window.navigator.vibrate) {
                 window.navigator.vibrate(30); 
             }
@@ -756,7 +729,7 @@
             setTimeout(() => { document.body.style.top = '0px'; }, 500);
         }
 
-        // إغلاق وفتح القوائم بانسيابية (بدون تعليق)
+        // إغلاق وفتح القوائم بانسيابية (لشريط البطاقات الجديد)
         function closeAllDash() {
             document.querySelectorAll('.full-dropdown').forEach(el => el.classList.remove('show'));
         }
@@ -872,6 +845,7 @@
             updateLiveData(); 
             setInterval(updateLiveData, 60000); 
 
+            // تقليص وقت الانتظار إلى 1.5 ثانية (1500ms)
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
                 preloader.classList.add('hidden');
@@ -919,14 +893,8 @@
                 const data = await response.json();
                 const temp = Math.round(data.current_weather.temperature);
                 const wind = Math.round(data.current_weather.windspeed);
-                const code = data.current_weather.weathercode;
                 
-                let icon = "☀️";
-                if(code >= 51 && code <= 67) icon = "🌧️";
-                if(code >= 95) icon = "⛈️";
-
                 document.getElementById('weather-temp').innerText = `${temp}°C`;
-                document.getElementById('weather-icon').innerText = icon;
                 
                 let seaStatus = "هادئ ⛵";
                 let wave = "0.5";
