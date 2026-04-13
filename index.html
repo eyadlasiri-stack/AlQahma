@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* ألوان 2027 - عمق المحيط والنيون */
+        /* ألوان 2027 - عمق المحيط */
         :root { 
             --bg-deep: #050b14;          
             --surface: rgba(255, 255, 255, 0.03);           
@@ -38,27 +38,25 @@
         body { margin: 0; padding: 0; padding-bottom: calc(90px + env(safe-area-inset-bottom)); min-height: 100vh; background-color: var(--bg-deep); color: var(--text-main); font-family: 'Cairo', sans-serif; overflow-x: hidden; scroll-behavior: smooth; text-align: right; -webkit-tap-highlight-color: transparent; }
         * { box-sizing: border-box; }
 
-        /* إخفاء مترجم جوجل */
         body { top: 0 !important; position: static !important; }
         .goog-te-banner-frame, .skiptranslate iframe, #goog-gt-tt, .goog-te-gadget-icon, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
         #google_translate_element { display: none !important; }
 
-        /* تفاعلات اللمس */
-        .nano-chip, .btn-neon, .tab-btn, .t-circle-item, .fav-btn, .lang-btn, .sub-tab-btn {
+        .nano-chip, .btn-neon, .tab-btn, .t-circle-item, .fav-btn, .lang-btn, .sub-tab-btn, .place-card-modern {
             transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .nano-chip:active, .btn-neon:active, .tab-btn:active, .t-circle-item:active, .fav-btn:active, .lang-btn:active, .sub-tab-btn:active {
             transform: scale(0.9) !important; opacity: 0.7;
         }
+        .place-card-modern:active { transform: scale(0.96); }
 
-        /* زر اللغة */
         .lang-btn {
             position: absolute; top: calc(20px + env(safe-area-inset-top, 20px)); left: 20px; z-index: 99999;
             font-size: 1.1rem; font-weight: 900; color: var(--text-main); text-shadow: 0 2px 10px rgba(0,0,0,0.8);
             cursor: pointer; letter-spacing: 1px;
         }
 
-        /* شاشة التحميل (موجة البحر الأنيقة) */
+        /* شاشة التحميل */
         #preloader { position: fixed; inset: 0; background: var(--bg-deep); z-index: 9999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: 0.6s cubic-bezier(0.8, 0, 0.2, 1); }
         #preloader.hidden { opacity: 0; visibility: hidden; transform: scale(1.1); filter: blur(10px); }
         .preloader-wrapper { position: relative; width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; margin-bottom: 25px; }
@@ -72,16 +70,16 @@
         @keyframes ripple { 0% { width: 90px; height: 90px; opacity: 1; } 100% { width: 250px; height: 250px; opacity: 0; } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        /* التبويبات السفلية (6 تبويبات) */
+        /* التبويبات السفلية */
         .tabs-nav { 
-            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: 96%; max-width: 450px;
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 96%; max-width: 450px;
             background: rgba(10, 15, 25, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            display: flex; justify-content: space-between; padding: 10px 2px; border-radius: 30px;
+            display: flex; justify-content: space-around; padding: 10px 5px; border-radius: 30px;
             border: 1px solid var(--glass-border); z-index: 9000; box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
         }
-        .tab-btn { background: none; border: none; color: var(--text-muted); font-family: 'Cairo'; font-size: 0.55rem; font-weight: 800; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; outline: none; flex: 1; padding: 0;}
+        .tab-btn { background: none; border: none; color: var(--text-muted); font-family: 'Cairo'; font-size: 0.6rem; font-weight: 800; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; outline: none; flex: 1; }
         .tab-btn.active { color: var(--accent); transform: translateY(-4px); }
-        .tab-btn .icon { font-size: 1.2rem; opacity: 0.6; transition: 0.3s; }
+        .tab-btn .icon { font-size: 1.25rem; opacity: 0.6; transition: 0.3s; }
         .tab-btn.active .icon { opacity: 1; filter: drop-shadow(0 0 10px rgba(234,179,8,0.6)); }
 
         .tab-content { display: none; padding: 0 0 40px 0; animation: fadeUp 0.4s ease-out; min-height: 100vh;}
@@ -90,130 +88,119 @@
 
         .container { max-width: 800px; margin: auto; padding: 0 20px; position: relative; z-index: 2; }
 
-        /* الهيدر الحديث 2027 */
+        /* إنزال العناوين في جميع الصفحات */
+        .page-top-title-standard { text-align: right; margin-bottom: 20px; padding-top: calc(60px + env(safe-area-inset-top, 20px)); padding-right: 5px;}
+        .page-top-title-standard h1 { margin: 0; font-size: 1.8rem; color: var(--text-main); font-weight: 900; }
+        .page-top-title-standard p { margin: 5px 0 0; color: var(--accent); font-size: 0.9rem; font-weight: 700; }
+
+        /* الهيدر الرئيسي للسياحة */
         .hero-2027 {
             position: absolute; top: 0; left: 0; right: 0; height: 420px;
             background: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg') center 20%/cover;
-            z-index: 0;
-            mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+            z-index: 0; mask-image: linear-gradient(to bottom, black 55%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
         }
 
-        /* إنزال العناوين تكة لتحت (تعديل الـ padding-top) */
         .header-content { position: relative; z-index: 2; padding-top: calc(85px + env(safe-area-inset-top, 20px)); height: 360px; display: flex; flex-direction: column; justify-content: space-between; }
         .title-block { text-align: right; width: 100%; padding-right: 5px; }
         .title-block h1 { margin: 0; font-size: 2.4rem; color: #fff; font-weight: 900; line-height: 1.1; letter-spacing: -1px; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }
         .title-block p { margin: 5px 0 0; color: var(--accent); font-size: 0.9rem; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
 
-        /* ========= كبسولات النانو (شفافة أكثر) ========= */
+        /* كبسولات النانو (الطقس، البحر، الهواء، الصلاة متجمعة في الرئيسية فقط) */
         .nano-board { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; margin-bottom: 20px; padding-right: 5px;}
         .nano-chip {
-            background: rgba(0, 0, 0, 0.2); /* شفافة جداً */
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 6px 14px;
-            display: flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 6px 12px;
+            display: flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); flex: 1; min-width: 70px; justify-content: center;
         }
         .nano-chip .icon { font-size: 0.9rem; filter: drop-shadow(0 0 3px rgba(255,255,255,0.3));}
         .nano-chip .data { color: #fff; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.5px; direction: ltr;}
 
-        /* قوائم التفاصيل المدمجة */
         .glass-dropdown {
             background: var(--surface); backdrop-filter: blur(10px); border: 1px solid var(--glass-border);
             border-radius: 16px; padding: 0 15px; margin: 0; max-height: 0; opacity: 0; overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none;
         }
-        .glass-dropdown.open { max-height: 100px; opacity: 1; padding: 15px; margin-bottom: 20px; border-width: 1px; }
+        .glass-dropdown.open { max-height: 120px; opacity: 1; padding: 15px; margin-bottom: 20px; border-width: 1px; }
         .glass-dropdown::-webkit-scrollbar { display: none; }
         .mini-stat { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; min-width: 60px; }
         .mini-stat span { font-size: 0.55rem; color: var(--text-muted); font-weight: 700; margin-bottom: 4px; }
         .mini-stat b { font-size: 0.8rem; color: var(--text-main); font-weight: 900; }
 
-        /* العناوين والأقسام */
         .section-title { font-size: 1.2rem; font-weight: 900; color: var(--text-main); margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
         .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to left, var(--glass-border), transparent); }
 
-        /* كروت 2027 (Modern Cards) */
+        /* كروت المعالم */
         .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
         .card-2027 {
-            position: relative; height: 240px; border-radius: 24px; overflow: hidden;
-            background: var(--surface); border: 1px solid var(--glass-border);
+            position: relative; height: 200px; border-radius: 20px; overflow: hidden; cursor: pointer;
+            background: var(--surface); border: 1px solid var(--glass-border); box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
         .card-2027 .bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.5s; }
         .card-2027:hover .bg { transform: scale(1.05); }
         .card-2027 .gradient {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(5,11,20,1) 0%, rgba(5,11,20,0.5) 50%, transparent 100%);
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+            position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,11,20,0.95) 0%, rgba(5,11,20,0.2) 60%, transparent 100%);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 15px;
         }
         .card-2027 h3 { margin: 0 0 5px; font-size: 1.1rem; font-weight: 900; color: #fff; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
-        .card-2027 p { margin: 0 0 15px; font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-shadow: 0 1px 3px rgba(0,0,0,0.8);}
-        
-        .fav-btn { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); border-radius: 50%; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; cursor: pointer; border: 1px solid var(--glass-border); z-index: 5; color: #fff;}
+        .card-2027 p { margin: 0; font-size: 0.75rem; color: var(--sky); font-weight: 700; }
+        .fav-btn { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); border-radius: 50%; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; cursor: pointer; border: 1px solid var(--glass-border); z-index: 5; color: #fff;}
 
-        /* أزرار التوجيه */
-        .btn-neon {
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-main); border-radius: 20px; padding: 6px 14px; font-size: 0.7rem;
-            font-weight: 800; display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
-            backdrop-filter: blur(10px); width: fit-content; cursor: pointer;
-        }
+        /* النوافذ السينمائية (Modal) للمعالم */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 99999; opacity: 0; visibility: hidden; transition: 0.4s; display: flex; justify-content: center; align-items: flex-end; }
+        .modal-overlay.show { opacity: 1; visibility: visible; }
+        .modal-content { background: var(--bg-deep); width: 100%; max-width: 600px; max-height: 85vh; border-top-left-radius: 30px; border-top-right-radius: 30px; overflow-y: auto; transform: translateY(100%); transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); box-shadow: 0 -10px 40px rgba(0,0,0,0.5); position: relative; border-top: 1px solid var(--glass-border);}
+        .modal-overlay.show .modal-content { transform: translateY(0); }
+        .modal-close { position: absolute; top: 15px; left: 15px; width: 35px; height: 35px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #fff; font-size: 1.2rem; cursor: pointer; border: 1px solid var(--glass-border); z-index: 10; backdrop-filter: blur(5px);}
+        .modal-hero { height: 250px; background-size: cover; background-position: center; position: relative; }
+        .modal-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg-deep) 0%, transparent 100%); }
+        .modal-body { padding: 25px; margin-top: -40px; position: relative; z-index: 2; }
+        .modal-body h2 { font-size: 1.8rem; font-weight: 900; color: #fff; margin: 0 0 15px; }
+        .modal-body p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.9; margin: 0 0 25px; }
+        
+        .btn-neon { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-main); border-radius: 20px; padding: 8px 18px; font-size: 0.75rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; backdrop-filter: blur(10px); width: fit-content; cursor: pointer; }
         .btn-neon i { font-style: normal; color: var(--accent); font-weight: 900; }
 
-        /* الكروت النصية (للملاعب والخدمات) */
+        /* الكروت النصية */
         .glass-box { background: var(--surface); border: 1px solid var(--glass-border); border-radius: 20px; padding: 20px; margin-bottom: 15px; }
-        
         .list-clean { list-style: none; padding: 0; margin: 0; }
         .list-clean li { padding: 15px 0; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
         .list-clean li:last-child { border-bottom: none; padding-bottom: 0; }
         .text-wrap b { display: block; font-size: 0.9rem; color: var(--text-main); font-weight: 800; margin-bottom: 3px;}
         .text-wrap span { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; display: block;}
 
-        /* صفحة المطور 2027 */
-        .dev-profile { text-align: center; padding: 30px 15px; }
-        .avatar-glow { width: 90px; height: 90px; margin: 0 auto 15px; background: var(--bg-deep); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; position: relative; }
-        .avatar-glow::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(45deg, var(--sky), var(--accent)); z-index: -1; animation: spin 3s linear infinite; }
-        .dev-name { font-size: 1.5rem; font-weight: 900; margin: 0 0 5px; color: #fff; }
-        .dev-role { font-size: 0.8rem; color: var(--accent); margin: 0 0 20px; font-weight: 700; letter-spacing: 1px; }
-        .skills-grid { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; }
-        .skill-chip { background: var(--surface-hover); border: 1px solid var(--glass-border); padding: 5px 12px; border-radius: 12px; font-size: 0.7rem; font-weight: 800; color: var(--text-muted); }
-        .contact-btn { display: block; width: 100%; background: var(--text-main); color: #000; padding: 12px; border-radius: 16px; font-weight: 900; text-decoration: none; font-size: 0.9rem; margin-top: 10px;}
-
-        /* تصميم البطولات والأرشيف */
+        /* أرشيف البطولات */
         .search-input { width: 100%; padding: 14px 15px; border-radius: 16px; background: rgba(0,0,0,0.3); color: var(--text-main); border: 1px solid var(--glass-border); font-family: 'Cairo'; font-size: 0.85rem; margin-bottom: 20px; outline: none; transition: 0.3s; text-align: right;}
         .search-input:focus { border-color: var(--primary-blue); box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
-
         .sub-tabs-wrapper { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; direction: rtl;}
         .sub-tab-btn { background: var(--surface); border: 1px solid var(--glass-border); color: var(--text-muted); padding: 8px 18px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; cursor: pointer; font-family: 'Cairo'; flex: 0 0 auto; outline: none; }
         .sub-tab-btn.active { background: rgba(234, 179, 8, 0.1); color: var(--accent); border-color: var(--accent); }
         .sub-content { display: none; animation: fadeUp 0.3s; }
         .sub-content.active { display: block; }
-
         .match-list-card { background: rgba(0,0,0,0.2); border-radius: 16px; border: 1px solid var(--glass-border); padding: 15px; margin-bottom: 12px; text-align: center; }
         .teams-row-mini { display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 10px; }
         .team-mini { flex: 1; font-weight: 900; font-size: 0.9rem; color: var(--text-main); }
         .score-mini { flex: 0 0 auto; min-width: 70px; background: var(--surface); color: var(--accent); padding: 6px 12px; border-radius: 12px; font-weight: 900; border: 1px solid var(--glass-border); font-size: 1.1rem; display: flex; flex-direction: column; align-items: center; }
         .day-header { background: var(--accent); color: #000; padding: 4px 15px; border-radius: 10px; font-size: 0.75rem; font-weight: 900; margin: 15px 0 10px; display: inline-block; }
-
         .group-table { width: 100%; border-collapse: collapse; text-align: center; color: var(--text-main); }
         .group-table th { padding: 10px 5px; color: var(--text-muted); font-size: 0.7rem; border-bottom: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); }
         .group-table td { padding: 12px 5px; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .team-name-cell { text-align: right !important; padding-right: 10px !important; color: var(--accent); font-weight: 800;}
 
-        /* متفرقات */
+        /* المطور */
+        .dev-profile { text-align: center; padding: 30px 15px; border-color: var(--sky);}
+        .avatar-glow { width: 80px; height: 80px; margin: 0 auto 15px; background: var(--bg-deep); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; position: relative; }
+        .dev-name { font-size: 1.5rem; font-weight: 900; margin: 0 0 15px; color: #fff; }
+        .skills-grid { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+        .skill-chip { background: var(--surface-hover); border: 1px solid var(--glass-border); padding: 5px 12px; border-radius: 12px; font-size: 0.7rem; font-weight: 800; color: var(--text-muted); }
+        .contact-btn { display: block; width: 100%; background: rgba(234, 179, 8, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 12px; border-radius: 16px; font-weight: 900; text-decoration: none; font-size: 0.9rem; margin-top: 15px;}
         .disclaimer { font-size: 0.65rem; color: var(--text-muted); text-align: center; margin-top: 30px; line-height: 1.6; padding-top: 20px; border-top: 1px solid var(--glass-border); }
-        .calc-select { width: 100%; padding: 14px; border-radius: 14px; background: rgba(0,0,0,0.3); color: #fff; border: 1px solid var(--glass-border); font-family: 'Cairo'; font-size: 0.85rem; outline: none; margin-bottom: 15px; }
-        .calc-result { text-align: center; color: var(--accent); font-weight: 900; font-size: 0.9rem; min-height: 40px; }
+
     </style>
 </head>
 <body>
 
-    <div id="google_translate_element"></div>
-
     <script>
-        setTimeout(() => {
-            const p = document.getElementById('preloader');
-            if(p) p.classList.add('hidden');
-        }, 1500);
+        setTimeout(() => { const p = document.getElementById('preloader'); if(p) p.classList.add('hidden'); }, 1500);
     </script>
     <div id="preloader">
         <div class="preloader-wrapper">
@@ -235,12 +222,23 @@
         <button class="tab-btn" onclick="openTab('dev')"><span class="icon">💻</span><span>المطور</span></button>
     </nav>
 
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-close" onclick="closeModal(event)">×</div>
+            <div id="modal-img" class="modal-hero"></div>
+            <div class="modal-body">
+                <h2 id="modal-title">--</h2>
+                <p id="modal-desc">--</p>
+                <a id="modal-link" href="#" target="_blank" class="btn-neon" style="width: 100%; justify-content: center; padding: 12px; font-size: 0.9rem;"><i>📍</i> الاتجاهات عبر الخريطة</a>
+            </div>
+        </div>
+    </div>
+
     <div id="guide" class="tab-content active">
         <div class="hero-2027"></div>
 
         <div class="header-content container">
             <div class="lang-btn" id="lang-toggle-btn" onclick="toggleLanguage()">EN</div>
-            
             <div class="title-block">
                 <h1>دليل القحمة</h1>
                 <p>مشتى عسير، وواجهة البحر الأحمر</p>
@@ -252,14 +250,14 @@
                 <div class="nano-chip" onclick="toggleData('weather')">
                     <span class="icon">⛅</span><span class="data" id="nano-temp">--°C</span>
                 </div>
+                <div class="nano-chip" onclick="toggleData('sea')">
+                    <span class="icon">🌊</span><span class="data" id="nano-sea">--</span>
+                </div>
                 <div class="nano-chip" onclick="toggleData('aqi')">
                     <span class="icon">💨</span><span class="data" id="nano-aqi">--</span>
                 </div>
-                <div class="nano-chip" onclick="toggleData('sea-main')">
-                    <span class="icon">🌊</span><span class="data" id="nano-sea-main">--</span>
-                </div>
-                <div class="nano-chip" onclick="toggleData('pray-main')">
-                    <span class="icon">🕌</span><span class="data" id="nano-pray-main">--:--</span>
+                <div class="nano-chip" onclick="toggleData('pray')">
+                    <span class="icon">🕌</span><span class="data" id="nano-pray">--:--</span>
                 </div>
             </div>
 
@@ -267,109 +265,16 @@
                 <div class="mini-stat"><span>الرؤية</span><b id="data-vis">-- كم</b></div>
                 <div class="mini-stat"><span>الخط</span><b id="data-alert" style="color:var(--success)">سليم</b></div>
             </div>
+            <div class="glass-dropdown" id="sea-data">
+                <div class="mini-stat"><span>الرياح</span><b id="data-wind">-- كم</b></div>
+                <div class="mini-stat"><span>الموج</span><b id="data-wave">-- م</b></div>
+                <div class="mini-stat"><span>المد</span><b id="data-tide">--:--</b></div>
+                <div class="mini-stat"><span>الجزر</span><b id="data-ebb">--:--</b></div>
+            </div>
             <div class="glass-dropdown" id="aqi-data">
                 <div class="mini-stat"><span>المؤشر</span><b id="data-aqi-val">--</b></div>
                 <div class="mini-stat"><span>الغبار</span><b id="data-dust">-- μg</b></div>
                 <div class="mini-stat"><span>الحالة</span><b id="data-desc">--</b></div>
-            </div>
-            <div class="glass-dropdown" id="sea-main-data">
-                <div class="mini-stat"><span>الرياح</span><b id="data-wind-main">--</b></div>
-                <div class="mini-stat"><span>الموج</span><b id="data-wave-main">--</b></div>
-                <div class="mini-stat"><span>المد</span><b id="data-tide-main">--:--</b></div>
-                <div class="mini-stat"><span>الجزر</span><b id="data-ebb-main">--:--</b></div>
-            </div>
-            <div class="glass-dropdown" id="pray-main-data">
-                <div class="mini-stat"><span>الفجر</span><b id="p-fajr-main">--:--</b></div>
-                <div class="mini-stat"><span>الظهر</span><b id="p-dhuhr-main">--:--</b></div>
-                <div class="mini-stat"><span>العصر</span><b id="p-asr-main">--:--</b></div>
-                <div class="mini-stat"><span>المغرب</span><b id="p-maghrib-main">--:--</b></div>
-                <div class="mini-stat"><span>العشاء</span><b id="p-isha-main">--:--</b></div>
-            </div>
-
-            <div class="section-title">أبرز المعالم</div>
-
-            <div class="places-grid">
-                <div class="card-2027">
-                    <span class="fav-btn" onclick="toggleFav(this, 'matal')">🤍</span>
-                    <div class="bg" style="background-image: url('https://i.ibb.co/fdmsp7QN/IMG-9512.jpg');"></div>
-                    <div class="gradient">
-                        <h3>مطل القحمة</h3>
-                        <p>إطلالة بانورامية ساحرة تجمع بين الجبل والبحر الأحمر.</p>
-                        <a href="https://www.google.com/maps/search/مطل+القحمة" target="_blank" class="btn-neon"><i>↗</i> الاتجاهات</a>
-                    </div>
-                </div>
-
-                <div class="card-2027">
-                    <span class="fav-btn" onclick="toggleFav(this, 'island')">🤍</span>
-                    <div class="bg" style="background-image: url('https://i.ibb.co/rRNxnkvZ/IMG-6580.jpg');"></div>
-                    <div class="gradient">
-                        <h3>جزيرة كدمبل</h3>
-                        <p>جبل بركاني شامخ محاط برمال بيضاء، وجهة الغوص والصيد.</p>
-                        <a href="https://www.google.com/maps/search/جزيرة+كدمبل+القحمة" target="_blank" class="btn-neon"><i>↗</i> الاتجاهات</a>
-                    </div>
-                </div>
-
-                <div class="card-2027">
-                    <span class="fav-btn" onclick="toggleFav(this, 'corniche')">🤍</span>
-                    <div class="bg" style="background-image: url('https://i.ibb.co/xSc3sLRq/IMG-9496.jpg');"></div>
-                    <div class="gradient">
-                        <h3>كورنيش القحمة</h3>
-                        <p>شريط خلاب مزود بجلسات عائلية، الوجهة الأولى للزوار.</p>
-                        <a href="https://www.google.com/maps/search/كورنيش+القحمة" target="_blank" class="btn-neon"><i>↗</i> الاتجاهات</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="marine" class="tab-content">
-        <div class="container" style="padding-top: 40px;">
-            <div class="title-block" style="margin-bottom: 20px;">
-                <h1>عالم البحر</h1>
-                <p>ملاحة، ونزهات بحرية</p>
-            </div>
-
-            <div class="nano-board">
-                <div class="nano-chip" onclick="toggleData('sea')">
-                    <span class="icon">🌊</span><span class="data" id="nano-sea">--</span>
-                </div>
-            </div>
-
-            <div class="glass-dropdown" id="sea-data">
-                <div class="mini-stat"><span>الرياح</span><b id="data-wind">--</b></div>
-                <div class="mini-stat"><span>الموج</span><b id="data-wave">--</b></div>
-                <div class="mini-stat"><span>المد</span><b id="data-tide">--:--</b></div>
-                <div class="mini-stat"><span>الجزر</span><b id="data-ebb">--:--</b></div>
-            </div>
-
-            <div class="section-title">البوصلة الذكية 🧭</div>
-            <div class="glass-box" style="text-align: center; padding: 30px 15px;">
-                <div id="compass-circle" style="width:100px; height:100px; border:2px solid var(--sky); border-radius:50%; margin:0 auto; position:relative; transition: 0.1s; box-shadow: inset 0 0 15px rgba(56, 189, 248, 0.1); background: rgba(0,0,0,0.2);">
-                    <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); color:var(--danger); font-weight:900;">N</div>
-                    <div style="width:3px; height:50px; background:linear-gradient(to top, transparent 0%, var(--danger) 50%, var(--danger) 100%); position:absolute; bottom:50%; left:50%; transform:translateX(-50%); border-radius: 4px 4px 0 0;"></div>
-                </div>
-                <p id="compass-status" style="font-size:0.7rem; color:var(--text-muted); margin-top:15px;">تعمل فقط مع أذونات الموقع (HTTPS)</p>
-            </div>
-            
-            <div class="section-title">النزهات البحرية ⚓</div>
-            <div class="glass-box">
-                <div class="text-wrap" style="margin-bottom:15px;"><b>كباتن نزهة وصيد</b><span>للتنسيق وحجز الرحلات لجزيرة كدمبل</span></div>
-                <a href="https://wa.me/966534987428" target="_blank" class="btn-neon" style="color:var(--success); border-color:var(--success); width:100%; justify-content:center;"><i>💬</i> تواصل واتساب</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="services" class="tab-content">
-        <div class="container" style="padding-top: 40px;">
-            <div class="title-block" style="margin-bottom: 20px;">
-                <h1>الخدمات</h1>
-                <p>خرائط، صحة، وجوامع</p>
-            </div>
-
-            <div class="nano-board">
-                <div class="nano-chip" onclick="toggleData('pray')">
-                    <span class="icon">🕌</span><span class="data" id="nano-pray">--:--</span>
-                </div>
             </div>
             <div class="glass-dropdown" id="pray-data">
                 <div class="mini-stat"><span>الفجر</span><b id="p-fajr">--:--</b></div>
@@ -379,10 +284,94 @@
                 <div class="mini-stat"><span>العشاء</span><b id="p-isha">--:--</b></div>
             </div>
 
-            <div class="section-title">حاسبة المسافات 🚗</div>
+            <div class="section-title">أبرز المعالم</div>
+
+            <div class="places-grid">
+                <div class="card-2027" onclick="openPlace('matal')">
+                    <span class="fav-btn" onclick="toggleFav(event, this, 'matal')">🤍</span>
+                    <div class="bg" style="background-image: url('https://i.ibb.co/fdmsp7QN/IMG-9512.jpg');"></div>
+                    <div class="gradient">
+                        <h3>مطل القحمة</h3>
+                        <p>انقر لعرض التفاصيل...</p>
+                    </div>
+                </div>
+
+                <div class="card-2027" onclick="openPlace('island')">
+                    <span class="fav-btn" onclick="toggleFav(event, this, 'island')">🤍</span>
+                    <div class="bg" style="background-image: url('https://i.ibb.co/rRNxnkvZ/IMG-6580.jpg');"></div>
+                    <div class="gradient">
+                        <h3>جزيرة كدمبل</h3>
+                        <p>انقر لعرض التفاصيل...</p>
+                    </div>
+                </div>
+
+                <div class="card-2027" onclick="openPlace('corniche')">
+                    <span class="fav-btn" onclick="toggleFav(event, this, 'corniche')">🤍</span>
+                    <div class="bg" style="background-image: url('https://i.ibb.co/xSc3sLRq/IMG-9496.jpg');"></div>
+                    <div class="gradient">
+                        <h3>كورنيش القحمة</h3>
+                        <p>انقر لعرض التفاصيل...</p>
+                    </div>
+                </div>
+
+                <div class="card-2027" onclick="openPlace('park')">
+                    <span class="fav-btn" onclick="toggleFav(event, this, 'park')">🤍</span>
+                    <div class="bg" style="background-image: url('https://i.ibb.co/b5jxrrnc/IMG-6371.jpg');"></div>
+                    <div class="gradient">
+                        <h3>حديقة القحمة</h3>
+                        <p>انقر لعرض التفاصيل...</p>
+                    </div>
+                </div>
+
+                <div class="card-2027" onclick="openPlace('khayriya_park')">
+                    <span class="fav-btn" onclick="toggleFav(event, this, 'khayriya_park')">🤍</span>
+                    <div class="bg" style="background: linear-gradient(135deg, #162032, #0d1321);"></div>
+                    <div class="gradient">
+                        <h3>حديقة الخيرية</h3>
+                        <p>انقر لعرض التفاصيل...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="marine" class="tab-content">
+        <div class="container">
+            <div class="page-top-title-standard">
+                <h1>عالم البحر</h1>
+                <p>ملاحة، صيد، ونزهات بحرية</p>
+            </div>
+
+            <div class="section-title">دليل الصيد وأسرار القحمة 🐟</div>
+            <div class="glass-box">
+                <p style="font-size:0.8rem; color:var(--text-main); margin-bottom:15px; line-height: 1.8;">يعتبر بحر القحمة من أغنى السواحل بالأسماك، وتختلف الأنواع حسب المواسم وطبيعة الصيد.</p>
+                <ul class="list-clean">
+                    <li><div class="text-wrap"><b>سمك الناجل 🔴</b><span>موسم الوفرة (الصيف) يتواجد بكثرة قرب الشعاب المرجانية، ويفضل صيده بالجلب.</span></div></li>
+                    <li><div class="text-wrap"><b>الكنعد (الديراك) 🐟</b><span>موسم الوفرة (أكتوبر - مارس) يُصاد بطريقة "التشخيط" الممتعة.</span></div></li>
+                    <li><div class="text-wrap"><b>الشعور والبياض ⚪</b><span>متوفر طوال العام، ويعتبر الخيار الأول والممتاز لأكلة "السمك الميفا".</span></div></li>
+                    <li><div class="text-wrap"><b>أوقات الصيد الذهبية 🌅</b><span>فترة الفجر، وقبيل الغروب هي الأفضل للحصول على صيد وفير.</span></div></li>
+                </ul>
+            </div>
+
+            <div class="section-title">النزهات البحرية ⚓</div>
+            <div class="glass-box">
+                <div class="text-wrap" style="margin-bottom:15px;"><b>كباتن نزهة وصيد</b><span>للتنسيق وحجز الرحلات البحرية نحو جزيرة كدمبل للغوص أو الاستجمام.</span></div>
+                <a href="https://wa.me/966534987428" target="_blank" class="btn-neon" style="color:var(--success); border-color:var(--success); width:100%; justify-content:center;"><i>💬</i> تواصل واتساب مع الكابتن</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="services" class="tab-content">
+        <div class="container">
+            <div class="page-top-title-standard">
+                <h1>دليل الخدمات</h1>
+                <p>خرائط، صحة، وجوامع</p>
+            </div>
+
+            <div class="section-title" style="margin-top:10px;">حاسبة المسافات 🚗</div>
             <div class="glass-box">
                 <select id="distance-calc" class="calc-select" onchange="calculateDistance()">
-                    <option value="">-- اختر الوجهة --</option>
+                    <option value="">-- اختر الوجهة من القحمة --</option>
                     <option value="abha">أبها</option>
                     <option value="darb">الدرب</option>
                     <option value="jazan">جازان</option>
@@ -391,22 +380,22 @@
                 <div id="distance-result" class="calc-result"></div>
             </div>
 
-            <div class="section-title">الجوامع 🕌</div>
+            <div class="section-title">الجوامع والمساجد 🕌</div>
             <div class="glass-box">
                 <ul class="list-clean">
-                    <li><div class="text-wrap"><b>أبو بكر الصديق</b></div><a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" class="btn-neon"><i>↗</i></a></li>
-                    <li><div class="text-wrap"><b>موضي البراهيم</b></div><a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" class="btn-neon"><i>↗</i></a></li>
-                    <li><div class="text-wrap"><b>الفاروق بصوالحة</b></div><a href="https://maps.app.goo.gl/YuKZ4H4d9TcgYuSp7?g_st=ic" target="_blank" class="btn-neon"><i>↗</i></a></li>
-                    <li><div class="text-wrap"><b>مخطط بن جربوع</b></div><a href="https://maps.app.goo.gl/rCN3k8LPiSBsujRW6?g_st=ic" target="_blank" class="btn-neon"><i>↗</i></a></li>
+                    <li><div class="text-wrap"><b>جامع أبو بكر الصديق</b></div><a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" class="btn-neon"><i>↗</i></a></li>
+                    <li><div class="text-wrap"><b>جامع موضي البراهيم</b></div><a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" class="btn-neon"><i>↗</i></a></li>
+                    <li><div class="text-wrap"><b>جامع الفاروق بصوالحة</b></div><a href="https://maps.app.goo.gl/YuKZ4H4d9TcgYuSp7?g_st=ic" target="_blank" class="btn-neon"><i>↗</i></a></li>
+                    <li><div class="text-wrap"><b>جامع مخطط بن جربوع</b></div><a href="https://maps.app.goo.gl/rCN3k8LPiSBsujRW6?g_st=ic" target="_blank" class="btn-neon"><i>↗</i></a></li>
                 </ul>
             </div>
 
             <div class="section-title">الصحة والطوارئ 🚨</div>
             <div class="glass-box">
                 <ul class="list-clean">
-                    <li><div class="text-wrap"><b>مستشفى القحمة</b></div><a href="https://www.google.com/maps/search/?api=1&query=مستشفى+القحمة+العام" target="_blank" class="btn-neon"><i>↗</i></a></li>
-                    <li><div class="text-wrap"><b>حرس الحدود</b></div><a href="tel:994" class="btn-neon" style="color:var(--danger)"><i>📞</i></a></li>
-                    <li><div class="text-wrap"><b>الدفاع المدني</b></div><a href="tel:998" class="btn-neon" style="color:var(--danger)"><i>📞</i></a></li>
+                    <li><div class="text-wrap"><b>مستشفى القحمة العام</b></div><a href="https://www.google.com/maps/search/?api=1&query=مستشفى+القحمة+العام" target="_blank" class="btn-neon"><i>↗</i></a></li>
+                    <li><div class="text-wrap"><b>حرس الحدود</b></div><a href="tel:994" class="btn-neon" style="color:var(--danger); border-color:rgba(239, 68, 68, 0.3);"><i>📞</i></a></li>
+                    <li><div class="text-wrap"><b>الدفاع المدني</b></div><a href="tel:998" class="btn-neon" style="color:var(--danger); border-color:rgba(239, 68, 68, 0.3);"><i>📞</i></a></li>
                 </ul>
             </div>
             
@@ -415,38 +404,23 @@
                 <ul class="list-clean">
                     <li><div class="text-wrap"><b>مقر مركز القحمة</b></div><a href="https://www.google.com/maps/search/?api=1&query=مركز+القحمة" target="_blank" class="btn-neon"><i>↗</i></a></li>
                     <li><div class="text-wrap"><b>مركز شرطة القحمة</b></div><a href="https://www.google.com/maps/search/?api=1&query=شرطة+القحمة" target="_blank" class="btn-neon"><i>↗</i></a></li>
-                    <li><div class="text-wrap"><b>بلدية الساحل</b></div><a href="tel:940" class="btn-neon" style="color:var(--success)"><i>📞</i></a></li>
+                    <li><div class="text-wrap"><b>بلدية الساحل</b></div><a href="tel:940" class="btn-neon" style="color:var(--success); border-color:rgba(16, 185, 129, 0.3);"><i>📞</i></a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div id="tournament" class="tab-content">
-        <div class="container" style="padding-top: 40px;">
-            <div class="title-block" style="margin-bottom: 20px;">
-                <h1>الفعاليات</h1>
-                <p>ملاعب، وأرشيف رياضي</p>
+        <div class="container">
+            <div class="page-top-title-standard">
+                <h1>الفعاليات والبطولات</h1>
+                <p>مكتبة الأرشيف الرياضي بالقحمة</p>
             </div>
 
-            <div class="section-title">ملاعب القحمة ⚽</div>
-            <div class="glass-box">
-                <ul class="list-clean">
-                    <li>
-                        <div class="text-wrap"><b>ملعب الوسم</b><span>للبطولات والمباريات الرسمية</span></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الوسم+بالقحمة" target="_blank" class="btn-neon" style="color:var(--success); border-color:rgba(16, 185, 129, 0.3);"><i>↗</i> موقع</a>
-                    </li>
-                    <li>
-                        <div class="text-wrap"><b>ملعب الخيرية</b><span>لتمارين الأكاديميات والمواهب</span></div>
-                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الخيرية+بالقحمة" target="_blank" class="btn-neon" style="color:var(--success); border-color:rgba(16, 185, 129, 0.3);"><i>↗</i> موقع</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="section-title">أرشيف البطولات 🏆</div>
-            
+            <div class="section-title" style="margin-top: 10px;">أرشيف البطولات 🏆</div>
             <div id="tournaments-directory">
                 <input type="text" class="search-input" id="search-tournaments" placeholder="🔍 ابحث عن بطولة..." onkeyup="searchDirectory()">
-                <div class="glass-box" style="display:flex; align-items:center; gap:15px; cursor:pointer;" onclick="openTournamentDetails('t28')">
+                <div class="glass-box" style="display:flex; align-items:center; gap:15px; cursor:pointer;" onclick="openTournamentDetails()">
                     <span style="font-size:2rem;">🏆</span>
                     <div class="text-wrap" style="flex:1;"><b>بطولة القحمة 28</b><span>اضغط لعرض المباريات والهدافين</span></div>
                     <i style="color:var(--accent);">❯</i>
@@ -498,12 +472,27 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="section-title" style="margin-top: 30px;">ملاعب القحمة ⚽</div>
+            <div class="glass-box">
+                <ul class="list-clean">
+                    <li>
+                        <div class="text-wrap"><b>ملعب الوسم بالقحمة</b><span>للبطولات والمباريات الرسمية</span></div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الوسم+بالقحمة" target="_blank" class="btn-neon" style="color:var(--success); border-color:rgba(16, 185, 129, 0.3);"><i>↗</i> موقع</a>
+                    </li>
+                    <li>
+                        <div class="text-wrap"><b>ملعب الخيرية</b><span>لتمارين الأكاديميات والمواهب</span></div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=ملعب+الخيرية+بالقحمة" target="_blank" class="btn-neon" style="color:var(--success); border-color:rgba(16, 185, 129, 0.3);"><i>↗</i> موقع</a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>
 
     <div id="history" class="tab-content">
-        <div class="container" style="padding-top: 40px;">
-            <div class="title-block" style="margin-bottom: 20px;">
+        <div class="container">
+            <div class="page-top-title-standard">
                 <h1>موسوعة القحمة</h1>
                 <p>عراقة الماضي وإشراقة المستقبل</p>
             </div>
@@ -537,58 +526,37 @@
                 <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">6. المطبخ التهامي (الميفا) 🍽️</h2>
                 <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يتميز المطبخ في القحمة بطابعه التهامي الأصيل. يعتبر <strong>"السمك الميفا"</strong> (المشوي داخل التنور الفخاري) الوجبة الرسمية التي لا تكتمل الزيارة إلا بتذوقها.</p>
             </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">7. الفنون والموروث الشعبي 🥁</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تتزين احتفالات الأهالي بالفنون الشعبية الأصيلة مثل <strong>الخطوة التهامية</strong> والدمة.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">8. الزراعة والأودية الخصبة 🌴</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">رغم طبيعتها الساحلية، تخترق القحمة أودية شهيرة مثل وادي حمضة، والتي تكتسي باللون الأخضر بعد الأمطار، وكان الأهالي يعتمدون عليها قديماً في زراعة الدخن والسمسم.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">9. مهرجان القحمة الشتوي 🎉</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">حدث سنوي تقيمه وتدعمه الجهات المختصة، يشمل فعاليات ضخمة تجمع بين فعاليات واحتفالات في حديقة القحمة، العروض الشعبية، وتسويق الأسر المنتجة لتعزيز الهوية السياحية للمركز.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">10. الحياة الفطرية والطيور المهاجرة 🦅</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تمثل غابات المانجروف والجزر المجاورة بيئة مثالية وتوقفاً آمناً للطيور المهاجرة، خاصة أسراب الصقور والنوارس، مما يجعلها بيئة بكر تستقطب الباحثين والمصورين من كل مكان.</p>
-            </div>
         </div>
     </div>
 
     <div id="dev" class="tab-content">
-        <div class="container" style="padding-top: 40px;">
+        <div class="container">
+            <div class="page-top-title-standard">
+                <h1>عن المطور</h1>
+                <p>مُبرمج ومصمم الموسوعة</p>
+            </div>
             
-            <div class="glass-box dev-profile">
+            <div class="glass-box dev-profile" style="border-color: var(--sky);">
                 <div class="avatar-glow">👨‍💻</div>
                 <h1 class="dev-name eyad-name" translate="no">إياد عسيري</h1>
-                <p class="dev-role">Developer & UI/UX Designer</p>
                 
-                <div class="skills-grid">
-                    <span class="skill-chip">Web Development</span>
-                    <span class="skill-chip">Unity 3D Games</span>
-                    <span class="skill-chip">UI/UX Design</span>
-                </div>
-
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin-bottom:20px;">
+                <p style="font-size:0.85rem; color:var(--text-muted); line-height: 1.8; margin: 15px 0;">
                     مصمم جرافيك، مطور ويب، وشغوف بصناعة الألعاب (Unity).<br>
                     بُنيت <strong>"موسوعة القحمة الرقمية"</strong> كمرجع متكامل يخدم أهالي المنطقة ويدعم السياحة بلمسة تقنية واحترافية.
                 </p>
 
                 <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; margin: 20px 0; border: 1px solid var(--glass-border);">
                     <h4 style="margin:0 0 10px; color:var(--text-main); font-size:0.9rem;">أبرز الخدمات التقنية التي أقدمها:</h4>
-                    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:6px;">
-                        <span class="skill-chip" style="color:var(--sky); border-color:var(--sky);">برمجة المواقع 🌐</span>
-                        <span class="skill-chip" style="color:var(--accent); border-color:var(--accent);">تصميم الجرافيك 🎨</span>
-                        <span class="skill-chip" style="color:var(--success); border-color:var(--success);">تطوير ألعاب 🎮</span>
+                    <div class="skills-grid">
+                        <span class="skill-chip">برمجة المواقع 🌐</span>
+                        <span class="skill-chip">تصميم الجرافيك 🎨</span>
+                        <span class="skill-chip">تطوير ألعاب 🎮</span>
                     </div>
                 </div>
 
-                <a href="https://wa.me/966534987428" target="_blank" class="contact-btn">تواصل لتنفيذ مشروعك</a>
+                <a href="https://wa.me/966534987428" target="_blank" rel="noopener noreferrer" class="contact-btn" style="background: rgba(234, 179, 8, 0.1); border: 1px solid var(--accent); color: var(--accent);">
+                    <i>💬</i> تواصل لتنفيذ مشروعك
+                </a>
             </div>
 
             <div class="disclaimer">
@@ -606,6 +574,65 @@
     </script>
 
     <script>
+        // بيانات المعالم السياحية للنافذة المنبثقة (السينمائية)
+        const placesData = {
+            'matal': {
+                title: 'مطل القحمة',
+                desc: 'يعتبر مطل القحمة الوجهة الأبرز لعشاق الهدوء والتأمل. يوفر إطلالة بانورامية ساحرة من أعلى الجبل تكشف لك جمال البحر الأحمر وسواحل القحمة. مجهز بجلسات تناسب العائلات، ومثالي جداً لالتقاط أروع الصور الاحترافية خاصة وقت غروب الشمس الخلاب.',
+                img: 'https://i.ibb.co/fdmsp7QN/IMG-9512.jpg',
+                link: 'https://www.google.com/maps/search/مطل+القحمة'
+            },
+            'island': {
+                title: 'جزيرة كدمبل',
+                desc: 'أيقونة السياحة في البحر الأحمر! جبل بركاني شامخ محاط برمال بيضاء ناصعة ومياه فيروزية صافية. تُعد الجزيرة الملاذ الأول لهواة الغوص، ومحبي صيد الأسماك، ومكاناً استثنائياً لمراقبة الطيور النادرة المهاجرة. تحتاج لتنسيق مع كباتن النزهة للوصول إليها.',
+                img: 'https://i.ibb.co/rRNxnkvZ/IMG-6580.jpg',
+                link: 'https://www.google.com/maps/search/جزيرة+كدمبل+القحمة'
+            },
+            'corniche': {
+                title: 'كورنيش وواجهة القحمة',
+                desc: 'يمتد كورنيش القحمة ليكون المتنفس الأول والأجمل للأهالي والزوار. يتميز بمسارات طويلة للمشي، ومناطق مظللة للجلوس، ومسطحات خضراء قريبة من نسمات البحر. الوجهة العائلية الأفضل لقضاء أمسيات لا تُنسى على صوت أمواج البحر الأحمر.',
+                img: 'https://i.ibb.co/xSc3sLRq/IMG-9496.jpg',
+                link: 'https://www.google.com/maps/search/كورنيش+القحمة'
+            },
+            'park': {
+                title: 'حديقة القحمة العامة',
+                desc: 'حديقة نموذجية ومتنفس أخضر واسع منسق بعناية فائقة. توفر مساحات خضراء مريحة للعين، وأماكن مخصصة لألعاب الأطفال، وممرات رياضية للمشي. تعتبر مكاناً آمناً وهادئاً لاجتماع العوائل والأصدقاء في قلب القحمة.',
+                img: 'https://i.ibb.co/b5jxrrnc/IMG-6371.jpg',
+                link: 'https://www.google.com/maps/search/حديقة+القحمة+العامة'
+            },
+            'khayriya_park': {
+                title: 'حديقة الخيرية',
+                desc: 'حديقة الخيرية الجديدة، تعتبر من أحدث المتنفسات في المنطقة، توفر أجواء هادئة وتصميماً عصرياً يناسب العائلات للراحة والاستجمام بعيداً عن صخب المدينة.',
+                img: '', 
+                link: '#'
+            }
+        };
+
+        function openPlace(id) {
+            const data = placesData[id];
+            if(!data) return;
+            
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-desc').innerText = data.desc;
+            document.getElementById('modal-link').href = data.link;
+            
+            const imgDiv = document.getElementById('modal-img');
+            if(data.img !== '') {
+                imgDiv.style.backgroundImage = `url('${data.img}')`;
+            } else {
+                imgDiv.style.background = 'linear-gradient(135deg, #162032, #0d1321)';
+            }
+            
+            document.getElementById('modal-overlay').classList.add('show');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal(event) {
+            if(event) event.stopPropagation();
+            document.getElementById('modal-overlay').classList.remove('show');
+            document.body.style.overflow = 'auto'; 
+        }
+
         function closeAllDash() {
             document.querySelectorAll('.glass-dropdown').forEach(el => el.classList.remove('open'));
         }
@@ -628,13 +655,10 @@
             
             closeAllDash();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            if(tabId === 'marine' && window.DeviceOrientationEvent) {
-                window.addEventListener('deviceorientationabsolute', handleCompass, true);
-            }
         }
 
-        function toggleFav(btn, id) {
+        function toggleFav(event, btn, id) {
+            event.stopPropagation(); // منع فتح النافذة السينمائية عند ضغط المفضلة
             let favs = JSON.parse(localStorage.getItem('q2027_favs') || '[]');
             if(favs.includes(id)) {
                 favs = favs.filter(f => f !== id);
@@ -644,15 +668,6 @@
                 btn.innerText = '❤️';
             }
             localStorage.setItem('q2027_favs', JSON.stringify(favs));
-        }
-
-        function handleCompass(event) {
-            let alpha = event.alpha || event.webkitCompassHeading;
-            if (alpha !== null) {
-                document.getElementById('compass-circle').style.transform = `rotate(${360 - alpha}deg)`;
-                document.getElementById('compass-status').innerText = 'نشطة 🧭';
-                document.getElementById('compass-status').style.color = "var(--success)";
-            }
         }
 
         const distData = {
@@ -673,7 +688,7 @@
             evt.currentTarget.classList.add('active');
         }
 
-        function openTournamentDetails(id) {
+        function openTournamentDetails() {
             document.getElementById('tournaments-directory').style.display = 'none';
             document.getElementById('tournament-details').style.display = 'block';
         }
@@ -755,53 +770,49 @@
             document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--sky); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
         }
 
+        // جلب البيانات الحية المباشرة (APIs) بتحديث حصري يمنع الأخطاء
         async function fetchLiveAPIs() {
-            // الطقس (مع تحديث كل المعرفات الرئيسية)
+            // الطقس والبحر (API 1)
             try {
-                const resW = await fetch('https://api.open-meteo.com/v1/forecast?latitude=17.99&longitude=41.67&current_weather=true&current=visibility');
+                const resW = await fetch('https://api.open-meteo.com/v1/forecast?latitude=17.99&longitude=41.67&current=temperature_2m,wind_speed_10m,weather_code,visibility');
                 const dW = await resW.json();
-                let temp = Math.round(dW.current_weather.temperature);
-                let wind = Math.round(dW.current_weather.windspeed);
+                let temp = Math.round(dW.current.temperature_2m);
+                let wind = Math.round(dW.current.wind_speed_10m);
                 let visKm = (dW.current.visibility / 1000).toFixed(1);
                 
                 document.getElementById('nano-temp').innerText = temp + '°C';
-                let seaStatus = wind > 20 ? 'مضطرب' : 'هادئ';
                 
-                // تحديث للسياحة والبحر
-                ['nano-sea-main', 'nano-sea'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = seaStatus; });
-                
-                ['data-wind-main', 'data-wind'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = wind + ' كم'; });
-                ['data-wave-main', 'data-wave'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = (wind/15).toFixed(1) + ' م'; });
-                
-                if(document.getElementById('fish-status')) document.getElementById('fish-status').innerText = wind > 20 ? 'صعبة 🛑' : 'ممتازة 🎣';
-
                 if(document.getElementById('data-vis')) document.getElementById('data-vis').innerText = visKm + ' كم';
                 if(document.getElementById('data-alert')) {
                     document.getElementById('data-alert').innerText = visKm < 2 ? 'ضباب/غبار⚠️' : 'سليم';
                     document.getElementById('data-alert').style.color = visKm < 2 ? 'var(--danger)' : 'var(--success)';
                 }
+                
+                let seaStatus = wind > 20 ? 'مضطرب' : 'هادئ';
+                if(document.getElementById('nano-sea')) document.getElementById('nano-sea').innerText = seaStatus;
 
+                if(document.getElementById('data-wind')) document.getElementById('data-wind').innerText = wind + ' كم';
+                if(document.getElementById('data-wave')) document.getElementById('data-wave').innerText = (wind/15).toFixed(1) + ' م';
+                
                 const hours = new Date().getHours();
-                ['data-tide-main', 'data-tide'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = (hours + 4) % 24 + ":00"; });
-                ['data-ebb-main', 'data-ebb'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = (hours + 10) % 24 + ":00"; });
-            } catch(e) {
-                document.getElementById('nano-temp').innerText = '28°C';
-            }
+                if(document.getElementById('data-tide')) document.getElementById('data-tide').innerText = (hours + 4) % 24 + ":00";
+                if(document.getElementById('data-ebb')) document.getElementById('data-ebb').innerText = (hours + 10) % 24 + ":00";
+            } catch(e) {}
 
-            // الهواء
+            // الهواء والغبار (API 2)
             try {
                 const resA = await fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=17.99&longitude=41.67&current=european_aqi,dust');
                 const dA = await resA.json();
                 let aqi = Math.round(dA.current.european_aqi);
+                let dust = Math.round(dA.current.dust);
+
                 document.getElementById('nano-aqi').innerText = aqi < 50 ? 'نقي' : 'متوسط';
                 if(document.getElementById('data-aqi-val')) document.getElementById('data-aqi-val').innerText = aqi;
-                if(document.getElementById('data-dust')) document.getElementById('data-dust').innerText = Math.round(dA.current.dust) + 'μg';
+                if(document.getElementById('data-dust')) document.getElementById('data-dust').innerText = dust + ' μg';
                 if(document.getElementById('data-desc')) document.getElementById('data-desc').innerText = aqi < 50 ? 'ممتاز 🟢' : 'غبار 🟡';
-            } catch(e) {
-                document.getElementById('nano-aqi').innerText = 'نقي';
-            }
+            } catch(e) {}
 
-            // الصلاة
+            // الصلاة (API 3)
             try {
                 const resP = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Al%20Qahma&country=Saudi%20Arabia&method=4');
                 const dP = await resP.json();
@@ -817,16 +828,27 @@
                 let ampm = h >= 12 ? 'م' : 'ص';
                 h = h % 12 || 12;
                 
-                let nextP = `${h}:${String(m).padStart(2, '0')} ${ampm}`;
-                ['nano-pray-main', 'nano-pray'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = nextP; });
+                document.getElementById('nano-pray').innerText = `${h}:${String(m).padStart(2, '0')} ${ampm}`;
                 
-                ['p-fajr-main', 'p-fajr'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Fajr; });
-                ['p-dhuhr-main', 'p-dhuhr'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Dhuhr; });
-                ['p-asr-main', 'p-asr'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Asr; });
-                ['p-maghrib-main', 'p-maghrib'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Maghrib; });
-                ['p-isha-main', 'p-isha'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Isha; });
+                if(document.getElementById('p-fajr')) {
+                    document.getElementById('p-fajr').innerText = t.Fajr;
+                    document.getElementById('p-dhuhr').innerText = t.Dhuhr;
+                    document.getElementById('p-asr').innerText = t.Asr;
+                    document.getElementById('p-maghrib').innerText = t.Maghrib;
+                    document.getElementById('p-isha').innerText = t.Isha;
+                }
             } catch(e) {}
         }
+        
+        // التحميل الأولي
+        window.addEventListener('DOMContentLoaded', () => {
+            let favs = JSON.parse(localStorage.getItem('q2027_favs') || '[]');
+            document.querySelectorAll('.fav-btn').forEach(btn => {
+                let idMatch = btn.getAttribute('onclick').match(/'([^']+)'/);
+                if(idMatch && favs.includes(idMatch[1])) btn.innerText = '❤️';
+            });
+            fetchLiveAPIs();
+        });
     </script>
 </body>
 </html>
