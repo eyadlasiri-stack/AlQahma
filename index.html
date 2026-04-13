@@ -94,7 +94,7 @@
         .container { max-width: 800px; margin: auto; padding: 0 15px; position: relative; z-index: 2; }
         .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: right; }
 
-        /* ========= الهيدر الرئيسي (صورة القارب كاملة بدون زحمة) ========= */
+        /* ========= الهيدر الرئيسي (صورة القارب) ========= */
         #guide { position: relative; padding-top: 0; }
         
         .hero-header-bg {
@@ -107,18 +107,22 @@
             background: linear-gradient(to bottom, rgba(13,19,33,0.1) 0%, rgba(13,19,33,0.4) 60%, var(--bg-color) 100%);
         }
 
-        /* حاوية مرنة توزع النص فوق والشريط الذكي تحت */
         .guide-content-wrapper { 
             position: relative; z-index: 2; 
-            padding-top: calc(40px + env(safe-area-inset-top, 20px)); 
-            height: 380px; /* نفس ارتفاع الصورة */
+            padding-top: calc(30px + env(safe-area-inset-top, 20px)); 
+            height: 380px; 
             display: flex; flex-direction: column; justify-content: space-between;
         }
 
-        .top-hero-section {
-            display: flex; justify-content: space-between; align-items: flex-start;
+        /* شريط اللغة الذكي */
+        .custom-lang-switcher {
+            position: absolute;
+            top: calc(20px + env(safe-area-inset-top, 20px)); 
+            left: 15px;
+            z-index: 99999;
+            font-size: 0.75rem;
+            font-weight: 900;
         }
-
         .custom-lang-switcher span {
             cursor: pointer; color: var(--accent-sand);
             background: rgba(0, 0, 0, 0.4); padding: 4px 12px; font-size: 0.75rem; font-weight: 900;
@@ -126,13 +130,20 @@
             border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        .page-top-title { text-align: right; padding-right: 5px; }
-        .page-top-title h1 { margin: 0; font-size: 2.2rem; color: #fff; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;}
-        .page-top-title p { margin: 2px 0 0; color: var(--accent-sand); font-size: 0.9rem; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        /* العنوان المصغر والمحاذى لليمين بشكل قطعي */
+        .page-top-title { 
+            text-align: right !important; 
+            width: 100%; 
+            padding-right: 15px;
+            margin-top: 15px;
+        }
+        .page-top-title h1 { margin: 0; font-size: 1.8rem; color: #fff; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;}
+        .page-top-title p { margin: 2px 0 0; color: var(--accent-sand); font-size: 0.85rem; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 
-        /* ========= الشريط الذكي (تم إنزاله لأسفل الصورة) ========= */
+        /* ========= الشريط الذكي أسفل الصورة ========= */
         .bottom-hero-section {
             padding-bottom: 20px;
+            width: 100%;
         }
 
         .smart-bar-wrapper {
@@ -151,7 +162,7 @@
         .full-dropdown { 
             display: flex; gap: 8px; overflow-x: auto; overflow-y: hidden;
             padding: 0 10px; margin: 0; scrollbar-width: none; 
-            border-radius: 12px; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); 
+            border-radius: 12px; background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); 
             max-height: 0; opacity: 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             pointer-events: none; border: 0 solid var(--border-color);
         }
@@ -167,13 +178,13 @@
 
         .page-top-title-standard { text-align: right; margin-bottom: 15px; padding-top: calc(25px + env(safe-area-inset-top, 15px)); padding-right: 5px;}
         .page-top-title-standard h1 { margin: 0; font-size: 1.8rem; color: var(--text-primary); font-weight: 900; }
-        .page-top-title-standard p { margin: 5px 0 0; color: var(--accent-sand); font-size: 0.9rem; font-weight: 700; }
+        .page-top-title-standard p { margin: 5px 0 0; color: var(--accent-sand); font-size: 0.85rem; font-weight: 700; }
 
         .section-header { display: flex; align-items: center; gap: 10px; margin: 20px 0 15px; }
         .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; text-align: right; }
         .section-line { flex: 1; height: 1px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.5; }
 
-        /* ========= أزرار الخرائط الحديثة 2026 (Neon / Glassmorphism) ========= */
+        /* ========= أزرار الخرائط الحديثة 2026 ========= */
         .btn-map-2026 {
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(234, 179, 8, 0.05));
             border: 1px solid rgba(56, 189, 248, 0.3);
@@ -194,7 +205,7 @@
         }
         .btn-map-2026 i { font-style: normal; font-size: 1.1rem; font-weight: 900; line-height: 1; margin-bottom: 2px;}
 
-        /* كروت المعالم السياحية (التصميم الفخم الخفيف من تحت الصورة) */
+        /* كروت المعالم السياحية (خفيفة وشفافة من تحت) */
         .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .place-card-modern {
             position: relative; height: 220px; border-radius: 16px; overflow: hidden;
@@ -294,15 +305,13 @@
 
         <div class="guide-content-wrapper">
             
-            <div class="top-hero-section container">
-                <div class="custom-lang-switcher" id="lang-switcher-container">
-                    <span id="lang-toggle-btn" onclick="toggleLanguage()">English</span>
-                </div>
+            <div class="custom-lang-switcher" id="lang-switcher-container">
+                <span id="lang-toggle-btn" onclick="toggleLanguage()">English</span>
+            </div>
 
-                <div class="page-top-title">
-                    <h1>دليل القحمة</h1>
-                    <p>مشتى عسير الأول، وواجهة البحر الأحمر</p>
-                </div>
+            <div class="page-top-title">
+                <h1>دليل القحمة</h1>
+                <p>مشتى عسير الأول، وواجهة البحر الأحمر</p>
             </div>
 
             <div class="bottom-hero-section container">
@@ -347,7 +356,9 @@
                     <div class="drop-item"><span>العشاء</span><b id="pt-isha">--:--</b></div>
                 </div>
             </div>
-        </div> <div class="container">
+        </div>
+
+        <div class="container">
             <div class="section-header" style="margin-top: 15px;"><h2>أبرز المعالم السياحية</h2><div class="section-line"></div></div>
 
             <div class="places-grid">
@@ -479,28 +490,28 @@
                             <span class="mosque-type">جامع</span>
                             <span class="mosque-name">جامع أبو بكر الصديق</span>
                         </div>
-                        <a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="padding: 6px 12px;"><i>↗</i> الاتجاهات</a>
+                        <a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="width:auto; padding: 6px 12px; font-size: 0.7rem;"><i>↗</i> الاتجاهات</a>
                     </div>
                     <div class="mosque-item">
                         <div style="display: flex; align-items: center;">
                             <span class="mosque-type">جامع</span>
                             <span class="mosque-name">جامع موضي البراهيم - رحمها الله</span>
                         </div>
-                        <a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="padding: 6px 12px;"><i>↗</i> الاتجاهات</a>
+                        <a href="https://maps.app.goo.gl/ojNcUDeCMyaJ6cv6A?g_st=ic" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="width:auto; padding: 6px 12px; font-size: 0.7rem;"><i>↗</i> الاتجاهات</a>
                     </div>
                     <div class="mosque-item">
                         <div style="display: flex; align-items: center;">
                             <span class="mosque-type">جامع</span>
                             <span class="mosque-name">جامع الفاروق بصوالحة</span>
                         </div>
-                        <a href="https://maps.app.goo.gl/YuKZ4H4d9TcgYuSp7?g_st=ic" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="padding: 6px 12px;"><i>↗</i> الاتجاهات</a>
+                        <a href="https://maps.app.goo.gl/YuKZ4H4d9TcgYuSp7?g_st=ic" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="width:auto; padding: 6px 12px; font-size: 0.7rem;"><i>↗</i> الاتجاهات</a>
                     </div>
                     <div class="mosque-item">
                         <div style="display: flex; align-items: center;">
                             <span class="mosque-type">جامع</span>
                             <span class="mosque-name">جامع مخطط بن جربوع</span>
                         </div>
-                        <a href="https://maps.app.goo.gl/rCN3k8LPiSBsujRW6?g_st=ic" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="padding: 6px 12px;"><i>↗</i> الاتجاهات</a>
+                        <a href="https://maps.app.goo.gl/rCN3k8LPiSBsujRW6?g_st=ic" target="_blank" rel="noopener noreferrer" class="btn-map-2026" style="width:auto; padding: 6px 12px; font-size: 0.7rem;"><i>↗</i> الاتجاهات</a>
                     </div>
                 </div>
             </div>
