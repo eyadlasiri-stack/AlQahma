@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* ألوان 2027 - عمق المحيط */
+        /* ألوان 2027 - عمق المحيط والنيون */
         :root { 
             --bg-deep: #050b14;          
             --surface: rgba(255, 255, 255, 0.03);           
@@ -38,18 +38,21 @@
         body { margin: 0; padding: 0; padding-bottom: calc(90px + env(safe-area-inset-bottom)); min-height: 100vh; background-color: var(--bg-deep); color: var(--text-main); font-family: 'Cairo', sans-serif; overflow-x: hidden; scroll-behavior: smooth; text-align: right; -webkit-tap-highlight-color: transparent; }
         * { box-sizing: border-box; }
 
+        /* إخفاء مترجم جوجل */
         body { top: 0 !important; position: static !important; }
         .goog-te-banner-frame, .skiptranslate iframe, #goog-gt-tt, .goog-te-gadget-icon, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
         #google_translate_element { display: none !important; }
 
-        .nano-chip, .btn-neon, .tab-btn, .t-circle-item, .fav-btn, .lang-btn, .sub-tab-btn, .place-card-modern {
+        /* تفاعلات اللمس */
+        .nano-chip, .btn-neon, .tab-btn, .t-circle-item, .fav-btn, .lang-btn, .sub-tab-btn, .t-back-btn, .place-card-modern {
             transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .nano-chip:active, .btn-neon:active, .tab-btn:active, .t-circle-item:active, .fav-btn:active, .lang-btn:active, .sub-tab-btn:active {
+        .nano-chip:active, .btn-neon:active, .tab-btn:active, .t-circle-item:active, .fav-btn:active, .lang-btn:active, .sub-tab-btn:active, .t-back-btn:active {
             transform: scale(0.9) !important; opacity: 0.7;
         }
         .place-card-modern:active { transform: scale(0.96); }
 
+        /* زر اللغة */
         .lang-btn {
             position: absolute; top: calc(20px + env(safe-area-inset-top, 20px)); left: 20px; z-index: 99999;
             font-size: 1.1rem; font-weight: 900; color: var(--text-main); text-shadow: 0 2px 10px rgba(0,0,0,0.8);
@@ -88,7 +91,7 @@
 
         .container { max-width: 800px; margin: auto; padding: 0 20px; position: relative; z-index: 2; }
 
-        /* إنزال العناوين في جميع الصفحات */
+        /* العناوين الموحدة في كل الصفحات (منزلة لتحت تكة) */
         .page-top-title-standard { text-align: right; margin-bottom: 20px; padding-top: calc(60px + env(safe-area-inset-top, 20px)); padding-right: 5px;}
         .page-top-title-standard h1 { margin: 0; font-size: 1.8rem; color: var(--text-main); font-weight: 900; }
         .page-top-title-standard p { margin: 5px 0 0; color: var(--accent); font-size: 0.9rem; font-weight: 700; }
@@ -105,7 +108,7 @@
         .title-block h1 { margin: 0; font-size: 2.4rem; color: #fff; font-weight: 900; line-height: 1.1; letter-spacing: -1px; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }
         .title-block p { margin: 5px 0 0; color: var(--accent); font-size: 0.9rem; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
 
-        /* كبسولات النانو (الطقس، البحر، الهواء، الصلاة متجمعة في الرئيسية فقط) */
+        /* كبسولات النانو */
         .nano-board { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; margin-bottom: 20px; padding-right: 5px;}
         .nano-chip {
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -168,7 +171,25 @@
         .text-wrap b { display: block; font-size: 0.9rem; color: var(--text-main); font-weight: 800; margin-bottom: 3px;}
         .text-wrap span { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; display: block;}
 
-        /* أرشيف البطولات */
+        /* شاشة تفاصيل البطولة كاملة (Full Screen Overlay) */
+        .tournament-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-deep); z-index: 9999999; overflow-y: auto;
+            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .tournament-overlay.show { transform: translateX(0); }
+        .t-header {
+            position: sticky; top: 0; background: rgba(5, 11, 20, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            padding: calc(15px + env(safe-area-inset-top, 20px)) 20px 15px;
+            display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--glass-border); z-index: 10;
+        }
+        .t-back-btn {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; width: 40px; height: 40px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; font-size: 1.2rem; cursor: pointer; padding-bottom: 2px;
+        }
+        .t-title { font-size: 1.2rem; font-weight: 900; color: #fff; margin: 0; }
+
+        /* أرشيف البطولات (داخل الشاشة الكاملة) */
         .search-input { width: 100%; padding: 14px 15px; border-radius: 16px; background: rgba(0,0,0,0.3); color: var(--text-main); border: 1px solid var(--glass-border); font-family: 'Cairo'; font-size: 0.85rem; margin-bottom: 20px; outline: none; transition: 0.3s; text-align: right;}
         .search-input:focus { border-color: var(--primary-blue); box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
         .sub-tabs-wrapper { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; direction: rtl;}
@@ -215,10 +236,9 @@
 
     <nav class="tabs-nav">
         <button class="tab-btn active" onclick="openTab('guide')"><span class="icon">🌴</span><span>السياحة</span></button>
-        <button class="tab-btn" onclick="openTab('marine')"><span class="icon">🌊</span><span>البحر</span></button>
+        <button class="tab-btn" onclick="openTab('history')"><span class="icon">📜</span><span>تراثنا</span></button>
         <button class="tab-btn" onclick="openTab('services')"><span class="icon">🏥</span><span>الخدمات</span></button>
         <button class="tab-btn" onclick="openTab('tournament')"><span class="icon">⚽</span><span>الفعاليات</span></button>
-        <button class="tab-btn" onclick="openTab('history')"><span class="icon">📜</span><span>تراثنا</span></button>
         <button class="tab-btn" onclick="openTab('dev')"><span class="icon">💻</span><span>المطور</span></button>
     </nav>
 
@@ -332,31 +352,81 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div id="marine" class="tab-content">
-        <div class="container">
-            <div class="page-top-title-standard">
-                <h1>عالم البحر</h1>
-                <p>ملاحة، صيد، ونزهات بحرية</p>
-            </div>
-
-            <div class="section-title">دليل الصيد وأسرار القحمة 🐟</div>
+            <div class="section-title" style="margin-top: 30px;">دليل الصيادين 🐟</div>
             <div class="glass-box">
-                <p style="font-size:0.8rem; color:var(--text-main); margin-bottom:15px; line-height: 1.8;">يعتبر بحر القحمة من أغنى السواحل بالأسماك، وتختلف الأنواع حسب المواسم وطبيعة الصيد.</p>
+                <p style="font-size:0.8rem; color:var(--text-main); margin-bottom:15px; line-height: 1.8;">يختلف الصيد في القحمة حسب المواسم:</p>
                 <ul class="list-clean">
-                    <li><div class="text-wrap"><b>سمك الناجل 🔴</b><span>موسم الوفرة (الصيف) يتواجد بكثرة قرب الشعاب المرجانية، ويفضل صيده بالجلب.</span></div></li>
-                    <li><div class="text-wrap"><b>الكنعد (الديراك) 🐟</b><span>موسم الوفرة (أكتوبر - مارس) يُصاد بطريقة "التشخيط" الممتعة.</span></div></li>
-                    <li><div class="text-wrap"><b>الشعور والبياض ⚪</b><span>متوفر طوال العام، ويعتبر الخيار الأول والممتاز لأكلة "السمك الميفا".</span></div></li>
-                    <li><div class="text-wrap"><b>أوقات الصيد الذهبية 🌅</b><span>فترة الفجر، وقبيل الغروب هي الأفضل للحصول على صيد وفير.</span></div></li>
+                    <li><div class="text-wrap"><b>سمك الناجل 🔴</b><span>موسم الوفرة (الصيف) قرب الشعاب المرجانية.</span></div></li>
+                    <li><div class="text-wrap"><b>الكنعد (الديراك) 🐟</b><span>موسم الوفرة (أكتوبر - مارس) صيد "التشخيط".</span></div></li>
+                    <li><div class="text-wrap"><b>الشعور والبياض ⚪</b><span>متوفر طوال العام، الأفضل لأكلة "الميفا".</span></div></li>
+                    <li><div class="text-wrap"><b>حالة الصيد اليوم</b><span id="fish-status" style="color:var(--success); font-weight:900; font-size:0.75rem;">جاري التحديث...</span></div></li>
                 </ul>
             </div>
 
             <div class="section-title">النزهات البحرية ⚓</div>
             <div class="glass-box">
-                <div class="text-wrap" style="margin-bottom:15px;"><b>كباتن نزهة وصيد</b><span>للتنسيق وحجز الرحلات البحرية نحو جزيرة كدمبل للغوص أو الاستجمام.</span></div>
+                <div class="text-wrap" style="margin-bottom:15px;"><b>كباتن نزهة وصيد</b><span>للتنسيق وحجز الرحلات البحرية نحو جزيرة كدمبل.</span></div>
                 <a href="https://wa.me/966534987428" target="_blank" class="btn-neon" style="color:var(--success); border-color:var(--success); width:100%; justify-content:center;"><i>💬</i> تواصل واتساب مع الكابتن</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="history" class="tab-content">
+        <div class="container">
+            <div class="page-top-title-standard">
+                <h1>موسوعة القحمة</h1>
+                <p>عراقة الماضي وإشراقة المستقبل</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">1. الموقع الاستراتيجي 🌍</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تقع القحمة على الشريط الساحلي للبحر الأحمر تابعة لمنطقة عسير. تتميز بتنوعها الجغرافي الفريد الذي يجمع بين السهل الساحلي، الجبال المحاذية، والأودية التي تنحدر من جبال السروات لتصب في البحر.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">2. مناخها ومشتى عسير ☀️</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">نظراً لاعتدال مناخها ودفئه خلال فصل الشتاء مقارنة ببرودة السروات، أصبحت القحمة الملاذ والوجهة السياحية الأولى (المشتى) لأهالي منطقة عسير وزوارها، بحثاً عن الدفء والأنشطة البحرية.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">3. الميناء التاريخي ⚓</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يعتبر ميناء القحمة من أقدم الموانئ الحيوية في جنوب البحر الأحمر. كان يغص بالسفن الشراعية (السنابيك) المحملة بالتوابل والبضائع القادمة من اليمن والقرن الأفريقي، مما جعلها مركزاً تجارياً نابضاً بالحياة.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">4. حرفة الغوص وصيد اللؤلؤ 🦪</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">لم يكن البحر مجرد مصدر للسمك، بل امتدت رحلات الأجداد لأعماق البحر الأحمر لاستخراج اللؤلؤ والمحار. مهنة الغوص كانت من المهن الشاقة التي سطرت ملاحم من الشجاعة لإنسان القحمة قديماً.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">5. الثروة السمكية 🐟</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يزخر ساحل القحمة بتنوع سمكي هائل. يعتبر الصيد بالطرق التقليدية متوارثاً حتى اليوم، حيث تجد في سوق السمك يومياً أسماك الديراك (الكنعد)، الناجل، الشعور.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">6. المطبخ التهامي (الميفا) 🍽️</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يتميز المطبخ في القحمة بطابعه التهامي الأصيل. يعتبر <strong>"السمك الميفا"</strong> (المشوي داخل التنور الفخاري) الوجبة الرسمية التي لا تكتمل الزيارة إلا بتذوقها.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">7. الفنون والموروث الشعبي 🥁</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تتزين احتفالات الأهالي بالفنون الشعبية الأصيلة مثل <strong>الخطوة التهامية</strong> والدمة.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">8. الزراعة والأودية الخصبة 🌴</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">رغم طبيعتها الساحلية، تخترق القحمة أودية شهيرة مثل وادي حمضة، والتي تكتسي باللون الأخضر بعد الأمطار، وكان الأهالي يعتمدون عليها قديماً في زراعة الدخن والسمسم.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">9. مهرجان القحمة الشتوي 🎉</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">حدث سنوي تقيمه وتدعمه الجهات المختصة، يشمل فعاليات ضخمة تجمع بين فعاليات واحتفالات في حديقة القحمة، العروض الشعبية، وتسويق الأسر المنتجة لتعزيز الهوية السياحية للمركز.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">10. الحياة الفطرية والطيور المهاجرة 🦅</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تمثل غابات المانجروف والجزر المجاورة بيئة مثالية وتوقفاً آمناً للطيور المهاجرة، خاصة أسراب الصقور والنوارس، مما يجعلها بيئة بكر تستقطب الباحثين والمصورين من كل مكان.</p>
             </div>
         </div>
     </div>
@@ -427,52 +497,6 @@
                 </div>
             </div>
 
-            <div id="tournament-details" style="display: none;">
-                <button class="btn-neon" style="margin-bottom: 20px;" onclick="closeTournamentDetails()"><i>🔙</i> العودة للأرشيف</button>
-
-                <div class="sub-tabs-wrapper">
-                    <button class="sub-tab-btn active" onclick="openSubTab(event, 't-matches')">المباريات</button>
-                    <button class="sub-tab-btn" onclick="openSubTab(event, 't-scorers')">الهدافين</button>
-                    <button class="sub-tab-btn" onclick="openSubTab(event, 't-groups')">المجموعات</button>
-                    <button class="sub-tab-btn" onclick="openSubTab(event, 't-teams')">سجل الأندية</button>
-                    <button class="sub-tab-btn" onclick="openSubTab(event, 't-awards')">الجوائز</button>
-                </div>
-
-                <div id="t-matches" class="sub-content active glass-box">
-                    <input type="text" class="search-input" id="search-matches" placeholder="🔍 ابحث عن فريق..." onkeyup="searchList('matches')" style="background:rgba(255,255,255,0.05);">
-                    <div id="archive-area"></div>
-                </div>
-
-                <div id="t-scorers" class="sub-content glass-box">
-                    <input type="text" class="search-input" id="search-scorers" placeholder="🔍 ابحث عن لاعب..." onkeyup="searchList('scorers')" style="background:rgba(255,255,255,0.05);">
-                    <div style="border:1px solid var(--glass-border); border-radius:12px; overflow:hidden;">
-                        <table class="group-table" id="players-table"></table>
-                    </div>
-                </div>
-
-                <div id="t-groups" class="sub-content glass-box">
-                    <div id="groups-area"></div>
-                </div>
-
-                <div id="t-teams" class="sub-content glass-box">
-                    <div style="border:1px solid var(--glass-border); border-radius:12px; overflow:hidden;">
-                        <table class="group-table">
-                            <thead><tr><th class="team-name-cell">الفريق</th><th>لعب</th><th>سجل</th><th>استقبل</th><th>الفرق</th></tr></thead>
-                            <tbody id="teams-tbody"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="t-awards" class="sub-content glass-box" style="border-color: var(--accent);">
-                    <h3 style="margin: 0 0 15px; color: var(--accent); font-size: 1.1rem; text-align: center;">جوائز النسخة 28 🏅</h3>
-                    <ul class="list-clean" style="text-align:right;">
-                        <li><div class="text-wrap"><b>بطل النسخة</b><span>نادي الفيصلي (بركلات الترجيح 7-6)</span></div>🏆</li>
-                        <li><div class="text-wrap"><b>الوصيف</b><span>نادي الوسام</span></div>🥈</li>
-                        <li><div class="text-wrap"><b>الهداف</b><span>أحمد شعبان (نادي عمق) - 3 أهداف</span></div>⚽</li>
-                    </ul>
-                </div>
-            </div>
-
             <div class="section-title" style="margin-top: 30px;">ملاعب القحمة ⚽</div>
             <div class="glass-box">
                 <ul class="list-clean">
@@ -486,45 +510,60 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
 
-    <div id="history" class="tab-content">
-        <div class="container">
-            <div class="page-top-title-standard">
-                <h1>موسوعة القحمة</h1>
-                <p>عراقة الماضي وإشراقة المستقبل</p>
+    <div id="tournament-details" class="tournament-overlay">
+        <div class="t-header">
+            <div class="t-back-btn" onclick="closeTournamentDetails()">❯</div>
+            <h2 class="t-title">بطولة القحمة 28</h2>
+        </div>
+        <div class="container" style="padding-top: 20px; padding-bottom: 50px;">
+            <div class="sub-tabs-wrapper">
+                <button class="sub-tab-btn active" onclick="openSubTab(event, 't-matches')">المباريات</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 't-scorers')">الهدافين</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 't-groups')">المجموعات</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 't-teams')">سجل الأندية</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 't-awards')">الجوائز</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 't-rules')">اللائحة</button>
             </div>
 
-            <div class="glass-box">
-                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">1. الموقع الاستراتيجي 🌍</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تقع القحمة على الشريط الساحلي للبحر الأحمر تابعة لمنطقة عسير. تتميز بتنوعها الجغرافي الفريد الذي يجمع بين السهل الساحلي، الجبال المحاذية، والأودية التي تنحدر من جبال السروات لتصب في البحر.</p>
+            <div id="t-matches" class="sub-content active glass-box">
+                <input type="text" class="search-input" id="search-matches" placeholder="🔍 ابحث عن فريق..." onkeyup="searchList('matches')" style="background:rgba(255,255,255,0.05);">
+                <div id="archive-area"></div>
             </div>
 
-            <div class="glass-box">
-                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">2. مناخها ومشتى عسير ☀️</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">نظراً لاعتدال مناخها ودفئه خلال فصل الشتاء مقارنة ببرودة السروات، أصبحت القحمة الملاذ والوجهة السياحية الأولى (المشتى) لأهالي منطقة عسير وزوارها، بحثاً عن الدفء والأنشطة البحرية.</p>
+            <div id="t-scorers" class="sub-content glass-box">
+                <input type="text" class="search-input" id="search-scorers" placeholder="🔍 ابحث عن لاعب..." onkeyup="searchList('scorers')" style="background:rgba(255,255,255,0.05);">
+                <div style="border:1px solid var(--glass-border); border-radius:12px; overflow:hidden;">
+                    <table class="group-table" id="players-table"></table>
+                </div>
             </div>
 
-            <div class="glass-box">
-                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">3. الميناء التاريخي ⚓</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يعتبر ميناء القحمة من أقدم الموانئ الحيوية في جنوب البحر الأحمر. كان يغص بالسفن الشراعية (السنابيك) المحملة بالتوابل والبضائع القادمة من اليمن والقرن الأفريقي، مما جعلها مركزاً تجارياً نابضاً بالحياة.</p>
+            <div id="t-groups" class="sub-content glass-box">
+                <div id="groups-area"></div>
             </div>
 
-            <div class="glass-box">
-                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">4. حرفة الغوص وصيد اللؤلؤ 🦪</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">لم يكن البحر مجرد مصدر للسمك، بل امتدت رحلات الأجداد لأعماق البحر الأحمر لاستخراج اللؤلؤ والمحار. مهنة الغوص كانت من المهن الشاقة التي سطرت ملاحم من الشجاعة لإنسان القحمة قديماً.</p>
+            <div id="t-teams" class="sub-content glass-box">
+                <div style="border:1px solid var(--glass-border); border-radius:12px; overflow:hidden;">
+                    <table class="group-table">
+                        <thead><tr><th class="team-name-cell">الفريق</th><th>لعب</th><th>سجل</th><th>استقبل</th><th>الفرق</th></tr></thead>
+                        <tbody id="teams-tbody"></tbody>
+                    </table>
+                </div>
             </div>
 
-            <div class="glass-box">
-                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">5. الثروة السمكية 🐟</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يزخر ساحل القحمة بتنوع سمكي هائل. يعتبر الصيد بالطرق التقليدية متوارثاً حتى اليوم، حيث تجد في سوق السمك يومياً أسماك الديراك (الكنعد)، الناجل، الشعور.</p>
+            <div id="t-awards" class="sub-content glass-box" style="border-color: var(--accent);">
+                <h3 style="margin: 0 0 15px; color: var(--accent); font-size: 1.1rem; text-align: center;">جوائز النسخة 28 🏅</h3>
+                <ul class="list-clean" style="text-align:right;">
+                    <li><div class="text-wrap"><b>بطل النسخة</b><span>نادي الفيصلي (بركلات الترجيح 7-6)</span></div>🏆</li>
+                    <li><div class="text-wrap"><b>الوصيف</b><span>نادي الوسام</span></div>🥈</li>
+                    <li><div class="text-wrap"><b>الهداف</b><span>أحمد شعبان (نادي عمق) - 3 أهداف</span></div>⚽</li>
+                </ul>
             </div>
 
-            <div class="glass-box">
-                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">6. المطبخ التهامي (الميفا) 🍽️</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يتميز المطبخ في القحمة بطابعه التهامي الأصيل. يعتبر <strong>"السمك الميفا"</strong> (المشوي داخل التنور الفخاري) الوجبة الرسمية التي لا تكتمل الزيارة إلا بتذوقها.</p>
+            <div id="t-rules" class="sub-content glass-box">
+                <div class="text-block" id="rules-content" style="font-size: 0.85rem; margin:0; line-height: 2; color:var(--text-muted); white-space: pre-wrap;"></div>
             </div>
         </div>
     </div>
@@ -566,15 +605,49 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
     <script type="text/javascript">
-        function googleTranslateElementInit() {
-          new google.translate.TranslateElement({pageLanguage: 'ar', includedLanguages: 'ar,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        // إغلاق أي نافذة مفتوحة
+        function closeAllDash() {
+            document.querySelectorAll('.glass-dropdown').forEach(el => el.classList.remove('open'));
         }
-    </script>
 
-    <script>
-        // بيانات المعالم السياحية للنافذة المنبثقة (السينمائية)
+        // التحكم في القوائم المصغرة (Nano Chips)
+        function toggleData(type) {
+            const target = document.getElementById(type + '-data');
+            if(!target) return;
+            const isShowing = target.classList.contains('open');
+            closeAllDash();
+            if(!isShowing) target.classList.add('open');
+        }
+
+        // التحكم في التبويبات الرئيسية
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+            
+            document.getElementById('lang-switcher-container').style.display = tabId === 'guide' ? 'block' : 'none';
+            
+            closeAllDash();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // نظام المفضلة
+        function toggleFav(event, btn, id) {
+            event.stopPropagation(); // منع فتح النافذة السينمائية عند التفضيل
+            let favs = JSON.parse(localStorage.getItem('q2027_favs') || '[]');
+            if(favs.includes(id)) {
+                favs = favs.filter(f => f !== id);
+                btn.innerText = '🤍';
+            } else {
+                favs.push(id);
+                btn.innerText = '❤️';
+            }
+            localStorage.setItem('q2027_favs', JSON.stringify(favs));
+        }
+
+        // بيانات المعالم السينمائية
         const placesData = {
             'matal': {
                 title: 'مطل القحمة',
@@ -633,43 +706,7 @@
             document.body.style.overflow = 'auto'; 
         }
 
-        function closeAllDash() {
-            document.querySelectorAll('.glass-dropdown').forEach(el => el.classList.remove('open'));
-        }
-
-        function toggleData(type) {
-            const target = document.getElementById(type + '-data');
-            if(!target) return;
-            const isShowing = target.classList.contains('open');
-            closeAllDash();
-            if(!isShowing) target.classList.add('open');
-        }
-
-        function openTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-            
-            document.getElementById('lang-switcher-container').style.display = tabId === 'guide' ? 'block' : 'none';
-            
-            closeAllDash();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleFav(event, btn, id) {
-            event.stopPropagation(); // منع فتح النافذة السينمائية عند ضغط المفضلة
-            let favs = JSON.parse(localStorage.getItem('q2027_favs') || '[]');
-            if(favs.includes(id)) {
-                favs = favs.filter(f => f !== id);
-                btn.innerText = '🤍';
-            } else {
-                favs.push(id);
-                btn.innerText = '❤️';
-            }
-            localStorage.setItem('q2027_favs', JSON.stringify(favs));
-        }
-
+        // حاسبة المسافات
         const distData = {
             'abha': { d: '160 كم', t: 'ساعتين' }, 'darb': { d: '70 كم', t: '45 دقيقة' },
             'jazan': { d: '200 كم', t: 'ساعتين ونصف' }, 'jeddah': { d: '550 كم', t: '6 ساعات' }
@@ -680,7 +717,7 @@
             res.innerHTML = val ? `المسافة: ${distData[val].d} | الزمن: ${distData[val].t}` : '';
         }
 
-        // أرشيف البطولة كامل
+        // أرشيف البطولة (الشاشة الكاملة)
         function openSubTab(evt, subName) {
             document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
@@ -689,13 +726,13 @@
         }
 
         function openTournamentDetails() {
-            document.getElementById('tournaments-directory').style.display = 'none';
-            document.getElementById('tournament-details').style.display = 'block';
+            document.getElementById('tournament-details').classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeTournamentDetails() {
-            document.getElementById('tournament-details').style.display = 'none';
-            document.getElementById('tournaments-directory').style.display = 'block';
+            document.getElementById('tournament-details').classList.remove('show');
+            document.body.style.overflow = 'auto';
         }
 
         function searchList(type) {
@@ -754,6 +791,8 @@
             {n:"السادسة", teams:[{t:"صقلية",l:2,f:1,te:1,x:0,p:4},{t:"دبسا",l:2,f:1,te:1,x:0,p:4},{t:"عرمرم",l:2,f:0,te:0,x:2,p:0}]}
         ];
 
+        const aboutRulesText = `تذكير بنظام بطولة القحمة الرمضانية الثامنة والعشرون كرة القدم 2026م\n\nدور المجموعات وعدد مبارياته (18) مباراة\n* يشارك بالبطولة عدد (18) فريقاً ويتم تقسيم الفرق إلى (6) مجموعات وتضم كل مجموعة (3) فرق يتم تحديدها بالقرعة.\n* تقام مباريات البطولة بنظام المجموعات من دور واحد.\n* يتأهل الفريق الحاصل على المركز الأول من كل مجموعة إلى دور الثمانية ويصبح عدد المتأهلين (6) فرق.\n* تتأهل أفضل (4) فرق حاصلة على المركز الثاني لدور الملحق ليتأهل فريقين منهم لإكمال عدد فرق دور الثمانية.\n* يتم تحديد ترتيب الفرق في كل مجموعة وتحديد أفضلية الثواني بحسب: مجموع النقاط، فرق الأهداف، ثم الأهداف المسجلة.\n* في حال تعادل فرق المجموعة الواحدة يتم اللجوء إلى القرعة لحسم الموقف بحضور مندوبي الفرق.\n\n* جميع حقوق البطولة محفوظة للجنة المنظمة.`;
+
         function renderTournamentData() {
             document.getElementById('archive-area').innerHTML = archiveData.map(day => `<span class="day-header">${day.d}</span>` + day.matches.map(m => `<div class="match-list-card"><div class="teams-row-mini"><span class="team-mini">${m.t1}</span><div class="score-mini"><span>${m.r}</span>${m.p ? `<span style="font-size:0.65rem; color:var(--text-muted); display:block; margin-top:2px;">${m.p}</span>` : ""}</div><span class="team-mini">${m.t2}</span></div></div>`).join('')).join('');
             document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = index===0?'🥇':index===1?'🥈':index===2?'🥉':''; return `<tr><td class="team-name-cell">${medal} ${s.n}<br><span style="color:var(--text-muted); font-size:0.65rem;">${s.f}</span></td><td><span style="background:var(--bg-deep); color:var(--accent); padding:4px 10px; border-radius:8px; font-weight:900; border:1px solid var(--glass-border);">${s.g}</span></td></tr>`; }).join('');
@@ -768,11 +807,14 @@
                 stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; 
             }));
             document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--sky); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
+            
+            let rulesContent = document.getElementById('rules-content');
+            if(rulesContent) rulesContent.innerText = aboutRulesText;
         }
 
-        // جلب البيانات الحية المباشرة (APIs) بتحديث حصري يمنع الأخطاء
+        // جلب البيانات الحية المباشرة
         async function fetchLiveAPIs() {
-            // الطقس والبحر (API 1)
+            // الطقس
             try {
                 const resW = await fetch('https://api.open-meteo.com/v1/forecast?latitude=17.99&longitude=41.67&current=temperature_2m,wind_speed_10m,weather_code,visibility');
                 const dW = await resW.json();
@@ -797,9 +839,12 @@
                 const hours = new Date().getHours();
                 if(document.getElementById('data-tide')) document.getElementById('data-tide').innerText = (hours + 4) % 24 + ":00";
                 if(document.getElementById('data-ebb')) document.getElementById('data-ebb').innerText = (hours + 10) % 24 + ":00";
+                
+                if(document.getElementById('fish-status')) document.getElementById('fish-status').innerText = wind > 20 ? 'صعبة 🛑' : 'ممتازة 🎣';
+
             } catch(e) {}
 
-            // الهواء والغبار (API 2)
+            // الهواء
             try {
                 const resA = await fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=17.99&longitude=41.67&current=european_aqi,dust');
                 const dA = await resA.json();
@@ -812,13 +857,13 @@
                 if(document.getElementById('data-desc')) document.getElementById('data-desc').innerText = aqi < 50 ? 'ممتاز 🟢' : 'غبار 🟡';
             } catch(e) {}
 
-            // الصلاة (API 3)
+            // الصلاة
             try {
-                const resP = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Al%20Qahma&country=Saudi%20Arabia&method=4');
+                const dDate = new Date();
+                const resP = await fetch(`https://api.aladhan.com/v1/timings/${dDate.getDate()}-${dDate.getMonth()+1}-${dDate.getFullYear()}?latitude=17.99&longitude=41.67&method=4`);
                 const dP = await resP.json();
                 const t = dP.data.timings;
                 
-                const dDate = new Date();
                 const now = dDate.getHours() * 60 + dDate.getMinutes();
                 const pr = [ {t:t.Fajr}, {t:t.Dhuhr}, {t:t.Asr}, {t:t.Maghrib}, {t:t.Isha} ];
                 let nxt = pr[0].t;
@@ -840,14 +885,19 @@
             } catch(e) {}
         }
         
-        // التحميل الأولي
         window.addEventListener('DOMContentLoaded', () => {
             let favs = JSON.parse(localStorage.getItem('q2027_favs') || '[]');
             document.querySelectorAll('.fav-btn').forEach(btn => {
-                let idMatch = btn.getAttribute('onclick').match(/'([^']+)'/);
-                if(idMatch && favs.includes(idMatch[1])) btn.innerText = '❤️';
+                let onclickAttr = btn.getAttribute('onclick');
+                if(onclickAttr) {
+                    let match = onclickAttr.match(/'([^']+)'/);
+                    if(match && favs.includes(match[1])) btn.innerText = '❤️';
+                }
             });
-            fetchLiveAPIs();
+
+            renderTournamentData();
+            fetchLiveAPIs(); 
+            setInterval(fetchLiveAPIs, 60000);
         });
     </script>
 </body>
