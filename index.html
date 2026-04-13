@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* ألوان 2027 - عمق المحيط */
+        /* ألوان 2027 - عمق المحيط والنيون */
         :root { 
             --bg-deep: #050b14;          
             --surface: rgba(255, 255, 255, 0.03);           
@@ -51,14 +51,14 @@
             transform: scale(0.9) !important; opacity: 0.7;
         }
 
-        /* زر اللغة الجديد (بدون إطار) */
+        /* زر اللغة */
         .lang-btn {
             position: absolute; top: calc(20px + env(safe-area-inset-top, 20px)); left: 20px; z-index: 99999;
             font-size: 1.1rem; font-weight: 900; color: var(--text-main); text-shadow: 0 2px 10px rgba(0,0,0,0.8);
             cursor: pointer; letter-spacing: 1px;
         }
 
-        /* ========= شاشة التحميل (موجة البحر الأنيقة) ========= */
+        /* شاشة التحميل (موجة البحر الأنيقة) */
         #preloader { position: fixed; inset: 0; background: var(--bg-deep); z-index: 9999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: 0.6s cubic-bezier(0.8, 0, 0.2, 1); }
         #preloader.hidden { opacity: 0; visibility: hidden; transform: scale(1.1); filter: blur(10px); }
         .preloader-wrapper { position: relative; width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; margin-bottom: 25px; }
@@ -72,16 +72,16 @@
         @keyframes ripple { 0% { width: 90px; height: 90px; opacity: 1; } 100% { width: 250px; height: 250px; opacity: 0; } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        /* التبويبات السفلية (العائمة الفاخرة) */
+        /* التبويبات السفلية (6 تبويبات) */
         .tabs-nav { 
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 92%; max-width: 400px;
+            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: 96%; max-width: 450px;
             background: rgba(10, 15, 25, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            display: flex; justify-content: space-around; padding: 10px 5px; border-radius: 30px;
+            display: flex; justify-content: space-between; padding: 10px 2px; border-radius: 30px;
             border: 1px solid var(--glass-border); z-index: 9000; box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
         }
-        .tab-btn { background: none; border: none; color: var(--text-muted); font-family: 'Cairo'; font-size: 0.6rem; font-weight: 800; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; outline: none; flex: 1; }
+        .tab-btn { background: none; border: none; color: var(--text-muted); font-family: 'Cairo'; font-size: 0.55rem; font-weight: 800; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; outline: none; flex: 1; padding: 0;}
         .tab-btn.active { color: var(--accent); transform: translateY(-4px); }
-        .tab-btn .icon { font-size: 1.3rem; opacity: 0.6; transition: 0.3s; }
+        .tab-btn .icon { font-size: 1.2rem; opacity: 0.6; transition: 0.3s; }
         .tab-btn.active .icon { opacity: 1; filter: drop-shadow(0 0 10px rgba(234,179,8,0.6)); }
 
         .tab-content { display: none; padding: 0 0 40px 0; animation: fadeUp 0.4s ease-out; min-height: 100vh;}
@@ -95,23 +95,25 @@
             position: absolute; top: 0; left: 0; right: 0; height: 420px;
             background: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg') center 20%/cover;
             z-index: 0;
-            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
         }
 
-        .header-content { position: relative; z-index: 2; padding-top: calc(50px + env(safe-area-inset-top, 20px)); height: 360px; display: flex; flex-direction: column; justify-content: space-between; }
+        /* إنزال العناوين تكة لتحت (تعديل الـ padding-top) */
+        .header-content { position: relative; z-index: 2; padding-top: calc(85px + env(safe-area-inset-top, 20px)); height: 360px; display: flex; flex-direction: column; justify-content: space-between; }
         .title-block { text-align: right; width: 100%; padding-right: 5px; }
         .title-block h1 { margin: 0; font-size: 2.4rem; color: #fff; font-weight: 900; line-height: 1.1; letter-spacing: -1px; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }
         .title-block p { margin: 5px 0 0; color: var(--accent); font-size: 0.9rem; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
 
-        /* ========= كبسولات النانو (Nano Chips) للمعلومات ========= */
+        /* ========= كبسولات النانو (شفافة أكثر) ========= */
         .nano-board { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; margin-bottom: 20px; padding-right: 5px;}
         .nano-chip {
-            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.2); /* شفافة جداً */
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 6px 14px;
-            display: flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            display: flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .nano-chip .icon { font-size: 0.9rem; }
+        .nano-chip .icon { font-size: 0.9rem; filter: drop-shadow(0 0 3px rgba(255,255,255,0.3));}
         .nano-chip .data { color: #fff; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.5px; direction: ltr;}
 
         /* قوائم التفاصيل المدمجة */
@@ -120,7 +122,7 @@
             border-radius: 16px; padding: 0 15px; margin: 0; max-height: 0; opacity: 0; overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none;
         }
-        .glass-dropdown.open { max-height: 120px; opacity: 1; padding: 15px; margin-bottom: 20px; border-width: 1px; }
+        .glass-dropdown.open { max-height: 100px; opacity: 1; padding: 15px; margin-bottom: 20px; border-width: 1px; }
         .glass-dropdown::-webkit-scrollbar { display: none; }
         .mini-stat { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; min-width: 60px; }
         .mini-stat span { font-size: 0.55rem; color: var(--text-muted); font-weight: 700; margin-bottom: 4px; }
@@ -148,7 +150,7 @@
         
         .fav-btn { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); border-radius: 50%; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; font-size: 0.9rem; cursor: pointer; border: 1px solid var(--glass-border); z-index: 5; color: #fff;}
 
-        /* أزرار التوجيه (Neon style) */
+        /* أزرار التوجيه */
         .btn-neon {
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
             color: var(--text-main); border-radius: 20px; padding: 6px 14px; font-size: 0.7rem;
@@ -157,20 +159,24 @@
         }
         .btn-neon i { font-style: normal; color: var(--accent); font-weight: 900; }
 
-        /* الكروت النصية */
+        /* الكروت النصية (للملاعب والخدمات) */
         .glass-box { background: var(--surface); border: 1px solid var(--glass-border); border-radius: 20px; padding: 20px; margin-bottom: 15px; }
         
         .list-clean { list-style: none; padding: 0; margin: 0; }
         .list-clean li { padding: 15px 0; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
         .list-clean li:last-child { border-bottom: none; padding-bottom: 0; }
         .text-wrap b { display: block; font-size: 0.9rem; color: var(--text-main); font-weight: 800; margin-bottom: 3px;}
-        .text-wrap span { font-size: 0.65rem; color: var(--text-muted); line-height:1.6;}
+        .text-wrap span { font-size: 0.65rem; color: var(--text-muted); line-height: 1.6; display: block;}
 
-        /* البوصلة */
-        .compass-frame { background: var(--surface); border: 1px solid var(--glass-border); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 15px; }
-        .compass-circle { width: 100px; height: 100px; border: 2px solid var(--sky); border-radius: 50%; position: relative; margin: 15px 0; background: rgba(0,0,0,0.2); box-shadow: inset 0 0 15px rgba(56, 189, 248, 0.1); transition: transform 0.1s linear; }
-        .compass-circle::after { content: 'N'; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-weight: 900; color: var(--danger); font-size: 1rem; }
-        .compass-arrow { width: 3px; height: 50px; background: linear-gradient(to top, transparent 0%, var(--danger) 50%, var(--danger) 100%); position: absolute; bottom: 50%; left: 50%; transform: translateX(-50%); border-radius: 4px 4px 0 0; }
+        /* صفحة المطور 2027 */
+        .dev-profile { text-align: center; padding: 30px 15px; }
+        .avatar-glow { width: 90px; height: 90px; margin: 0 auto 15px; background: var(--bg-deep); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; position: relative; }
+        .avatar-glow::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(45deg, var(--sky), var(--accent)); z-index: -1; animation: spin 3s linear infinite; }
+        .dev-name { font-size: 1.5rem; font-weight: 900; margin: 0 0 5px; color: #fff; }
+        .dev-role { font-size: 0.8rem; color: var(--accent); margin: 0 0 20px; font-weight: 700; letter-spacing: 1px; }
+        .skills-grid { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; }
+        .skill-chip { background: var(--surface-hover); border: 1px solid var(--glass-border); padding: 5px 12px; border-radius: 12px; font-size: 0.7rem; font-weight: 800; color: var(--text-muted); }
+        .contact-btn { display: block; width: 100%; background: var(--text-main); color: #000; padding: 12px; border-radius: 16px; font-weight: 900; text-decoration: none; font-size: 0.9rem; margin-top: 10px;}
 
         /* تصميم البطولات والأرشيف */
         .search-input { width: 100%; padding: 14px 15px; border-radius: 16px; background: rgba(0,0,0,0.3); color: var(--text-main); border: 1px solid var(--glass-border); font-family: 'Cairo'; font-size: 0.85rem; margin-bottom: 20px; outline: none; transition: 0.3s; text-align: right;}
@@ -192,15 +198,6 @@
         .group-table th { padding: 10px 5px; color: var(--text-muted); font-size: 0.7rem; border-bottom: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); }
         .group-table td { padding: 12px 5px; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.02); }
         .team-name-cell { text-align: right !important; padding-right: 10px !important; color: var(--accent); font-weight: 800;}
-
-        /* صفحة المطور 2027 بالبيانات الأصلية الكاملة */
-        .dev-profile { text-align: center; padding: 30px 15px; border-color: var(--sky);}
-        .avatar-glow { width: 80px; height: 80px; margin: 0 auto 15px; background: var(--bg-deep); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; position: relative; }
-        .dev-name { font-size: 1.5rem; font-weight: 900; margin: 0 0 15px; color: #fff; }
-        .skills-grid { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-        .skill-chip { background: var(--surface-hover); border: 1px solid var(--glass-border); padding: 5px 12px; border-radius: 12px; font-size: 0.7rem; font-weight: 800; color: var(--text-muted); }
-        
-        .contact-btn { display: block; width: 100%; background: rgba(234, 179, 8, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 12px; border-radius: 16px; font-weight: 900; text-decoration: none; font-size: 0.9rem; margin-top: 15px;}
 
         /* متفرقات */
         .disclaimer { font-size: 0.65rem; color: var(--text-muted); text-align: center; margin-top: 30px; line-height: 1.6; padding-top: 20px; border-top: 1px solid var(--glass-border); }
@@ -235,6 +232,7 @@
         <button class="tab-btn" onclick="openTab('services')"><span class="icon">🏥</span><span>الخدمات</span></button>
         <button class="tab-btn" onclick="openTab('tournament')"><span class="icon">⚽</span><span>الفعاليات</span></button>
         <button class="tab-btn" onclick="openTab('history')"><span class="icon">📜</span><span>تراثنا</span></button>
+        <button class="tab-btn" onclick="openTab('dev')"><span class="icon">💻</span><span>المطور</span></button>
     </nav>
 
     <div id="guide" class="tab-content active">
@@ -242,6 +240,7 @@
 
         <div class="header-content container">
             <div class="lang-btn" id="lang-toggle-btn" onclick="toggleLanguage()">EN</div>
+            
             <div class="title-block">
                 <h1>دليل القحمة</h1>
                 <p>مشتى عسير، وواجهة البحر الأحمر</p>
@@ -256,6 +255,12 @@
                 <div class="nano-chip" onclick="toggleData('aqi')">
                     <span class="icon">💨</span><span class="data" id="nano-aqi">--</span>
                 </div>
+                <div class="nano-chip" onclick="toggleData('sea-main')">
+                    <span class="icon">🌊</span><span class="data" id="nano-sea-main">--</span>
+                </div>
+                <div class="nano-chip" onclick="toggleData('pray-main')">
+                    <span class="icon">🕌</span><span class="data" id="nano-pray-main">--:--</span>
+                </div>
             </div>
 
             <div class="glass-dropdown" id="weather-data">
@@ -266,6 +271,19 @@
                 <div class="mini-stat"><span>المؤشر</span><b id="data-aqi-val">--</b></div>
                 <div class="mini-stat"><span>الغبار</span><b id="data-dust">-- μg</b></div>
                 <div class="mini-stat"><span>الحالة</span><b id="data-desc">--</b></div>
+            </div>
+            <div class="glass-dropdown" id="sea-main-data">
+                <div class="mini-stat"><span>الرياح</span><b id="data-wind-main">--</b></div>
+                <div class="mini-stat"><span>الموج</span><b id="data-wave-main">--</b></div>
+                <div class="mini-stat"><span>المد</span><b id="data-tide-main">--:--</b></div>
+                <div class="mini-stat"><span>الجزر</span><b id="data-ebb-main">--:--</b></div>
+            </div>
+            <div class="glass-dropdown" id="pray-main-data">
+                <div class="mini-stat"><span>الفجر</span><b id="p-fajr-main">--:--</b></div>
+                <div class="mini-stat"><span>الظهر</span><b id="p-dhuhr-main">--:--</b></div>
+                <div class="mini-stat"><span>العصر</span><b id="p-asr-main">--:--</b></div>
+                <div class="mini-stat"><span>المغرب</span><b id="p-maghrib-main">--:--</b></div>
+                <div class="mini-stat"><span>العشاء</span><b id="p-isha-main">--:--</b></div>
             </div>
 
             <div class="section-title">أبرز المعالم</div>
@@ -308,7 +326,7 @@
         <div class="container" style="padding-top: 40px;">
             <div class="title-block" style="margin-bottom: 20px;">
                 <h1>عالم البحر</h1>
-                <p>الصيد، والملاحة، والنزهات</p>
+                <p>ملاحة، ونزهات بحرية</p>
             </div>
 
             <div class="nano-board">
@@ -318,33 +336,25 @@
             </div>
 
             <div class="glass-dropdown" id="sea-data">
-                <div class="mini-stat"><span>الرياح</span><b id="data-wind">-- كم</b></div>
-                <div class="mini-stat"><span>الموج</span><b id="data-wave">-- م</b></div>
+                <div class="mini-stat"><span>الرياح</span><b id="data-wind">--</b></div>
+                <div class="mini-stat"><span>الموج</span><b id="data-wave">--</b></div>
                 <div class="mini-stat"><span>المد</span><b id="data-tide">--:--</b></div>
                 <div class="mini-stat"><span>الجزر</span><b id="data-ebb">--:--</b></div>
             </div>
 
             <div class="section-title">البوصلة الذكية 🧭</div>
-            <div class="compass-frame">
-                <div id="compass-circle" class="compass-circle">
-                    <div class="compass-arrow"></div>
+            <div class="glass-box" style="text-align: center; padding: 30px 15px;">
+                <div id="compass-circle" style="width:100px; height:100px; border:2px solid var(--sky); border-radius:50%; margin:0 auto; position:relative; transition: 0.1s; box-shadow: inset 0 0 15px rgba(56, 189, 248, 0.1); background: rgba(0,0,0,0.2);">
+                    <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); color:var(--danger); font-weight:900;">N</div>
+                    <div style="width:3px; height:50px; background:linear-gradient(to top, transparent 0%, var(--danger) 50%, var(--danger) 100%); position:absolute; bottom:50%; left:50%; transform:translateX(-50%); border-radius: 4px 4px 0 0;"></div>
                 </div>
-                <p id="compass-status" style="font-size:0.7rem; color:var(--text-muted); margin-top:10px;">جاري فحص الحساسات...</p>
-            </div>
-
-            <div class="section-title">دليل الصيد 🐟</div>
-            <div class="glass-box">
-                <ul class="list-clean">
-                    <li><div class="text-wrap"><b>سمك الناجل</b><span>موسم الوفرة (الصيف) قرب الشعاب</span></div></li>
-                    <li><div class="text-wrap"><b>الكنعد (الديراك)</b><span>الوفرة (أكتوبر - مارس) تشخيط</span></div></li>
-                    <li><div class="text-wrap"><b>حالة الصيد اليوم</b><span id="fish-status" style="color:var(--success); font-weight:900; font-size:0.75rem;">ممتازة 🎣</span></div></li>
-                </ul>
+                <p id="compass-status" style="font-size:0.7rem; color:var(--text-muted); margin-top:15px;">تعمل فقط مع أذونات الموقع (HTTPS)</p>
             </div>
             
             <div class="section-title">النزهات البحرية ⚓</div>
             <div class="glass-box">
                 <div class="text-wrap" style="margin-bottom:15px;"><b>كباتن نزهة وصيد</b><span>للتنسيق وحجز الرحلات لجزيرة كدمبل</span></div>
-                <a href="https://wa.me/966534987428" target="_blank" rel="noopener noreferrer" class="btn-neon" style="color:var(--success); border-color:var(--success); width:100%; justify-content:center;"><i>💬</i> تواصل واتساب</a>
+                <a href="https://wa.me/966534987428" target="_blank" class="btn-neon" style="color:var(--success); border-color:var(--success); width:100%; justify-content:center;"><i>💬</i> تواصل واتساب</a>
             </div>
         </div>
     </div>
@@ -395,8 +405,8 @@
             <div class="glass-box">
                 <ul class="list-clean">
                     <li><div class="text-wrap"><b>مستشفى القحمة</b></div><a href="https://www.google.com/maps/search/?api=1&query=مستشفى+القحمة+العام" target="_blank" class="btn-neon"><i>↗</i></a></li>
-                    <li><div class="text-wrap"><b>حرس الحدود</b></div><a href="tel:994" class="btn-neon" style="color:var(--danger); border-color:var(--danger);"><i>📞</i></a></li>
-                    <li><div class="text-wrap"><b>الدفاع المدني</b></div><a href="tel:998" class="btn-neon" style="color:var(--danger); border-color:var(--danger);"><i>📞</i></a></li>
+                    <li><div class="text-wrap"><b>حرس الحدود</b></div><a href="tel:994" class="btn-neon" style="color:var(--danger)"><i>📞</i></a></li>
+                    <li><div class="text-wrap"><b>الدفاع المدني</b></div><a href="tel:998" class="btn-neon" style="color:var(--danger)"><i>📞</i></a></li>
                 </ul>
             </div>
             
@@ -405,7 +415,7 @@
                 <ul class="list-clean">
                     <li><div class="text-wrap"><b>مقر مركز القحمة</b></div><a href="https://www.google.com/maps/search/?api=1&query=مركز+القحمة" target="_blank" class="btn-neon"><i>↗</i></a></li>
                     <li><div class="text-wrap"><b>مركز شرطة القحمة</b></div><a href="https://www.google.com/maps/search/?api=1&query=شرطة+القحمة" target="_blank" class="btn-neon"><i>↗</i></a></li>
-                    <li><div class="text-wrap"><b>بلدية الساحل</b></div><a href="tel:940" class="btn-neon" style="color:var(--success); border-color:var(--success);"><i>📞</i></a></li>
+                    <li><div class="text-wrap"><b>بلدية الساحل</b></div><a href="tel:940" class="btn-neon" style="color:var(--success)"><i>📞</i></a></li>
                 </ul>
             </div>
         </div>
@@ -553,27 +563,32 @@
     <div id="dev" class="tab-content">
         <div class="container" style="padding-top: 40px;">
             
-            <div class="glass-box dev-profile" style="border-color: var(--sky);">
+            <div class="glass-box dev-profile">
                 <div class="avatar-glow">👨‍💻</div>
                 <h1 class="dev-name eyad-name" translate="no">إياد عسيري</h1>
+                <p class="dev-role">Developer & UI/UX Designer</p>
                 
-                <p style="font-size:0.85rem; color:var(--text-muted); line-height: 1.8; margin: 15px 0;">
+                <div class="skills-grid">
+                    <span class="skill-chip">Web Development</span>
+                    <span class="skill-chip">Unity 3D Games</span>
+                    <span class="skill-chip">UI/UX Design</span>
+                </div>
+
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin-bottom:20px;">
                     مصمم جرافيك، مطور ويب، وشغوف بصناعة الألعاب (Unity).<br>
                     بُنيت <strong>"موسوعة القحمة الرقمية"</strong> كمرجع متكامل يخدم أهالي المنطقة ويدعم السياحة بلمسة تقنية واحترافية.
                 </p>
 
                 <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; margin: 20px 0; border: 1px solid var(--glass-border);">
                     <h4 style="margin:0 0 10px; color:var(--text-main); font-size:0.9rem;">أبرز الخدمات التقنية التي أقدمها:</h4>
-                    <div class="skills-grid">
-                        <span class="skill-chip">برمجة المواقع 🌐</span>
-                        <span class="skill-chip">تصميم الجرافيك 🎨</span>
-                        <span class="skill-chip">تطوير ألعاب 🎮</span>
+                    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:6px;">
+                        <span class="skill-chip" style="color:var(--sky); border-color:var(--sky);">برمجة المواقع 🌐</span>
+                        <span class="skill-chip" style="color:var(--accent); border-color:var(--accent);">تصميم الجرافيك 🎨</span>
+                        <span class="skill-chip" style="color:var(--success); border-color:var(--success);">تطوير ألعاب 🎮</span>
                     </div>
                 </div>
 
-                <a href="https://wa.me/966534987428" target="_blank" rel="noopener noreferrer" class="contact-btn" style="background: rgba(234, 179, 8, 0.1); border: 1px solid var(--accent); color: var(--accent);">
-                    <i>💬</i> تواصل لتنفيذ مشروعك
-                </a>
+                <a href="https://wa.me/966534987428" target="_blank" class="contact-btn">تواصل لتنفيذ مشروعك</a>
             </div>
 
             <div class="disclaimer">
@@ -608,6 +623,8 @@
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
+            
+            document.getElementById('lang-switcher-container').style.display = tabId === 'guide' ? 'block' : 'none';
             
             closeAllDash();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -648,7 +665,7 @@
             res.innerHTML = val ? `المسافة: ${distData[val].d} | الزمن: ${distData[val].t}` : '';
         }
 
-        // أرشيف البطولة الكامل
+        // أرشيف البطولة كامل
         function openSubTab(evt, subName) {
             document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
@@ -739,52 +756,58 @@
         }
 
         async function fetchLiveAPIs() {
+            // الطقس (مع تحديث كل المعرفات الرئيسية)
             try {
-                const resW = await fetch('https://api.open-meteo.com/v1/forecast?latitude=17.99&longitude=41.67&current=temperature_2m,wind_speed_10m,visibility');
+                const resW = await fetch('https://api.open-meteo.com/v1/forecast?latitude=17.99&longitude=41.67&current_weather=true&current=visibility');
                 const dW = await resW.json();
-                let temp = Math.round(dW.current.temperature_2m);
-                let wind = Math.round(dW.current.wind_speed_10m);
+                let temp = Math.round(dW.current_weather.temperature);
+                let wind = Math.round(dW.current_weather.windspeed);
                 let visKm = (dW.current.visibility / 1000).toFixed(1);
                 
                 document.getElementById('nano-temp').innerText = temp + '°C';
-                document.getElementById('nano-sea').innerText = wind > 20 ? 'مضطرب' : 'هادئ';
+                let seaStatus = wind > 20 ? 'مضطرب' : 'هادئ';
                 
+                // تحديث للسياحة والبحر
+                ['nano-sea-main', 'nano-sea'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = seaStatus; });
+                
+                ['data-wind-main', 'data-wind'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = wind + ' كم'; });
+                ['data-wave-main', 'data-wave'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = (wind/15).toFixed(1) + ' م'; });
+                
+                if(document.getElementById('fish-status')) document.getElementById('fish-status').innerText = wind > 20 ? 'صعبة 🛑' : 'ممتازة 🎣';
+
                 if(document.getElementById('data-vis')) document.getElementById('data-vis').innerText = visKm + ' كم';
                 if(document.getElementById('data-alert')) {
                     document.getElementById('data-alert').innerText = visKm < 2 ? 'ضباب/غبار⚠️' : 'سليم';
                     document.getElementById('data-alert').style.color = visKm < 2 ? 'var(--danger)' : 'var(--success)';
                 }
-                
-                if(document.getElementById('data-wind')) document.getElementById('data-wind').innerText = wind + ' كم';
-                if(document.getElementById('data-wave')) document.getElementById('data-wave').innerText = (wind/15).toFixed(1) + ' م';
-                if(document.getElementById('fish-status')) document.getElementById('fish-status').innerText = wind > 20 ? 'صعبة 🛑' : 'ممتازة 🎣';
 
                 const hours = new Date().getHours();
-                if(document.getElementById('data-tide')) document.getElementById('data-tide').innerText = (hours + 4) % 24 + ":00";
-                if(document.getElementById('data-ebb')) document.getElementById('data-ebb').innerText = (hours + 10) % 24 + ":00";
+                ['data-tide-main', 'data-tide'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = (hours + 4) % 24 + ":00"; });
+                ['data-ebb-main', 'data-ebb'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = (hours + 10) % 24 + ":00"; });
             } catch(e) {
                 document.getElementById('nano-temp').innerText = '28°C';
-                document.getElementById('nano-sea').innerText = 'هادئ';
             }
 
+            // الهواء
             try {
                 const resA = await fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=17.99&longitude=41.67&current=european_aqi,dust');
                 const dA = await resA.json();
                 let aqi = Math.round(dA.current.european_aqi);
                 document.getElementById('nano-aqi').innerText = aqi < 50 ? 'نقي' : 'متوسط';
                 if(document.getElementById('data-aqi-val')) document.getElementById('data-aqi-val').innerText = aqi;
-                if(document.getElementById('data-dust')) document.getElementById('data-dust').innerText = Math.round(dA.current.dust) + ' μg';
+                if(document.getElementById('data-dust')) document.getElementById('data-dust').innerText = Math.round(dA.current.dust) + 'μg';
                 if(document.getElementById('data-desc')) document.getElementById('data-desc').innerText = aqi < 50 ? 'ممتاز 🟢' : 'غبار 🟡';
             } catch(e) {
                 document.getElementById('nano-aqi').innerText = 'نقي';
             }
 
+            // الصلاة
             try {
-                const dDate = new Date();
-                const resP = await fetch(`https://api.aladhan.com/v1/timings/${dDate.getDate()}-${dDate.getMonth()+1}-${dDate.getFullYear()}?latitude=17.99&longitude=41.67&method=4`);
+                const resP = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Al%20Qahma&country=Saudi%20Arabia&method=4');
                 const dP = await resP.json();
                 const t = dP.data.timings;
                 
+                const dDate = new Date();
                 const now = dDate.getHours() * 60 + dDate.getMinutes();
                 const pr = [ {t:t.Fajr}, {t:t.Dhuhr}, {t:t.Asr}, {t:t.Maghrib}, {t:t.Isha} ];
                 let nxt = pr[0].t;
@@ -794,39 +817,16 @@
                 let ampm = h >= 12 ? 'م' : 'ص';
                 h = h % 12 || 12;
                 
-                document.getElementById('nano-pray').innerText = `${h}:${String(m).padStart(2, '0')} ${ampm}`;
+                let nextP = `${h}:${String(m).padStart(2, '0')} ${ampm}`;
+                ['nano-pray-main', 'nano-pray'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = nextP; });
                 
-                if(document.getElementById('p-fajr')) {
-                    document.getElementById('p-fajr').innerText = t.Fajr;
-                    document.getElementById('p-dhuhr').innerText = t.Dhuhr;
-                    document.getElementById('p-asr').innerText = t.Asr;
-                    document.getElementById('p-maghrib').innerText = t.Maghrib;
-                    document.getElementById('p-isha').innerText = t.Isha;
-                }
-            } catch(e) {
-                document.getElementById('nano-pray').innerText = '18:15 م';
-            }
+                ['p-fajr-main', 'p-fajr'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Fajr; });
+                ['p-dhuhr-main', 'p-dhuhr'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Dhuhr; });
+                ['p-asr-main', 'p-asr'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Asr; });
+                ['p-maghrib-main', 'p-maghrib'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Maghrib; });
+                ['p-isha-main', 'p-isha'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerText = t.Isha; });
+            } catch(e) {}
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            let currentLang = 'ar';
-            let cookieMatch = document.cookie.match(/(^|;) ?googtrans=([^;]*)(;|$)/);
-            if (cookieMatch && cookieMatch[2].includes('/en')) {
-                currentLang = 'en';
-                document.getElementById('lang-toggle-btn').innerText = 'AR';
-                document.querySelectorAll('.eyad-name').forEach(el => el.innerText = 'Eyad');
-            }
-            
-            let favs = JSON.parse(localStorage.getItem('q2027_favs') || '[]');
-            document.querySelectorAll('.fav-btn').forEach(btn => {
-                let idMatch = btn.getAttribute('onclick').match(/'([^']+)'/);
-                if(idMatch && favs.includes(idMatch[1])) btn.innerText = '❤️';
-            });
-
-            renderTournamentData();
-            fetchLiveAPIs(); 
-            setInterval(fetchLiveAPIs, 60000);
-        });
     </script>
 </body>
 </html>
