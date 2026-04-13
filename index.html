@@ -47,7 +47,6 @@
         .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
         #google_translate_element { display: none !important; }
 
-        /* تفاعل اللمس */
         .btn-map-2026, .tab-btn, .custom-lang-switcher span, .smart-item, .fav-btn {
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -63,7 +62,6 @@
             border-radius: 20px; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); border: 1px solid rgba(255,255,255,0.1); display: inline-block;
         }
 
-        /* شاشة التحميل (بحركة الموجة) */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 9999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transform: translateY(0); transition: transform 0.8s cubic-bezier(0.65, 0, 0.25, 1), opacity 0.8s ease, border-radius 0.5s ease; }
         #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-100%); border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; }
         
@@ -79,7 +77,6 @@
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
         @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        /* التبويبات السفلية */
         .tabs-nav { 
             position: fixed !important; bottom: 0 !important; left: 0; width: 100%; 
             background: rgba(13, 19, 33, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -97,7 +94,6 @@
         .container { max-width: 800px; margin: auto; padding: 0 15px; position: relative; z-index: 2; }
         .card-pro { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: right; }
 
-        /* ========= الهيدر الرئيسي (صورة القارب) ========= */
         #guide { position: relative; padding-top: 0; }
         
         .hero-header-bg {
@@ -116,14 +112,9 @@
         .page-top-title h1 { margin: 0; font-size: 1.8rem; color: #fff; font-weight: 900; text-shadow: 0 2px 10px rgba(0,0,0,0.8); line-height: 1.2;}
         .page-top-title p { margin: 2px 0 0; color: var(--accent-sand); font-size: 0.85rem; font-weight: 700; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
 
-        /* الشريط الذكي: نازل تحت فوق المعالم مباشرة */
-        .smart-dashboard-section {
-            position: relative; z-index: 10; margin-top: -30px; padding: 0 15px;
-        }
+        .smart-dashboard-section { position: relative; z-index: 10; margin-top: -30px; padding: 0 15px; }
+        .smart-bar-wrapper { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
         
-        .smart-bar-wrapper {
-            display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px;
-        }
         .smart-item {
             background: rgba(18, 26, 41, 0.75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 5px 12px;
@@ -154,7 +145,6 @@
         .section-header h2 { margin: 0; font-size: 1.1rem; color: var(--text-primary); font-weight: 900; text-align: right; }
         .section-line { flex: 1; height: 1px; background: linear-gradient(to left, var(--accent-sand), transparent); opacity: 0.5; }
 
-        /* أزرار الخرائط الحديثة 2026 */
         .btn-map-2026 {
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(234, 179, 8, 0.05));
             border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
@@ -164,7 +154,6 @@
         }
         .btn-map-2026 i { font-style: normal; font-size: 0.8rem; font-weight: 900; line-height: 1;}
 
-        /* كروت المعالم السياحية والمفضلة */
         .places-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .place-card-modern {
             position: relative; height: 200px; border-radius: 16px; overflow: hidden;
@@ -208,7 +197,6 @@
         .mosque-name { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
         .mosque-type { font-size: 0.6rem; color: #000; background: var(--accent-sand); padding: 2px 8px; border-radius: 10px; margin-left: 8px; font-weight: 900;}
 
-        /* البطولات / الفعاليات */
         .search-input { width: 100%; padding: 10px 15px; border-radius: 10px; background: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); font-family: 'Cairo'; font-size: 0.8rem; margin-bottom: 15px; outline: none; text-align: right; transition: 0.3s; }
         .search-input:focus { border-color: var(--primary-blue); box-shadow: 0 0 8px rgba(56, 189, 248, 0.2); }
 
@@ -246,6 +234,13 @@
 
     <div id="google_translate_element"></div>
 
+    <script>
+        setTimeout(function() {
+            var p = document.getElementById('preloader');
+            if(p) p.classList.add('hidden');
+        }, 1500);
+    </script>
+    
     <div id="preloader">
         <div class="preloader-wrapper">
             <div class="spinner-ring"></div>
@@ -371,8 +366,8 @@
                 <div class="full-dropdown" id="sea2-container">
                     <div class="drop-item"><span>الرياح</span><b id="sea-wind2">-- كم</b></div>
                     <div class="drop-item"><span>الموج</span><b id="sea-wave2">-- م</b></div>
-                    <div class="drop-item"><span>المد</span><b id="sea-tide2">14:30</b></div>
-                    <div class="drop-item"><span>الجزر</span><b id="sea-ebb2">08:15</b></div>
+                    <div class="drop-item"><span>المد</span><b id="sea-tide2">--:--</b></div>
+                    <div class="drop-item"><span>الجزر</span><b id="sea-ebb2">--:--</b></div>
                 </div>
             </div>
         </div>
@@ -394,7 +389,7 @@
                 <ul class="list-info" style="font-size: 0.75rem;">
                     <li><div class="text-side"><b>الناجل:</b></div> <span style="color:var(--text-secondary)">موسم الوفرة (الصيف) قرب الشعاب.</span></li>
                     <li><div class="text-side"><b>الكنعد:</b></div> <span style="color:var(--text-secondary)">موسم الوفرة (أكتوبر - مارس) تشخيط.</span></li>
-                    <li><div class="text-side"><b>الشعور:</b></div> <span style="color:var(--text-secondary)">متوفر طوال العام، وممتاز للميفا.</span></li>
+                    <li><div class="text-side"><b>الشعور والبياض:</b></div> <span style="color:var(--text-secondary)">متوفر طوال العام، وممتاز للميفا.</span></li>
                     <li><div class="text-side" style="color:var(--success)"><b>حالة الصيد اليوم:</b></div> <b id="fishing-status">ممتازة 🎣</b></li>
                 </ul>
             </div>
@@ -640,17 +635,16 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
     <script type="text/javascript">
         function googleTranslateElementInit() {
           new google.translate.TranslateElement({pageLanguage: 'ar', includedLanguages: 'ar,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
         }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        // إعداد الصفحة الأولية بشكل فوري لمنع التعليق
+        // إعداد الصفحة
         window.addEventListener('DOMContentLoaded', () => {
-            // 1. اللغة
             let currentLang = 'ar';
             let cookieMatch = document.cookie.match(/(^|;) ?googtrans=([^;]*)(;|$)/);
             if (cookieMatch && cookieMatch[2].includes('/en')) {
@@ -659,14 +653,12 @@
                 document.querySelectorAll('.eyad-name').forEach(el => el.innerText = 'Eyad');
             }
             
-            // 2. إخفاء شريط جوجل
             setTimeout(() => {
                 let gtFrame = document.querySelector('.goog-te-banner-frame');
                 if(gtFrame) gtFrame.style.display = 'none';
                 document.body.style.top = '0px';
             }, 1000);
 
-            // 3. استرجاع المفضلة
             let favs = JSON.parse(localStorage.getItem('qahmah_favs') || '[]');
             document.querySelectorAll('.fav-btn').forEach(btn => {
                 let onclickAttr = btn.getAttribute('onclick');
@@ -676,25 +668,16 @@
                 }
             });
 
-            // 4. جلب البيانات
             renderTournamentData();
             updateLiveData(); 
             setInterval(updateLiveData, 60000);
-
-            // 5. فتح إجباري لشاشة التحميل بعد ثانية ونص مهما كانت حالة النت
-            setTimeout(() => {
-                const preloader = document.getElementById('preloader');
-                if(preloader) preloader.classList.add('hidden');
-            }, 1500);
         });
 
-        // الهزاز
         document.addEventListener('click', function(e) {
             const t = e.target.closest('.smart-item, .tab-btn, .btn-map-2026, .t-circle-item, .custom-lang-switcher span, .fav-btn');
             if(t && window.navigator && window.navigator.vibrate) { window.navigator.vibrate(30); }
         });
 
-        // المفضلة
         function toggleFav(btn, id) {
             let favs = JSON.parse(localStorage.getItem('qahmah_favs') || '[]');
             if(favs.includes(id)) {
@@ -707,7 +690,6 @@
             localStorage.setItem('qahmah_favs', JSON.stringify(favs));
         }
 
-        // البوصلة
         function initCompass() {
             if (window.DeviceOrientationEvent) {
                 window.addEventListener('deviceorientationabsolute', function(event) {
@@ -803,7 +785,7 @@
             }
         }
 
-        // الأرشيف وبيانات البطولات الكاملة
+        // بيانات البطولة المحفوظة
         const archiveData = [
             { d: "النهائي (النسخة 28)", matches: [{t1:"الفيصلي", t2:"الوسام", r: "0 - 0", p: "(7) - (6) ترجيح"}] },
             { d: "السبت 25 رمضان", matches: [{t1:"ساحل مغزل", t2:"الوسام", r: "0 - 1"}] },
