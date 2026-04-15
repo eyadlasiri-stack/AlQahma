@@ -56,10 +56,17 @@
         .nano-chip, .btn-neon, .tab-btn, .t-circle-item, .fav-btn, .lang-btn, .sub-tab-btn, .t-back-btn, .place-card-modern, .glass-box {
             transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .nano-chip:active, .btn-neon:active, .tab-btn:active, .t-circle-item:active, .fav-btn:active, .lang-btn:active, .sub-tab-btn:active, .t-back-btn:active {
+        .nano-chip:active, .btn-neon:active:not(.btn-disabled), .tab-btn:active, .t-circle-item:active, .fav-btn:active, .lang-btn:active, .sub-tab-btn:active, .t-back-btn:active {
             transform: scale(0.9) !important; opacity: 0.7;
         }
         .place-card-modern:active { transform: scale(0.96); }
+
+        /* أزرار الديكور (للطوارئ والجهات) */
+        .btn-disabled {
+            opacity: 0.4 !important;
+            pointer-events: none !important;
+            cursor: default !important;
+        }
 
         /* زر اللغة */
         .lang-btn {
@@ -251,10 +258,10 @@
 
     <nav class="tabs-nav">
         <button class="tab-btn active" onclick="openTab('guide')"><span class="material-symbols-rounded icon icon-filled">park</span><span>السياحة</span></button>
-        <button class="tab-btn" onclick="openTab('history')"><span class="material-symbols-rounded icon">history_edu</span><span>تراثنا</span></button>
+        <button class="tab-btn" onclick="openTab('marine')"><span class="material-symbols-rounded icon">water</span><span>البحر</span></button>
         <button class="tab-btn" onclick="openTab('services')"><span class="material-symbols-rounded icon">medical_services</span><span>الخدمات</span></button>
         <button class="tab-btn" onclick="openTab('tournament')"><span class="material-symbols-rounded icon">sports_soccer</span><span>الفعاليات</span></button>
-        <button class="tab-btn" onclick="openTab('dev')"><span class="material-symbols-rounded icon">code</span><span>المطور</span></button>
+        <button class="tab-btn" onclick="openTab('history')"><span class="material-symbols-rounded icon">history_edu</span><span>تراثنا</span></button>
     </nav>
 
     <div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
@@ -286,7 +293,7 @@
                     <span class="material-symbols-rounded icon" id="weather-icon">partly_cloudy_day</span><span class="data" id="nano-temp">--°C</span>
                 </div>
                 <div class="nano-chip" onclick="toggleData('sea')">
-                    <span class="material-symbols-rounded icon">water</span><span class="data" id="nano-sea">--</span>
+                    <span class="material-symbols-rounded icon">waves</span><span class="data" id="nano-sea">--</span>
                 </div>
                 <div class="nano-chip" onclick="toggleData('aqi')">
                     <span class="material-symbols-rounded icon">air</span><span class="data" id="nano-aqi">--</span>
@@ -367,83 +374,40 @@
                     </div>
                 </div>
             </div>
-            
+        </div>
+    </div>
+
+    <div id="marine" class="tab-content">
+        <div class="container" style="padding-top: 40px;">
+            <div class="title-block" style="margin-bottom: 20px;">
+                <h1>عالم البحر</h1>
+                <p>ملاحة، صيد، ونزهات بحرية</p>
+            </div>
+
+            <div class="section-title"><span class="material-symbols-rounded">explore</span> البوصلة الذكية</div>
+            <div class="glass-box" style="text-align: center; padding: 30px 15px;">
+                <div id="compass-circle" style="width:100px; height:100px; border:2px solid var(--glass-border); border-radius:50%; margin:0 auto; position:relative; transition: 0.1s; box-shadow: inset 0 0 15px rgba(56, 189, 248, 0.1); background: rgba(0,0,0,0.2);">
+                    <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); color:var(--danger); font-weight:900;">N</div>
+                    <div style="width:3px; height:50px; background:linear-gradient(to top, transparent 0%, var(--danger) 50%, var(--danger) 100%); position:absolute; bottom:50%; left:50%; transform:translateX(-50%); border-radius: 4px 4px 0 0;"></div>
+                </div>
+                <p id="compass-status" style="font-size:0.7rem; color:var(--text-muted); margin-top:15px;">تعمل فقط مع أذونات الموقع (HTTPS)</p>
+            </div>
+
             <div class="section-title"><span class="material-symbols-rounded">phishing</span> دليل الصيد ومواسم القحمة</div>
             <div class="glass-box">
                 <p style="font-size:0.8rem; color:var(--text-main); margin-bottom:15px; line-height: 1.8;">يعتبر بحر القحمة من أغنى السواحل بالأسماك، وتختلف الأنواع حسب المواسم وطبيعة الصيد.</p>
                 <ul class="list-clean">
-                    <li><div class="text-wrap"><b>سمك الناجل</b><span>موسم الوفرة (الصيف) يتواجد بكثرة قرب الشعاب المرجانية.</span></div></li>
-                    <li><div class="text-wrap"><b>الكنعد (الديراك)</b><span>موسم الوفرة (أكتوبر - مارس) يُصاد بطريقة "التشخيط".</span></div></li>
-                    <li><div class="text-wrap"><b>الشعور والبياض</b><span>متوفر طوال العام، ويعتبر الخيار الأول والأفضل للميفا.</span></div></li>
-                    <li><div class="text-wrap"><b>أوقات الصيد الذهبية</b><span>فترة الفجر، وقبيل الغروب هي الأفضل للحصول على صيد وفير.</span></div></li>
+                    <li><div class="text-wrap"><b>سمك الناجل</b><span style="color:var(--danger)">موسم الوفرة (الصيف) قرب الشعاب المرجانية.</span></div></li>
+                    <li><div class="text-wrap"><b>الكنعد (الديراك)</b><span style="color:var(--sky)">موسم الوفرة (أكتوبر - مارس) يُصاد بطريقة "التشخيط".</span></div></li>
+                    <li><div class="text-wrap"><b>الشعور والبياض</b><span style="color:var(--text-muted)">متوفر طوال العام، ويعتبر الخيار الأول للميفا.</span></div></li>
                     <li><div class="text-wrap"><b>حالة الصيد اليوم</b><span id="fish-status" style="color:var(--success); font-weight:900; font-size:0.75rem;">جاري التحديث...</span></div></li>
                 </ul>
             </div>
-
+            
             <div class="section-title"><span class="material-symbols-rounded">sailing</span> النزهات البحرية</div>
             <div class="glass-box">
                 <div class="text-wrap" style="margin-bottom:15px;"><b>كباتن نزهة وصيد</b><span>للتنسيق وحجز الرحلات البحرية نحو جزيرة كدمبل.</span></div>
                 <a href="https://wa.me/966534987428" target="_blank" class="btn-neon" style="color:var(--success); border-color:var(--success); width:100%; justify-content:center;"><i class="material-symbols-rounded">chat</i> تواصل واتساب مع الكابتن</a>
-            </div>
-            
-        </div>
-    </div>
-
-    <div id="history" class="tab-content">
-        <div class="container">
-            <div class="page-top-title-standard">
-                <h1>موسوعة القحمة</h1>
-                <p>عراقة الماضي وإشراقة المستقبل</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">1. الموقع الاستراتيجي</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تقع القحمة على الشريط الساحلي للبحر الأحمر تابعة لمنطقة عسير. تتميز بتنوعها الجغرافي الفريد الذي يجمع بين السهل الساحلي، الجبال المحاذية، والأودية التي تنحدر من جبال السروات لتصب في البحر.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">2. مناخها ومشتى عسير</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">نظراً لاعتدال مناخها ودفئه خلال فصل الشتاء مقارنة ببرودة السروات، أصبحت القحمة الملاذ والوجهة السياحية الأولى (المشتى) لأهالي منطقة عسير وزوارها، بحثاً عن الدفء والأنشطة البحرية.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">3. الميناء التاريخي</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يعتبر ميناء القحمة من أقدم الموانئ الحيوية في جنوب البحر الأحمر. كان يغص بالسفن الشراعية (السنابيك) المحملة بالتوابل والبضائع القادمة من اليمن والقرن الأفريقي، مما جعلها مركزاً تجارياً نابضاً بالحياة.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">4. حرفة الغوص وصيد اللؤلؤ</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">لم يكن البحر مجرد مصدر للسمك، بل امتدت رحلات الأجداد لأعماق البحر الأحمر لاستخراج اللؤلؤ والمحار. مهنة الغوص كانت من المهن الشاقة التي سطرت ملاحم من الشجاعة لإنسان القحمة قديماً.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">5. الثروة السمكية</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يزخر ساحل القحمة بتنوع سمكي هائل. يعتبر الصيد بالطرق التقليدية متوارثاً حتى اليوم، حيث تجد في سوق السمك يومياً أسماك الديراك (الكنعد)، الناجل، الشعور.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">6. المطبخ التهامي (الميفا)</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يتميز المطبخ في القحمة بطابعه التهامي الأصيل. يعتبر <strong>"السمك الميفا"</strong> (المشوي داخل التنور الفخاري) الوجبة الرسمية التي لا تكتمل الزيارة إلا بتذوقها.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">7. الفنون والموروث الشعبي</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تتزين احتفالات الأهالي بالفنون الشعبية الأصيلة مثل <strong>الخطوة التهامية</strong> والدمة.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">8. الزراعة والأودية الخصبة</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">رغم طبيعتها الساحلية، تخترق القحمة أودية شهيرة مثل وادي حمضة، والتي تكتسي باللون الأخضر بعد الأمطار، وكان الأهالي يعتمدون عليها قديماً في زراعة الدخن والسمسم.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">9. مهرجان القحمة الشتوي</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">حدث سنوي تقيمه وتدعمه الجهات المختصة، يشمل فعاليات ضخمة تجمع بين فعاليات واحتفالات في حديقة القحمة، العروض الشعبية، وتسويق الأسر المنتجة لتعزيز الهوية السياحية للمركز.</p>
-            </div>
-
-            <div class="glass-box">
-                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">10. الحياة الفطرية والطيور المهاجرة</h2>
-                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تمثل غابات المانجروف والجزر المجاورة بيئة مثالية وتوقفاً آمناً للطيور المهاجرة، خاصة أسراب الصقور والنوارس، مما يجعلها بيئة بكر تستقطب الباحثين والمصورين من كل مكان.</p>
             </div>
         </div>
     </div>
@@ -480,32 +444,18 @@
             <div class="section-title"><span class="material-symbols-rounded">emergency</span> الصحة والطوارئ</div>
             <div class="glass-box">
                 <ul class="list-clean">
-                    <li><div class="text-wrap"><b>مستشفى القحمة العام</b></div><a href="https://www.google.com/maps/search/?api=1&query=مستشفى+القحمة+العام" target="_blank" class="btn-neon"><i class="material-symbols-rounded">arrow_outward</i></a></li>
-                    <li><div class="text-wrap"><b>حرس الحدود</b></div><a href="tel:994" class="btn-neon" style="color:var(--danger); border-color:rgba(239, 68, 68, 0.3);"><i class="material-symbols-rounded" style="color:var(--danger);">call</i></a></li>
-                    <li><div class="text-wrap"><b>الدفاع المدني</b></div><a href="tel:998" class="btn-neon" style="color:var(--danger); border-color:rgba(239, 68, 68, 0.3);"><i class="material-symbols-rounded" style="color:var(--danger);">call</i></a></li>
+                    <li><div class="text-wrap"><b>مستشفى القحمة العام</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled"><i class="material-symbols-rounded">arrow_outward</i></span></li>
+                    <li><div class="text-wrap"><b>حرس الحدود</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled" style="color:var(--danger); border-color:rgba(239, 68, 68, 0.3);"><i class="material-symbols-rounded" style="color:var(--danger);">call</i></span></li>
+                    <li><div class="text-wrap"><b>الدفاع المدني</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled" style="color:var(--danger); border-color:rgba(239, 68, 68, 0.3);"><i class="material-symbols-rounded" style="color:var(--danger);">call</i></span></li>
                 </ul>
             </div>
             
             <div class="section-title"><span class="material-symbols-rounded">account_balance</span> الجهات الحكومية</div>
             <div class="glass-box">
                 <ul class="list-clean">
-                    <li><div class="text-wrap"><b>مقر مركز القحمة</b></div><a href="https://www.google.com/maps/search/?api=1&query=مركز+القحمة" target="_blank" class="btn-neon"><i class="material-symbols-rounded">arrow_outward</i></a></li>
-                    <li><div class="text-wrap"><b>مركز شرطة القحمة</b></div><a href="https://www.google.com/maps/search/?api=1&query=شرطة+القحمة" target="_blank" class="btn-neon"><i class="material-symbols-rounded">arrow_outward</i></a></li>
-                    <li><div class="text-wrap"><b>بلدية الساحل</b></div><a href="tel:940" class="btn-neon" style="color:var(--success); border-color:rgba(16, 185, 129, 0.3);"><i class="material-symbols-rounded" style="color:var(--success);">call</i></a></li>
-                </ul>
-            </div>
-            
-            <div class="section-title"><span class="material-symbols-rounded">local_gas_station</span> محطات الوقود والمسافر</div>
-            <div class="glass-box">
-                <ul class="list-clean">
-                    <li><div class="text-wrap"><b>محطات بنزين متكاملة</b></div><a href="https://www.google.com/maps/search/?api=1&query=محطة+وقود+القحمة" target="_blank" class="btn-neon"><i class="material-symbols-rounded">arrow_outward</i></a></li>
-                </ul>
-            </div>
-            
-            <div class="section-title"><span class="material-symbols-rounded">restaurant</span> المطاعم والتموينات</div>
-            <div class="glass-box">
-                <ul class="list-clean">
-                    <li><div class="text-wrap"><b>مطاعم شعبية ومأكولات بحرية</b></div><a href="https://www.google.com/maps/search/?api=1&query=مطاعم+القحمة+سوق+السمك" target="_blank" class="btn-neon"><i class="material-symbols-rounded">arrow_outward</i></a></li>
+                    <li><div class="text-wrap"><b>مقر مركز القحمة</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled"><i class="material-symbols-rounded">arrow_outward</i></span></li>
+                    <li><div class="text-wrap"><b>مركز شرطة القحمة</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled"><i class="material-symbols-rounded">arrow_outward</i></span></li>
+                    <li><div class="text-wrap"><b>بلدية الساحل</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled" style="color:var(--success); border-color:rgba(16, 185, 129, 0.3);"><i class="material-symbols-rounded" style="color:var(--success);">call</i></span></li>
                 </ul>
             </div>
         </div>
@@ -603,6 +553,48 @@
         </div>
     </div>
 
+    <div id="history" class="tab-content">
+        <div class="container">
+            <div class="page-top-title-standard">
+                <h1>موسوعة القحمة</h1>
+                <p>عراقة الماضي وإشراقة المستقبل</p>
+            </div>
+
+            <div class="section-title" style="margin-top: 10px;"><span class="material-symbols-rounded">photo_library</span> القحمة قديماً</div>
+            <div class="glass-box" style="text-align: center; padding: 40px 20px; border-style: dashed; border-color: var(--text-muted);">
+                <span class="material-symbols-rounded" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 10px;">hourglass_empty</span>
+                <h3 style="margin: 0 0 5px; color: var(--accent);">أرشيف الصور التاريخية</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">سيتم إدراج معرض الصور القديمة والنادرة لمركز القحمة قريباً...</p>
+            </div>
+
+            <div class="section-title" style="margin-top: 30px;"><span class="material-symbols-rounded">menu_book</span> معلومات تاريخية</div>
+            <div class="glass-box">
+                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">1. الموقع الاستراتيجي</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">تقع القحمة على الشريط الساحلي للبحر الأحمر تابعة لمنطقة عسير. تتميز بتنوعها الجغرافي الفريد الذي يجمع بين السهل الساحلي، الجبال المحاذية، والأودية التي تنحدر من جبال السروات لتصب في البحر.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--sky); font-size:1.1rem; margin: 0 0 10px;">2. مناخها ومشتى عسير</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">نظراً لاعتدال مناخها ودفئه خلال فصل الشتاء مقارنة ببرودة السروات، أصبحت القحمة الملاذ والوجهة السياحية الأولى (المشتى) لأهالي منطقة عسير وزوارها، بحثاً عن الدفء والأنشطة البحرية.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">3. الميناء التاريخي</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يعتبر ميناء القحمة من أقدم الموانئ الحيوية في جنوب البحر الأحمر. كان يغص بالسفن الشراعية (السنابيك) المحملة بالتوابل والبضائع القادمة من اليمن والقرن الأفريقي، مما جعلها مركزاً تجارياً نابضاً بالحياة.</p>
+            </div>
+
+            <div class="glass-box">
+                <h2 style="color:var(--accent); font-size:1.1rem; margin: 0 0 10px;">4. حرفة الغوص وصيد اللؤلؤ</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">لم يكن البحر مجرد مصدر للسمك، بل امتدت رحلات الأجداد لأعماق البحر الأحمر لاستخراج اللؤلؤ والمحار. مهنة الغوص كانت من المهن الشاقة التي سطرت ملاحم من الشجاعة لإنسان القحمة قديماً.</p>
+            </div>
+            
+            <div class="glass-box">
+                <h2 style="color:var(--success); font-size:1.1rem; margin: 0 0 10px;">5. المطبخ التهامي (الميفا)</h2>
+                <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.8; margin:0;">يتميز المطبخ في القحمة بطابعه التهامي الأصيل. يعتبر <strong>"السمك الميفا"</strong> (المشوي داخل التنور الفخاري) الوجبة الرسمية التي لا تكتمل الزيارة إلا بتذوقها.</p>
+            </div>
+        </div>
+    </div>
+
     <div id="dev" class="tab-content">
         <div class="container">
             <div class="page-top-title-standard">
@@ -621,14 +613,14 @@
 
                 <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 15px; margin: 20px 0; border: 1px solid var(--glass-border);">
                     <h4 style="margin:0 0 10px; color:var(--text-main); font-size:0.9rem;">أبرز الخدمات التقنية التي أقدمها:</h4>
-                    <div class="skills-grid">
-                        <span class="skill-chip">برمجة المواقع</span>
-                        <span class="skill-chip">تصميم الجرافيك</span>
-                        <span class="skill-chip">تطوير ألعاب 3D</span>
+                    <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
+                        <span style="background:var(--surface-hover); border:1px solid var(--glass-border); padding:5px 12px; border-radius:12px; font-size:0.7rem; font-weight:800; color:var(--text-muted);">برمجة المواقع</span>
+                        <span style="background:var(--surface-hover); border:1px solid var(--glass-border); padding:5px 12px; border-radius:12px; font-size:0.7rem; font-weight:800; color:var(--text-muted);">تصميم الجرافيك</span>
+                        <span style="background:var(--surface-hover); border:1px solid var(--glass-border); padding:5px 12px; border-radius:12px; font-size:0.7rem; font-weight:800; color:var(--text-muted);">تطوير ألعاب 3D</span>
                     </div>
                 </div>
 
-                <a href="https://wa.me/966534987428" target="_blank" rel="noopener noreferrer" class="contact-btn" style="background: rgba(234, 179, 8, 0.1); border: 1px solid var(--accent); color: var(--accent);">
+                <a href="https://wa.me/966534987428" target="_blank" rel="noopener noreferrer" style="display:flex; align-items:center; justify-content:center; gap:8px; width:100%; background:rgba(234, 179, 8, 0.1); border:1px solid var(--accent); color:var(--accent); padding:12px; border-radius:16px; font-weight:900; text-decoration:none; font-size:0.9rem; margin-top:15px;">
                     <span class="material-symbols-rounded">chat</span> تواصل لتنفيذ مشروعك
                 </a>
             </div>
@@ -653,7 +645,7 @@
             document.querySelectorAll('.glass-dropdown').forEach(el => el.classList.remove('open'));
         }
 
-        // التحكم في القوائم المصغرة (Nano Chips)
+        // التحكم في القوائم المصغرة
         function toggleData(type) {
             const target = document.getElementById(type + '-data');
             if(!target) return;
@@ -662,18 +654,18 @@
             if(!isShowing) target.classList.add('open');
         }
 
-        // التحكم في التبويبات الرئيسية
+        // التبويبات
         function openTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => {
                 b.classList.remove('active');
-                b.querySelector('.icon').classList.remove('icon-filled'); // إزالة التعبئة
+                b.querySelector('.icon').classList.remove('icon-filled'); 
             });
             
             document.getElementById(tabId).classList.add('active');
             let currentBtn = event.currentTarget;
             currentBtn.classList.add('active');
-            currentBtn.querySelector('.icon').classList.add('icon-filled'); // تعبئة الأيقونة النشطة
+            currentBtn.querySelector('.icon').classList.add('icon-filled'); 
             
             document.getElementById('lang-switcher-container').style.display = tabId === 'guide' ? 'block' : 'none';
             
@@ -681,7 +673,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // نظام المفضلة بتحديث شكل الأيقونة
+        // المفضلة
         function toggleFav(event, btn, id) {
             event.stopPropagation();
             let favs = JSON.parse(localStorage.getItem('q2027_favs') || '[]');
@@ -699,38 +691,13 @@
             localStorage.setItem('q2027_favs', JSON.stringify(favs));
         }
 
-        // بيانات المعالم السينمائية
+        // النافذة السينمائية
         const placesData = {
-            'matal': {
-                title: 'مطل القحمة',
-                desc: 'يعتبر مطل القحمة الوجهة الأبرز لعشاق الهدوء والتأمل. يوفر إطلالة بانورامية ساحرة من أعلى الجبل تكشف لك جمال البحر الأحمر وسواحل القحمة. مجهز بجلسات تناسب العائلات، ومثالي جداً لالتقاط أروع الصور الاحترافية خاصة وقت غروب الشمس الخلاب.',
-                img: 'https://i.ibb.co/fdmsp7QN/IMG-9512.jpg',
-                link: 'https://www.google.com/maps/search/مطل+القحمة'
-            },
-            'island': {
-                title: 'جزيرة كدمبل',
-                desc: 'أيقونة السياحة في البحر الأحمر! جبل بركاني شامخ محاط برمال بيضاء ناصعة ومياه فيروزية صافية. تُعد الجزيرة الملاذ الأول لهواة الغوص، ومحبي صيد الأسماك، ومكاناً استثنائياً لمراقبة الطيور النادرة المهاجرة. تحتاج لتنسيق مع كباتن النزهة للوصول إليها.',
-                img: 'https://i.ibb.co/rRNxnkvZ/IMG-6580.jpg',
-                link: 'https://www.google.com/maps/search/جزيرة+كدمبل+القحمة'
-            },
-            'corniche': {
-                title: 'كورنيش وواجهة القحمة',
-                desc: 'يمتد كورنيش القحمة ليكون المتنفس الأول والأجمل للأهالي والزوار. يتميز بمسارات طويلة للمشي، ومناطق مظللة للجلوس، ومسطحات خضراء قريبة من نسمات البحر. الوجهة العائلية الأفضل لقضاء أمسيات لا تُنسى على صوت أمواج البحر الأحمر.',
-                img: 'https://i.ibb.co/xSc3sLRq/IMG-9496.jpg',
-                link: 'https://www.google.com/maps/search/كورنيش+القحمة'
-            },
-            'park': {
-                title: 'حديقة القحمة العامة',
-                desc: 'حديقة نموذجية ومتنفس أخضر واسع منسق بعناية فائقة. توفر مساحات خضراء مريحة للعين، وأماكن مخصصة لألعاب الأطفال، وممرات رياضية للمشي. تعتبر مكاناً آمناً وهادئاً لاجتماع العوائل والأصدقاء في قلب القحمة.',
-                img: 'https://i.ibb.co/b5jxrrnc/IMG-6371.jpg',
-                link: 'https://www.google.com/maps/search/حديقة+القحمة+العامة'
-            },
-            'khayriya_park': {
-                title: 'حديقة الخيرية',
-                desc: 'حديقة الخيرية الجديدة، تعتبر من أحدث المتنفسات في المنطقة، توفر أجواء هادئة وتصميماً عصرياً يناسب العائلات للراحة والاستجمام بعيداً عن صخب المدينة.',
-                img: '', 
-                link: '#'
-            }
+            'matal': { title: 'مطل القحمة', desc: 'يعتبر مطل القحمة الوجهة الأبرز لعشاق الهدوء والتأمل. يوفر إطلالة بانورامية ساحرة من أعلى الجبل تكشف لك جمال البحر الأحمر وسواحل القحمة. مجهز بجلسات تناسب العائلات، ومثالي جداً لالتقاط أروع الصور الاحترافية خاصة وقت غروب الشمس الخلاب.', img: 'https://i.ibb.co/fdmsp7QN/IMG-9512.jpg', link: 'https://www.google.com/maps/search/مطل+القحمة' },
+            'island': { title: 'جزيرة كدمبل', desc: 'أيقونة السياحة في البحر الأحمر! جبل بركاني شامخ محاط برمال بيضاء ناصعة ومياه فيروزية صافية. تُعد الجزيرة الملاذ الأول لهواة الغوص، ومحبي صيد الأسماك، ومكاناً استثنائياً لمراقبة الطيور النادرة المهاجرة. تحتاج لتنسيق مع كباتن النزهة للوصول إليها.', img: 'https://i.ibb.co/rRNxnkvZ/IMG-6580.jpg', link: 'https://www.google.com/maps/search/جزيرة+كدمبل+القحمة' },
+            'corniche': { title: 'كورنيش وواجهة القحمة', desc: 'يمتد كورنيش القحمة ليكون المتنفس الأول والأجمل للأهالي والزوار. يتميز بمسارات طويلة للمشي، ومناطق مظللة للجلوس، ومسطحات خضراء قريبة من نسمات البحر. الوجهة العائلية الأفضل لقضاء أمسيات لا تُنسى على صوت أمواج البحر الأحمر.', img: 'https://i.ibb.co/xSc3sLRq/IMG-9496.jpg', link: 'https://www.google.com/maps/search/كورنيش+القحمة' },
+            'park': { title: 'حديقة القحمة العامة', desc: 'حديقة نموذجية ومتنفس أخضر واسع منسق بعناية فائقة. توفر مساحات خضراء مريحة للعين، وأماكن مخصصة لألعاب الأطفال، وممرات رياضية للمشي. تعتبر مكاناً آمناً وهادئاً لاجتماع العوائل والأصدقاء في قلب القحمة.', img: 'https://i.ibb.co/b5jxrrnc/IMG-6371.jpg', link: 'https://www.google.com/maps/search/حديقة+القحمة+العامة' },
+            'khayriya_park': { title: 'حديقة الخيرية', desc: 'حديقة الخيرية الجديدة، تعتبر من أحدث المتنفسات في المنطقة، توفر أجواء هادئة وتصميماً عصرياً يناسب العائلات للراحة والاستجمام بعيداً عن صخب المدينة.', img: '', link: '#' }
         };
 
         function openPlace(id) {
@@ -850,22 +817,13 @@
             document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = index===0?'🥇':index===1?'🥈':index===2?'🥉':''; return `<tr><td class="team-name-cell">${medal} ${s.n}<br><span style="color:var(--text-muted); font-size:0.65rem;">${s.f}</span></td><td><span style="background:var(--bg-deep); color:var(--accent); padding:4px 10px; border-radius:8px; font-weight:900; border:1px solid var(--glass-border);">${s.g}</span></td></tr>`; }).join('');
             document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="glass-box" style="padding:10px; margin-bottom:15px;"><div style="font-weight:900; margin-bottom:10px; color:var(--text-main);">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>نقاط</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--sky); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
             
-            const stats = {}; 
-            archiveData.forEach(day => day.matches.forEach(m => { 
-                const res = m.r.split(' - ').map(Number); 
-                if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; 
-                if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; 
-                stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; 
-                stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; 
-            }));
-            document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--sky); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
-            
             let rulesContent = document.getElementById('rules-content');
             if(rulesContent) rulesContent.innerText = aboutRulesText;
         }
 
-        // جلب البيانات الحية وتغيير أيقونة الطقس بذكاء
+        // جلب البيانات الحية
         async function fetchLiveAPIs() {
+            // الطقس والبحر
             try {
                 const resW = await fetch('https://api.open-meteo.com/v1/forecast?latitude=17.99&longitude=41.67&current=temperature_2m,wind_speed_10m,weather_code,visibility');
                 const dW = await resW.json();
@@ -874,7 +832,6 @@
                 let code = dW.current.weather_code;
                 let visKm = (dW.current.visibility / 1000).toFixed(1);
                 
-                // تحديث الأيقونة حسب حالة الطقس
                 let iconName = "sunny";
                 if(code >= 1 && code <= 3) iconName = "partly_cloudy_day";
                 if(code >= 51 && code <= 67) iconName = "rainy";
@@ -905,6 +862,7 @@
 
             } catch(e) {}
 
+            // الهواء والغبار
             try {
                 const resA = await fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=17.99&longitude=41.67&current=european_aqi,dust');
                 const dA = await resA.json();
@@ -917,6 +875,7 @@
                 if(document.getElementById('data-desc')) document.getElementById('data-desc').innerText = aqi < 50 ? 'ممتاز 🟢' : 'غبار 🟡';
             } catch(e) {}
 
+            // الصلاة
             try {
                 const dDate = new Date();
                 const resP = await fetch(`https://api.aladhan.com/v1/timings/${dDate.getDate()}-${dDate.getMonth()+1}-${dDate.getFullYear()}?latitude=17.99&longitude=41.67&method=4`);
@@ -934,13 +893,12 @@
                 
                 document.getElementById('nano-pray').innerText = `${h}:${String(m).padStart(2, '0')} ${ampm}`;
                 
-                if(document.getElementById('p-fajr')) {
-                    document.getElementById('p-fajr').innerText = t.Fajr;
-                    document.getElementById('p-dhuhr').innerText = t.Dhuhr;
-                    document.getElementById('p-asr').innerText = t.Asr;
-                    document.getElementById('p-maghrib').innerText = t.Maghrib;
-                    document.getElementById('p-isha').innerText = t.Isha;
-                }
+                if(document.getElementById('p-fajr')) document.getElementById('p-fajr').innerText = t.Fajr;
+                if(document.getElementById('p-dhuhr')) document.getElementById('p-dhuhr').innerText = t.Dhuhr;
+                if(document.getElementById('p-asr')) document.getElementById('p-asr').innerText = t.Asr;
+                if(document.getElementById('p-maghrib')) document.getElementById('p-maghrib').innerText = t.Maghrib;
+                if(document.getElementById('p-isha')) document.getElementById('p-isha').innerText = t.Isha;
+                
             } catch(e) {}
         }
         
