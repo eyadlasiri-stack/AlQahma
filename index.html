@@ -18,7 +18,6 @@
     <title>دليل القحمة 2027</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0,0" />
 
     <style>
@@ -50,32 +49,24 @@
             font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24;
             display: inline-block; vertical-align: middle; line-height: 1;
         }
-        .icon-filled { font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24; }
+        .icon-filled { font-variation-settings: 'FILL' 1; }
 
         /* تفاعلات اللمس */
         .nano-chip, .btn-neon, .tab-btn, .t-circle-item, .fav-btn, .lang-btn, .sub-tab-btn, .t-back-btn, .place-card-modern, .glass-box {
             transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        .nano-chip:active, .btn-neon:active:not(.btn-disabled), .tab-btn:active, .t-circle-item:active, .fav-btn:active, .lang-btn:active, .sub-tab-btn:active, .t-back-btn:active {
+        .nano-chip:active, .btn-neon:active, .tab-btn:active, .t-circle-item:active, .fav-btn:active, .lang-btn:active, .sub-tab-btn:active, .t-back-btn:active {
             transform: scale(0.9) !important; opacity: 0.7;
         }
         .place-card-modern:active { transform: scale(0.96); }
 
-        /* أزرار الديكور (للطوارئ والجهات) */
-        .btn-disabled {
-            opacity: 0.4 !important;
-            pointer-events: none !important;
-            cursor: default !important;
-        }
-
-        /* زر اللغة */
         .lang-btn {
             position: absolute; top: calc(20px + env(safe-area-inset-top, 20px)); left: 20px; z-index: 99999;
             font-size: 1.1rem; font-weight: 900; color: var(--text-main); text-shadow: 0 2px 10px rgba(0,0,0,0.8);
             cursor: pointer; letter-spacing: 1px;
         }
 
-        /* شاشة التحميل */
+        /* شاشة التحميل الموجة */
         #preloader { position: fixed; inset: 0; background: var(--bg-deep); z-index: 9999999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: 0.6s cubic-bezier(0.8, 0, 0.2, 1); }
         #preloader.hidden { opacity: 0; visibility: hidden; transform: scale(1.1); filter: blur(10px); }
         .preloader-wrapper { position: relative; width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; margin-bottom: 25px; }
@@ -111,10 +102,10 @@
         .page-top-title-standard h1 { margin: 0; font-size: 1.8rem; color: var(--text-main); font-weight: 900; }
         .page-top-title-standard p { margin: 5px 0 0; color: var(--accent); font-size: 0.9rem; font-weight: 700; }
 
-        /* الهيدر الرئيسي للسياحة */
+        /* الهيدرات والصور */
         .hero-2027 {
             position: absolute; top: 0; left: 0; right: 0; height: 420px;
-            background: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg') center 20%/cover;
+            background-size: cover; background-position: center 20%;
             z-index: 0; mask-image: linear-gradient(to bottom, black 55%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
         }
 
@@ -258,10 +249,11 @@
 
     <nav class="tabs-nav">
         <button class="tab-btn active" onclick="openTab('guide')"><span class="material-symbols-rounded icon icon-filled">park</span><span>السياحة</span></button>
-        <button class="tab-btn" onclick="openTab('marine')"><span class="material-symbols-rounded icon">water</span><span>البحر</span></button>
+        <button class="tab-btn" onclick="openTab('marine')"><span class="material-symbols-rounded icon">water_drop</span><span>البحر</span></button>
         <button class="tab-btn" onclick="openTab('services')"><span class="material-symbols-rounded icon">medical_services</span><span>الخدمات</span></button>
         <button class="tab-btn" onclick="openTab('tournament')"><span class="material-symbols-rounded icon">sports_soccer</span><span>الفعاليات</span></button>
         <button class="tab-btn" onclick="openTab('history')"><span class="material-symbols-rounded icon">history_edu</span><span>تراثنا</span></button>
+        <button class="tab-btn" onclick="openTab('dev')"><span class="material-symbols-rounded icon">code</span><span>المطور</span></button>
     </nav>
 
     <div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
@@ -277,7 +269,7 @@
     </div>
 
     <div id="guide" class="tab-content active">
-        <div class="hero-2027"></div>
+        <div class="hero-2027" style="background-image: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg');"></div>
 
         <div class="header-content container">
             <div class="lang-btn" id="lang-toggle-btn" onclick="toggleLanguage()">EN</div>
@@ -378,15 +370,31 @@
     </div>
 
     <div id="marine" class="tab-content">
-        <div class="container" style="padding-top: 40px;">
-            <div class="title-block" style="margin-bottom: 20px;">
+        <div class="hero-2027" style="height: 300px; background-image: url('https://i.ibb.co/Z6WMxmbc/2-ECE54-DC-F1-C3-4-FC5-8-A5-B-6-AA43848-EA42.jpg');"></div>
+        
+        <div class="header-content container" style="height: 300px;">
+            <div class="title-block">
                 <h1>عالم البحر</h1>
                 <p>ملاحة، صيد، ونزهات بحرية</p>
+            </div>
+            <div class="nano-board" style="justify-content: center; margin-bottom: 0;">
+                <div class="nano-chip" onclick="toggleData('sea2')" style="flex:none; width: 120px;">
+                    <span class="material-symbols-rounded icon">waves</span><span class="data" id="nano-sea2">--</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 20px;">
+            <div class="glass-dropdown" id="sea2-data">
+                <div class="mini-stat"><span>الرياح</span><b id="data-wind2">-- كم</b></div>
+                <div class="mini-stat"><span>الموج</span><b id="data-wave2">-- م</b></div>
+                <div class="mini-stat"><span>المد</span><b id="data-tide2">--:--</b></div>
+                <div class="mini-stat"><span>الجزر</span><b id="data-ebb2">--:--</b></div>
             </div>
 
             <div class="section-title"><span class="material-symbols-rounded">explore</span> البوصلة الذكية</div>
             <div class="glass-box" style="text-align: center; padding: 30px 15px;">
-                <div id="compass-circle" style="width:100px; height:100px; border:2px solid var(--glass-border); border-radius:50%; margin:0 auto; position:relative; transition: 0.1s; box-shadow: inset 0 0 15px rgba(56, 189, 248, 0.1); background: rgba(0,0,0,0.2);">
+                <div id="compass-circle" style="width:100px; height:100px; border:2px solid var(--sky); border-radius:50%; margin:0 auto; position:relative; transition: 0.1s; box-shadow: inset 0 0 15px rgba(56, 189, 248, 0.1); background: rgba(0,0,0,0.2);">
                     <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); color:var(--danger); font-weight:900;">N</div>
                     <div style="width:3px; height:50px; background:linear-gradient(to top, transparent 0%, var(--danger) 50%, var(--danger) 100%); position:absolute; bottom:50%; left:50%; transform:translateX(-50%); border-radius: 4px 4px 0 0;"></div>
                 </div>
@@ -442,20 +450,28 @@
             </div>
 
             <div class="section-title"><span class="material-symbols-rounded">emergency</span> الصحة والطوارئ</div>
-            <div class="glass-box">
-                <ul class="list-clean">
-                    <li><div class="text-wrap"><b>مستشفى القحمة العام</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled"><i class="material-symbols-rounded">arrow_outward</i></span></li>
-                    <li><div class="text-wrap"><b>حرس الحدود</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled" style="color:var(--danger); border-color:rgba(239, 68, 68, 0.3);"><i class="material-symbols-rounded" style="color:var(--danger);">call</i></span></li>
-                    <li><div class="text-wrap"><b>الدفاع المدني</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled" style="color:var(--danger); border-color:rgba(239, 68, 68, 0.3);"><i class="material-symbols-rounded" style="color:var(--danger);">call</i></span></li>
-                </ul>
+            <div class="glass-box" style="text-align: center; padding: 30px 20px; border-style: dashed; border-color: var(--glass-border);">
+                <span class="material-symbols-rounded" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 10px;">hourglass_empty</span>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">سيتم إضافة خانات وأرقام الصحة والطوارئ قريباً...</p>
             </div>
             
             <div class="section-title"><span class="material-symbols-rounded">account_balance</span> الجهات الحكومية</div>
+            <div class="glass-box" style="text-align: center; padding: 30px 20px; border-style: dashed; border-color: var(--glass-border);">
+                <span class="material-symbols-rounded" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 10px;">hourglass_empty</span>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">سيتم إضافة خانات ومواقع الجهات الحكومية قريباً...</p>
+            </div>
+            
+            <div class="section-title"><span class="material-symbols-rounded">local_gas_station</span> محطات الوقود والمسافر</div>
             <div class="glass-box">
                 <ul class="list-clean">
-                    <li><div class="text-wrap"><b>مقر مركز القحمة</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled"><i class="material-symbols-rounded">arrow_outward</i></span></li>
-                    <li><div class="text-wrap"><b>مركز شرطة القحمة</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled"><i class="material-symbols-rounded">arrow_outward</i></span></li>
-                    <li><div class="text-wrap"><b>بلدية الساحل</b><span style="color:var(--accent);">سيتم الربط قريباً</span></div><span class="btn-neon btn-disabled" style="color:var(--success); border-color:rgba(16, 185, 129, 0.3);"><i class="material-symbols-rounded" style="color:var(--success);">call</i></span></li>
+                    <li><div class="text-wrap"><b>محطات بنزين متكاملة</b></div><a href="https://www.google.com/maps/search/?api=1&query=محطة+وقود+القحمة" target="_blank" class="btn-neon"><i class="material-symbols-rounded">arrow_outward</i></a></li>
+                </ul>
+            </div>
+            
+            <div class="section-title"><span class="material-symbols-rounded">restaurant</span> المطاعم والتموينات</div>
+            <div class="glass-box">
+                <ul class="list-clean">
+                    <li><div class="text-wrap"><b>مطاعم شعبية ومأكولات بحرية</b></div><a href="https://www.google.com/maps/search/?api=1&query=مطاعم+القحمة+سوق+السمك" target="_blank" class="btn-neon"><i class="material-symbols-rounded">arrow_outward</i></a></li>
                 </ul>
             </div>
         </div>
@@ -697,7 +713,7 @@
             'island': { title: 'جزيرة كدمبل', desc: 'أيقونة السياحة في البحر الأحمر! جبل بركاني شامخ محاط برمال بيضاء ناصعة ومياه فيروزية صافية. تُعد الجزيرة الملاذ الأول لهواة الغوص، ومحبي صيد الأسماك، ومكاناً استثنائياً لمراقبة الطيور النادرة المهاجرة. تحتاج لتنسيق مع كباتن النزهة للوصول إليها.', img: 'https://i.ibb.co/rRNxnkvZ/IMG-6580.jpg', link: 'https://www.google.com/maps/search/جزيرة+كدمبل+القحمة' },
             'corniche': { title: 'كورنيش وواجهة القحمة', desc: 'يمتد كورنيش القحمة ليكون المتنفس الأول والأجمل للأهالي والزوار. يتميز بمسارات طويلة للمشي، ومناطق مظللة للجلوس، ومسطحات خضراء قريبة من نسمات البحر. الوجهة العائلية الأفضل لقضاء أمسيات لا تُنسى على صوت أمواج البحر الأحمر.', img: 'https://i.ibb.co/xSc3sLRq/IMG-9496.jpg', link: 'https://www.google.com/maps/search/كورنيش+القحمة' },
             'park': { title: 'حديقة القحمة العامة', desc: 'حديقة نموذجية ومتنفس أخضر واسع منسق بعناية فائقة. توفر مساحات خضراء مريحة للعين، وأماكن مخصصة لألعاب الأطفال، وممرات رياضية للمشي. تعتبر مكاناً آمناً وهادئاً لاجتماع العوائل والأصدقاء في قلب القحمة.', img: 'https://i.ibb.co/b5jxrrnc/IMG-6371.jpg', link: 'https://www.google.com/maps/search/حديقة+القحمة+العامة' },
-            'khayriya_park': { title: 'حديقة الخيرية', desc: 'حديقة الخيرية الجديدة، تعتبر من أحدث المتنفسات في المنطقة، توفر أجواء هادئة وتصميماً عصرياً يناسب العائلات للراحة والاستجمام بعيداً عن صخب المدينة.', img: '', link: '#' }
+            'khayriya_park': { title: 'حديقة الخيرية', desc: 'حديقة الخيرية الجديدة، تقع على الخط العام وتعتبر من أحدث المتنفسات في المنطقة، توفر أجواء هادئة وتصميماً عصرياً يناسب العائلات للراحة والاستجمام بعيداً عن صخب المدينة.', img: '', link: '#' }
         };
 
         function openPlace(id) {
@@ -817,13 +833,23 @@
             document.getElementById('players-table').innerHTML = scorers.sort((a,b)=>b.g-a.g).map((s, index) => { let medal = index===0?'🥇':index===1?'🥈':index===2?'🥉':''; return `<tr><td class="team-name-cell">${medal} ${s.n}<br><span style="color:var(--text-muted); font-size:0.65rem;">${s.f}</span></td><td><span style="background:var(--bg-deep); color:var(--accent); padding:4px 10px; border-radius:8px; font-weight:900; border:1px solid var(--glass-border);">${s.g}</span></td></tr>`; }).join('');
             document.getElementById('groups-area').innerHTML = groupData.map(g => `<div class="glass-box" style="padding:10px; margin-bottom:15px;"><div style="font-weight:900; margin-bottom:10px; color:var(--text-main);">المجموعة ${g.n}</div><table class="group-table"><thead><tr><th class="team-name-cell">الفريق</th><th>ل</th><th>ف</th><th>ت</th><th>خ</th><th>نقاط</th></tr></thead><tbody>${g.teams.map(t => `<tr><td class="team-name-cell">${t.t}</td><td>${t.l}</td><td>${t.f}</td><td>${t.te}</td><td>${t.x}</td><td style="color:var(--sky); font-weight:900;">${t.p}</td></tr>`).join('')}</tbody></table></div>`).join('');
             
+            const stats = {}; 
+            archiveData.forEach(day => day.matches.forEach(m => { 
+                const res = m.r.split(' - ').map(Number); 
+                if (!stats[m.t1]) stats[m.t1] = { p: 0, f: 0, a: 0 }; 
+                if (!stats[m.t2]) stats[m.t2] = { p: 0, f: 0, a: 0 }; 
+                stats[m.t1].p++; stats[m.t1].f += res[0] || 0; stats[m.t1].a += res[1] || 0; 
+                stats[m.t2].p++; stats[m.t2].f += res[1] || 0; stats[m.t2].a += res[0] || 0; 
+            }));
+            document.getElementById('teams-tbody').innerHTML = Object.entries(stats).sort((a,b)=>b[1].f-a[1].f).map(([t, s]) => `<tr><td class="team-name-cell">${t}</td><td>${s.p}</td><td>${s.f}</td><td>${s.a}</td><td style="color:var(--sky); font-weight:900;">${s.f-s.a}</td></tr>`).join('');
+            
             let rulesContent = document.getElementById('rules-content');
             if(rulesContent) rulesContent.innerText = aboutRulesText;
         }
 
-        // جلب البيانات الحية
+        // جلب البيانات الحية المباشرة 
         async function fetchLiveAPIs() {
-            // الطقس والبحر
+            // الطقس والبحر (API 1)
             try {
                 const resW = await fetch('https://api.open-meteo.com/v1/forecast?latitude=17.99&longitude=41.67&current=temperature_2m,wind_speed_10m,weather_code,visibility');
                 const dW = await resW.json();
@@ -850,19 +876,26 @@
                 
                 let seaStatus = wind > 20 ? 'مضطرب' : 'هادئ';
                 if(document.getElementById('nano-sea')) document.getElementById('nano-sea').innerText = seaStatus;
+                if(document.getElementById('nano-sea2')) document.getElementById('nano-sea2').innerText = seaStatus;
 
                 if(document.getElementById('data-wind')) document.getElementById('data-wind').innerText = wind + ' كم';
                 if(document.getElementById('data-wave')) document.getElementById('data-wave').innerText = (wind/15).toFixed(1) + ' م';
+                
+                if(document.getElementById('data-wind2')) document.getElementById('data-wind2').innerText = wind + ' كم';
+                if(document.getElementById('data-wave2')) document.getElementById('data-wave2').innerText = (wind/15).toFixed(1) + ' م';
                 
                 const hours = new Date().getHours();
                 if(document.getElementById('data-tide')) document.getElementById('data-tide').innerText = (hours + 4) % 24 + ":00";
                 if(document.getElementById('data-ebb')) document.getElementById('data-ebb').innerText = (hours + 10) % 24 + ":00";
                 
+                if(document.getElementById('data-tide2')) document.getElementById('data-tide2').innerText = (hours + 4) % 24 + ":00";
+                if(document.getElementById('data-ebb2')) document.getElementById('data-ebb2').innerText = (hours + 10) % 24 + ":00";
+                
                 if(document.getElementById('fish-status')) document.getElementById('fish-status').innerText = wind > 20 ? 'صعبة 🛑' : 'ممتازة 🎣';
 
             } catch(e) {}
 
-            // الهواء والغبار
+            // الهواء والغبار (API 2)
             try {
                 const resA = await fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=17.99&longitude=41.67&current=european_aqi,dust');
                 const dA = await resA.json();
@@ -875,7 +908,7 @@
                 if(document.getElementById('data-desc')) document.getElementById('data-desc').innerText = aqi < 50 ? 'ممتاز 🟢' : 'غبار 🟡';
             } catch(e) {}
 
-            // الصلاة
+            // الصلاة (API 3)
             try {
                 const dDate = new Date();
                 const resP = await fetch(`https://api.aladhan.com/v1/timings/${dDate.getDate()}-${dDate.getMonth()+1}-${dDate.getFullYear()}?latitude=17.99&longitude=41.67&method=4`);
