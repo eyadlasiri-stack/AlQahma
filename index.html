@@ -1,1 +1,448 @@
-.
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- عنوان الصفحة -->
+    <title>منيو بيلونت الرقمي - Belont Menu</title>
+    
+    <!-- استدعاء خط Cairo الفخم والمناسب لشاشات الآيباد -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS: تصميم الهوية البصرية -->
+    <style>
+        :root {
+            /* درجات الألوان المأخوذة من شعار بيلونت - Belont */
+            --belont-dark: #3d2314;   /* البني الشوكولاتة الداكن (فخامة) */
+            --belont-light: #ffbda2;  /* الخوخي المشمشي الفاتح (تباين) */
+            --bg-main: #fcf8f5;       /* خلفية مريحة جداً للعين للزبائن */
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            /* يمنع تحديد النصوص المزعج باللمس على الآيباد */
+            -webkit-user-select: none; 
+            user-select: none;
+            outline: none; /* إزالة خطوط التركيز */
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--belont-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh; /* ملء ارتفاع الشاشة */
+            overflow: hidden; /* يمنع السكرول الكلي ليبقى ثابت كأنه تطبيق */
+        }
+
+        /* -------------------------------------
+           Sidebar: القائمة الجانبية للأقسام
+           ------------------------------------- */
+        .sidebar {
+            width: 25%; /* ربع عرض شاشة الآيباد بالعرض */
+            background-color: var(--belont-dark);
+            display: flex;
+            flex-direction: column;
+            padding: 30px 15px;
+            justify-content: flex-start;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.1);
+        }
+
+        /* منطقة الشعار */
+        .logo-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-area h1 {
+            color: var(--belont-light);
+            font-weight: 900;
+            font-size: 2rem;
+            margin: 0;
+            letter-spacing: 1px;
+            font-family: serif; /* محاكاة لخط اللوغو */
+        }
+        
+        .logo-area p {
+            color: var(--white);
+            margin: 5px 0 0 0;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        /* مساحة الأزرار */
+        .categories-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* تصميم زر القسم */
+        .category-btn {
+            background: transparent;
+            color: var(--belont-light);
+            border: 2px solid var(--belont-light);
+            padding: 16px 20px;
+            border-radius: 14px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.25s ease;
+            width: 100%;
+        }
+
+        /* القسم الفعال/النشط */
+        .category-btn.active {
+            background-color: var(--belont-light);
+            color: var(--belont-dark);
+            border-color: var(--belont-light);
+            box-shadow: 0 4px 12px rgba(255, 189, 162, 0.3);
+        }
+
+        /* التأثير عند الضغط */
+        .category-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* -------------------------------------
+           Main Content: منطقة عرض المنتجات
+           ------------------------------------- */
+        .main-content {
+            width: 75%; /* باقي عرض شاشة الآيباد */
+            padding: 40px;
+            overflow-y: auto; /* السكرول يكون هنا فقط */
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* سكرول سلس على أجهزة آبل */
+        }
+
+        /* عنوان القسم */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--belont-dark);
+            display: inline-block;
+        }
+
+        /* شبكة المنتجات (توزيع تلقائي فخم) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        /* -------------------------------------
+           Product Card: تصميم كرت المنتج
+           ------------------------------------- */
+        .product-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(61, 35, 20, 0.06);
+            border: 1px solid rgba(61, 35, 20, 0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        /* مساحة الصورة */
+        .product-image {
+            width: 100%;
+            height: 180px;
+            position: relative;
+            background-color: #f2f2f2;
+        }
+
+        /* صور placeholder تعبر عن البراند (يجب استبدالها بصور حقيقية) */
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* تفاصيل المنتج */
+        .product-details {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        /* اسم المنتج */
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            line-height: 1.4;
+        }
+
+        /* السعر */
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--belont-dark);
+        }
+
+        .currency {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- القائمة الجانبية الثابتة (Navigation Sidebar) -->
+    <div class="sidebar">
+        <!-- مساحة للشعار -->
+        <div class="logo-area">
+            <h1>Belont</h1>
+            <p>بيلونت</p>
+        </div>
+        
+        <!-- الأقسام الرئيسية -->
+        <div class="categories-flex">
+            <button class="category-btn active" onclick="switchCategory('sweets', this)">🍰 الحلويات</button>
+            <button class="category-btn" onclick="switchCategory('matcha', this)">🍵 الماتشا والكركديه</button>
+            <button class="category-btn" onclick="switchCategory('hot-coffee', this)">☕ قهوة ساخنة</button>
+            <button class="category-btn" onclick="switchCategory('cold-coffee', this)">🍹 مشروبات باردة</button>
+        </div>
+    </div>
+
+    <!-- منطقة عرض المنتجات المرنة (Main Grid) -->
+    <div class="main-content">
+        
+        <!-- **************************************
+             قسم الحلويات (مفعل تلقائياً)
+             ************************************** -->
+        <div id="sweets" class="menu-section">
+            <h2 class="section-title">الحلويات (Sweets)</h2>
+            <div class="products-grid">
+                
+                <!-- ترافل المانجو -->
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400" alt="ترافل المانجو"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">ترافل المانجو</h3>
+                        <div class="product-meta"><span class="product-price">18<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <!-- كيكة لندن -->
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400" alt="كيكة لندن"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">كيكة لندن (شوكولاتة)</h3>
+                        <div class="product-meta"><span class="product-price">20<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <!-- كيكة ترافل الفستق -->
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1511018556340-d16986a1c194?w=400" alt="كيكة ترافل الفستق"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">كيكة ترافل الفستق والتوت</h3>
+                        <div class="product-meta"><span class="product-price">20<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- **************************************
+             قسم الماتشا والكركديه
+             ************************************** -->
+        <div id="matcha" class="menu-section" style="display: none;">
+            <h2 class="section-title">الماتشا والكركديه المنعش</h2>
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400" alt="ماتشا فراولة"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">ماتشا فراولة</h3>
+                        <div class="product-meta"><span class="product-price">15<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400" alt="ماتشا كلاسيك"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">ماتشا كلاسيك</h3>
+                        <div class="product-meta"><span class="product-price">15<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400" alt="ماتشا مانجو"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">ماتشا مانجو</h3>
+                        <div class="product-meta"><span class="product-price">15<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400" alt="ماتشا بورليه"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">ماتشا بورليه</h3>
+                        <div class="product-meta"><span class="product-price">15<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=400" alt="كركديه منعش"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">كركديه منعش</h3>
+                        <div class="product-meta"><span class="product-price">10<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=400" alt="باشن فروت"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">باشن فروت منعش</h3>
+                        <div class="product-meta"><span class="product-price">10<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- **************************************
+             قسم القهوة الساخنة
+             ************************************** -->
+        <div id="hot-coffee" class="menu-section" style="display: none;">
+            <h2 class="section-title">القهوة الساخنة (Hot Coffee)</h2>
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=400" alt="لاتيه"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">لاتيه ساخن</h3>
+                        <div class="product-meta"><span class="product-price">10<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1577968897866-be8441db716f?w=400" alt="فلات وايت"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">فلات وايت</h3>
+                        <div class="product-meta"><span class="product-price">10<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400" alt="إسبريسو"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">إسبريسو</h3>
+                        <div class="product-meta"><span class="product-price">10<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400" alt="كابتشينو"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">كابتشينو</h3>
+                        <div class="product-meta"><span class="product-price">10<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400" alt="أمريكانو"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">أمريكانو</h3>
+                        <div class="product-meta"><span class="product-price">10<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400" alt="قهوة اليوم كبير"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">قهوة اليوم (حجم كبير)</h3>
+                        <div class="product-meta"><span class="product-price">10<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- **************************************
+             قسم المشروبات الباردة وخيارات البن
+             ************************************** -->
+        <div id="cold-coffee" class="menu-section" style="display: none;">
+            <h2 class="section-title">المشروبات الباردة والبن المختص</h2>
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400" alt="آيس سبانش لاتيه"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">آيس سبانش لاتيه</h3>
+                        <div class="product-meta"><span class="product-price">10<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <!-- البن المختص -->
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1559525839-b184a4d69d27?w=400" alt="البن اليمني"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">البن اليمني (الخوخ، الكرز، الفراولة)</h3>
+                        <div class="product-meta"><span class="product-price">17<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"><img src="https://images.unsplash.com/photo-1559525839-b184a4d69d27?w=400" alt="البن الإثيوبي"></div>
+                    <div class="product-details">
+                        <h3 class="product-name">البن الإثيوبي المختص (الكرلمبي)</h3>
+                        <div class="product-meta"><span class="product-price">14<span class="currency"> ر.س</span></span></div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <!-- -------------------------------------
+         JavaScript: برمجة التنقل بين الأقسام
+         ------------------------------------- -->
+    <script>
+        // دالة التنقل بين الأقسام بلمسة واحدة
+        function switchCategory(sectionId, button) {
+            
+            // 1. إخفاء جميع الأقسام (Sections) الموجودة حالياً
+            const sections = document.querySelectorAll('.menu-section');
+            sections.forEach(section => section.style.display = 'none');
+            
+            // 2. إظهار القسم المطلوب فقط
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+            }
+            
+            // 3. تحديث حالة الأزرار في القائمة الجانبية
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => btn.classList.remove('active')); // إزالة الحالة النشطة من كل الأزرار
+            
+            button.classList.add('active'); // إضافة الحالة النشطة للزر المكبوس فقط
+            
+            // 4. تصفير سكرول المحتوى للأعلى عند التنقل لقسم جديد لضمان رؤية البداية
+            document.querySelector('.main-content').scrollTop = 0;
+        }
+    </script>
+</body>
+</html>
