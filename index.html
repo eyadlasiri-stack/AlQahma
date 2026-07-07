@@ -99,7 +99,7 @@
             border-radius: 2px;
         }
 
-        /* كبسولات الأقسام مرتبة حسب طلبك */
+        /* كبسولات الأقسام */
         .categories-scroll {
             display: flex;
             gap: 12px;
@@ -230,11 +230,11 @@
             <h2 class="menu-title">قائمة المنيو</h2>
         </div>
 
-        <!-- الأقسام بالترتيب الجديد: المشروبات أولاً ثم الحلويات في النهاية -->
+        <!-- الأقسام بالترتيب الجديد والمحدث -->
         <div class="categories-scroll">
             <button class="capsule-btn active" onclick="filterMenu('hot', this)">☕ مشروبات ساخنة</button>
             <button class="capsule-btn" onclick="filterMenu('v60', this)">⏳ قهوة التقطير V60</button>
-            <button class="capsule-btn" onclick="filterMenu('matcha', this)">🍵 الماتشا والكركديه</button>
+            <button class="capsule-btn" onclick="filterMenu('matcha', this)">🍹 الماتشا والمشروبات الباردة</button>
             <button class="capsule-btn" onclick="filterMenu('sweets', this)">🍰 الحلويات</button>
         </div>
     </div>
@@ -242,7 +242,7 @@
     <!-- منطقة المنتجات الفاخرة -->
     <div class="main-wrapper">
         
-        <!-- 1. قسم المشروبات الساخنة (الأساسي الأول) -->
+        <!-- 1. قسم المشروبات الساخنة -->
         <div id="hot" class="menu-tab-content">
             <div class="grid-container">
                 <div class="modern-card">
@@ -290,10 +290,9 @@
             </div>
         </div>
 
-        <!-- 2. قسم قهوة التقطير الفاخرة والعادية V60 -->
+        <!-- 2. قسم قهوة التقطير V60 -->
         <div id="v60" class="menu-tab-content" style="display: none;">
             <div class="grid-container">
-                <!-- التقطير الكلاسيكي -->
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
                         <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/></svg>
@@ -315,7 +314,6 @@
                     <div class="card-body"><h3 class="item-title">V60 يمني</h3><span class="item-calories">0 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">17</span><span class="item-currency">ر.س</span></div>
                 </div>
-                <!-- الفاكهي الفاخر -->
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
                         <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#b09587"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><circle cx="17.5" cy="22" r="4" fill="#ffa882"/></svg>
@@ -340,9 +338,17 @@
             </div>
         </div>
 
-        <!-- 3. قسم الماتشا والكركديه -->
+        <!-- 3. قسم الماتشا والمشروبات الباردة (يحتوي على الفريدو وماتشا كلاسيك وباقي الأصناف) -->
         <div id="matcha" class="menu-tab-content" style="display: none;">
             <div class="grid-container">
+                <!-- المشروبات الباردة الجديدة -->
+                <div class="modern-card">
+                    <div class="card-graphic-wrapper">
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M8 18C12 18 16 24 22 21" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="card-body"><h3 class="item-title">الفريدو</h3><span class="item-calories">210 سعرة</span></div>
+                    <div class="card-footer"><span class="item-price">15</span><span class="item-currency">ر.س</span></div>
+                </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
                         <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M8 18C12 18 16 24 22 21" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -354,7 +360,7 @@
                     <div class="card-graphic-wrapper">
                         <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M8 18C12 18 16 24 22 21" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
-                    <div class="card-body"><h3 class="item-title">ماتشا</h3><span class="item-calories">120 سعرة</span></div>
+                    <div class="card-body"><h3 class="item-title">ماتشا كلاسيك</h3><span class="item-calories">120 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">13</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
@@ -381,7 +387,7 @@
             </div>
         </div>
 
-        <!-- 4. قسم الحلويات (أصبح في نهاية القائمة بالكامل) -->
+        <!-- 4. قسم الحلويات (في نهاية القائمة بالكامل) -->
         <div id="sweets" class="menu-tab-content" style="display: none;">
             <div class="grid-container">
                 <div class="modern-card">
@@ -431,7 +437,7 @@
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#b09587"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">لندن</h3><span class="item-calories">510 سعرة</span></div>
-                    <div class="card-footer"><span class="item-price">20</span><span class="item-currency">ر.s</span></div>
+                    <div class="card-footer"><span class="item-price">20</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
@@ -445,7 +451,7 @@
 
     </div>
 
-    <!-- سكريبت التنقل التفاعلي السلس -->
+    <!-- سكريبت التنقل التفاعلي -->
     <script>
         function filterMenu(tabId, btnElement) {
             const contents = document.querySelectorAll('.menu-tab-content');
