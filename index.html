@@ -3,18 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>منيو بيلونت الفاخر الكامل - نسخة البحث الاحترافية</title>
+    <title>منيو بيلونت الفاخر الكامل - نسخة التصميم الاحترافي</title>
     
+    <!-- خط Cairo الممتاز للشاشات الرقمية -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
+        /* تعريف متغيرات الألوان للوضعين (الليلي الافتراضي والنهاري الخريفي) */
         :root {
+            /* الوضع الليلي الافتراضي (Dark Mode) */
             --belont-bg: #2d1910;         
-            --belont-card: #3d2317;       
+            --belont-card: rgba(61, 35, 23, 0.65);       
             --belont-peach: #ffa882;      
             --text-light: #fdfaf8;        
             --text-muted: #cdb3a6;        
-            --glass-bg: rgba(61, 35, 23, 0.85); 
+            --glass-bg: rgba(45, 25, 16, 0.85);
+            --card-border: rgba(255, 168, 130, 0.15);
+            --shine-color: rgba(255, 255, 255, 0.08);
+        }
+
+        [data-theme="light"] {
+            /* الوضع النهاري المشرق بألوان خريفية دافئة (Light Mode) */
+            --belont-bg: #fdf6f0;         
+            --belont-card: rgba(255, 255, 255, 0.75);       
+            --belont-peach: #e06a3b;      
+            --text-light: #3d2317;        
+            --text-muted: #8a6f62;        
+            --glass-bg: rgba(253, 246, 240, 0.85);
+            --card-border: rgba(224, 106, 59, 0.2);
+            --shine-color: rgba(224, 106, 59, 0.05);
         }
 
         * {
@@ -23,6 +40,7 @@
             user-select: none;
             margin: 0; padding: 0;
             outline: none;
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         body {
@@ -34,13 +52,24 @@
             position: relative;
         }
 
+        /* الخلفية الحيوية التفاعلية الممتدة في العمق */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 168, 130, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(61, 35, 23, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
         /* -------------------------------------
            شاشة البداية (Splash Screen)
            ------------------------------------- */
         .welcome-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #42261a 0%, var(--belont-bg) 100%);
+            background: radial-gradient(circle at center, #42261a 0%, #2d1910 100%);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 9999;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -53,7 +82,7 @@
         }
 
         .welcome-logo h1 {
-            color: var(--belont-peach);
+            color: #ffa882;
             font-weight: 900;
             font-size: 5rem;
             font-family: 'Georgia', serif;
@@ -62,7 +91,7 @@
         }
 
         .welcome-logo p {
-            color: var(--text-light);
+            color: #fdfaf8;
             margin-top: 12px;
             font-size: 1rem;
             letter-spacing: 10px;
@@ -71,8 +100,8 @@
         }
 
         .start-order-btn {
-            background: linear-gradient(135deg, var(--belont-peach) 0%, #ff8652 100%);
-            color: var(--belont-bg);
+            background: linear-gradient(135deg, #ffa882 0%, #ff8652 100%);
+            color: #2d1910;
             border: none;
             padding: 18px 70px;
             border-radius: 50px;
@@ -84,20 +113,21 @@
         }
 
         /* -------------------------------------
-           الهيدر الزجاجي المطور مع شريط البحث
+           الهيدر الزجاجي الفاخر والمطور
            ------------------------------------- */
         .top-container {
             position: sticky; top: 0; z-index: 100;
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             padding: 20px 25px 15px 25px;
-            border-bottom: 1px solid rgba(255, 168, 130, 0.12);
+            border-bottom: 1px solid var(--card-border);
             display: flex; flex-direction: column; gap: 15px;
         }
 
         .header-row {
             display: flex; justify-content: space-between; align-items: center;
+            position: relative;
         }
 
         .title-box { order: 1; }
@@ -110,25 +140,41 @@
             background-color: var(--belont-peach); border-radius: 2px;
         }
 
-        .logo-box { text-align: left; order: 2; }
+        /* منطقة الشعار وزر تبديل الوضع في اليسار */
+        .left-actions-box {
+            display: flex; align-items: center; gap: 15px; order: 2;
+        }
+
+        /* زر تبديل الوضع الليلي/النهاري الصغير والذكي */
+        .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--card-border);
+            color: var(--belont-peach);
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .theme-toggle-btn svg {
+            width: 18px; height: 18px; fill: currentColor;
+        }
+
+        .logo-box { text-align: left; }
         .logo-box h1 { color: var(--belont-peach); font-size: 2rem; font-family: 'Georgia', serif; line-height: 1; }
         .logo-box p { color: var(--text-light); font-size: 0.7rem; letter-spacing: 3px; opacity: 0.6; margin-top: 2px; }
 
-        /* شريط البحث الاحترافي الجديد */
-        .search-wrapper {
-            position: relative;
-            width: 100%;
-        }
+        /* شريط البحث */
+        .search-wrapper { position: relative; width: 100%; }
         .search-input {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 168, 130, 0.15);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
             border-radius: 14px;
             padding: 12px 45px 12px 15px;
             color: var(--text-light);
             font-family: 'Cairo', sans-serif;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
         }
         .search-input:focus {
             background: rgba(255, 255, 255, 0.08);
@@ -136,21 +182,12 @@
             box-shadow: 0 0 15px rgba(255, 168, 130, 0.1);
         }
         .search-icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
-            fill: var(--text-muted);
-            pointer-events: none;
-            transition: fill 0.3s ease;
+            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+            width: 18px; height: 18px; fill: var(--text-muted); pointer-events: none;
         }
-        .search-input:focus + .search-icon {
-            fill: var(--belont-peach);
-        }
+        .search-input:focus + .search-icon { fill: var(--belont-peach); }
 
-        /* كبسولات الأقسام */
+        /* كبسولات الأقسام التفاعلية */
         .categories-scroll {
             display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px;
             -webkit-overflow-scrolling: touch;
@@ -158,78 +195,97 @@
         .categories-scroll::-webkit-scrollbar { display: none; }
 
         .capsule-btn {
-            background: rgba(255, 255, 255, 0.05); color: var(--text-muted);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04); color: var(--text-muted);
+            border: 1px solid var(--card-border);
             padding: 10px 24px; border-radius: 50px;
             font-size: 0.95rem; font-weight: 700; cursor: pointer; white-space: nowrap;
-            transition: all 0.25s ease;
         }
         .capsule-btn.active {
-            background: var(--belont-peach); color: var(--belont-bg); font-weight: 900;
-            box-shadow: 0 5px 20px rgba(255, 168, 130, 0.3); border-color: var(--belont-peach);
+            background: var(--belont-peach); color: #2d1910; font-weight: 900;
+            box-shadow: 0 5px 20px rgba(255, 168, 130, 0.25); border-color: var(--belont-peach);
         }
 
         /* -------------------------------------
-           منطقة العرض العمودي والكروت
+           منطقة العرض العمودي ونمط الكروت الفاخرة
            ------------------------------------- */
         .main-wrapper {
-            height: calc(100vh - 205px); /* تعديل الارتفاع ليتناسب مع شريط البحث */
+            height: calc(100vh - 205px);
             padding: 20px 25px 90px 25px; 
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
 
-        .grid-container {
-            display: grid; grid-template-columns: 1fr; gap: 16px;
-        }
+        .grid-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
 
+        /* كروت بنمط Glassmorphism زجاجي مع حواف مضيئة وتأثير لمعان معدني مائل */
         .modern-card {
-            background: linear-gradient(145deg, var(--belont-card) 0%, #351e13 100%);
+            background: var(--belont-card);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 20px; padding: 20px;
             display: flex; flex-direction: column; justify-content: space-between;
-            border: 1px solid rgba(255, 168, 130, 0.05);
+            border: 1px solid var(--card-border);
             min-height: 130px; 
-            transition: all 0.25s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
         }
+
+        /* تأثير المعان الانعكاسي المعدني الخاطف (Metallic Reflection Run) */
+        .modern-card::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -60%; width: 30%; height: 200%;
+            background: linear-gradient(to right, transparent, var(--shine-color), transparent);
+            transform: rotate(30deg);
+            animation: metallicShine 6s infinite ease-in-out;
+        }
+
         .modern-card:active {
-            transform: scale(0.98); border-color: rgba(255, 168, 130, 0.25);
+            transform: scale(0.97);
+            border-color: var(--belont-peach);
         }
 
-        .card-header-area { display: flex; justify-content: space-between; align-items: flex-start; }
+        .card-header-area { display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; }
         .item-calories {
-            font-size: 0.75rem; color: var(--text-muted); background: rgba(255, 255, 255, 0.06);
+            font-size: 0.75rem; color: var(--text-muted); background: rgba(255, 255, 255, 0.08);
             padding: 2px 8px; border-radius: 6px; font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .card-body { margin-top: 8px; flex-grow: 1; display: flex; align-items: center; }
+        .card-body { margin-top: 8px; flex-grow: 1; display: flex; align-items: center; z-index: 2; }
         .item-title { font-size: 1.25rem; font-weight: 700; color: var(--text-light); }
 
         .card-footer {
             display: flex; justify-content: flex-start; align-items: center;
-            margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(255, 255, 255, 0.08); gap: 4px;
+            margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--card-border); gap: 4px; z-index: 2;
         }
         .item-price { font-size: 1.5rem; font-weight: 900; color: var(--belont-peach); }
         .item-currency { font-size: 1.1rem; font-weight: 700; color: var(--text-muted); }
 
-        /* رسالة عدم وجود نتائج */
-        .no-results {
-            text-align: center; color: var(--text-muted); padding: 40px 0; font-size: 1.1rem; display: none;
-        }
+        .no-results { text-align: center; color: var(--text-muted); padding: 40px 0; font-size: 1.1rem; display: none; }
 
         /* -------------------------------------
            زر العودة الثابت
            ------------------------------------- */
         .back-to-welcome-btn {
             position: fixed; bottom: 20px; left: 20px; z-index: 999;
-            background: rgba(61, 35, 23, 0.95); color: var(--belont-peach);
-            border: 1px solid rgba(255, 168, 130, 0.3); padding: 8px 14px; border-radius: 30px;
+            background: var(--glass-bg); color: var(--belont-peach);
+            border: 1px solid var(--card-border); padding: 8px 14px; border-radius: 30px;
             font-family: 'Cairo', sans-serif; font-size: 0.75rem; font-weight: 700; cursor: pointer;
-            display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: all 0.2s ease;
+            display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
-        .back-to-welcome-btn:active { transform: scale(0.93); background: var(--belont-peach); color: var(--belont-bg); }
+        .back-to-welcome-btn:active { transform: scale(0.93); background: var(--belont-peach); color: #2d1910; }
         .back-to-welcome-btn svg { width: 12px; height: 12px; fill: currentColor; }
+
+        /* أنيميشن اللمعان المعدني */
+        @keyframes metallicShine {
+            0% { left: -60%; }
+            15% { left: 130%; }
+            100% { left: 130%; }
+        }
 
         @keyframes scaleUp {
             from { opacity: 0; transform: scale(0.95); }
@@ -239,6 +295,7 @@
 </head>
 <body>
 
+    <!-- شاشة الترحيب الافتتاحية -->
     <div id="welcomeScreen" class="welcome-screen">
         <div class="welcome-logo">
             <h1>Belont</h1>
@@ -247,12 +304,24 @@
         <button class="start-order-btn" onclick="dismissWelcomeScreen()">ابدأ الطلب</button>
     </div>
 
+    <!-- الهيدر الزجاجي التكيفي المطور -->
     <div class="top-container">
         <div class="header-row">
             <div class="title-box"><h2 class="menu-title" id="currentCategoryTitle">قائمة المنيو</h2></div>
-            <div class="logo-box"><h1>Belont</h1><p>B E L O N T</p></div>
+            
+            <div class="left-actions-box">
+                <!-- زر تغيير المظهر (ليلي / نهاري) المطور -->
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="تبديل المظهر">
+                    <!-- أيقونة شمس وقمر مدمجة ديناميكية -->
+                    <svg id="themeIcon" viewBox="0 0 24 24">
+                        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                    </svg>
+                </button>
+                <div class="logo-box"><h1>Belont</h1><p>B E L O N T</p></div>
+            </div>
         </div>
 
+        <!-- شريط البحث الذكي المدمج -->
         <div class="search-wrapper">
             <input type="text" id="menuSearch" class="search-input" placeholder="ابحث عن مشروبك أو حلاك المفضّل..." oninput="searchMenu()">
             <svg class="search-icon" viewBox="0 0 24 24">
@@ -260,22 +329,26 @@
             </svg>
         </div>
 
+        <!-- أزرار الأقسام العمودية الكبسولية -->
         <div class="categories-scroll" id="categoriesBar">
             <button class="capsule-btn active" onclick="filterMenu('hot', this, '☕ مشروبات ساخنة')">☕ مشروبات ساخنة</button>
-            <button class="capsule-btn" onclick="filterMenu('v60', this, '⏳ قهوة التتقطير V60')">⏳ قهوة التقطير V60</button>
+            <button class="capsule-btn" onclick="filterMenu('v60', this, '⏳ قهوة التقطير V60')">⏳ قهوة التقطير V60</button>
             <button class="capsule-btn" onclick="filterMenu('matcha', this, '🍹 الماتشا والمشروبات الباردة')">🍹 الماتشا والبارد</button>
             <button class="capsule-btn" onclick="filterMenu('sweets', this, '🍰 الحلويات الفاخرة')">🍰 الحلويات</button>
         </div>
     </div>
 
+    <!-- زر العودة للرئيسية الثابت في أسفل اليسار -->
     <button class="back-to-welcome-btn" onclick="showWelcomeScreen()">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         الرئيسية
     </button>
 
+    <!-- منطقة عرض بطاقات المنيو تحت بعض بالكامل بدون أي نقص -->
     <div class="main-wrapper">
         <div id="noResultsMessage" class="no-results">عذراً، لم نجد ما تبحث عنه.. ☕</div>
         
+        <!-- 1. قسم المشروبات الساخنة -->
         <div id="hot" class="menu-tab-content">
             <div class="grid-container">
                 <div class="modern-card" data-name="قهوة اليوم">
@@ -311,6 +384,7 @@
             </div>
         </div>
 
+        <!-- 2. قسم قهوة التقطير V60 -->
         <div id="v60" class="menu-tab-content" style="display: none;">
             <div class="grid-container">
                 <div class="modern-card" data-name="v60 إثيوبي">
@@ -346,6 +420,7 @@
             </div>
         </div>
 
+        <!-- 3. قسم الماتشا والمشروبات الباردة -->
         <div id="matcha" class="menu-tab-content" style="display: none;">
             <div class="grid-container">
                 <div class="modern-card" data-name="الفريدو">
@@ -381,6 +456,7 @@
             </div>
         </div>
 
+        <!-- 4. قسم الحلويات -->
         <div id="sweets" class="menu-tab-content" style="display: none;">
             <div class="grid-container">
                 <div class="modern-card" data-name="ترافل منجو">
@@ -428,6 +504,7 @@
 
     </div>
 
+    <!-- التفاعل البرمجي الذكي للتبديل والبحث وتغيير المظهر -->
     <script>
         const screen = document.getElementById('welcomeScreen');
 
@@ -445,8 +522,24 @@
             }, 10);
         }
 
+        // تبديل المظهر التلقائي (ليلي / نهاري خريفي)
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                // أيقونة الهلال للوضع الليلي
+                themeIcon.innerHTML = `<path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>`;
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                // أيقونة الشمس للوضع النهاري
+                themeIcon.innerHTML = `<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-12.37c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.38.39-1.02 0-1.41zM5.99 18.01l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.39.39-1.03 0-1.41z"/>`;
+            }
+        }
+
+        // فلترة الأقسام الكبسولية
         function filterMenu(tabId, btnElement, titleText) {
-            // تفريغ مربع البحث عند التبديل بين الأقسام يدوياً
             document.getElementById('menuSearch').value = '';
             
             const contents = document.querySelectorAll('.menu-tab-content');
@@ -458,18 +551,16 @@
             buttons.forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
             
-            // تحديث عنوان الهيدر في اليمين بناءً على القسم النشط
             document.getElementById('currentCategoryTitle').innerText = titleText;
             document.getElementById('noResultsMessage').style.display = 'none';
 
-            // إظهار كافة كروت القسم المختار
             const cards = document.getElementById(tabId).querySelectorAll('.modern-card');
             cards.forEach(card => card.style.display = 'flex');
             
             document.querySelector('.main-wrapper').scrollTop = 0;
         }
 
-        // محرك البحث الذكي
+        // محرك البحث الفوري الذكي
         function searchMenu() {
             const query = document.getElementById('menuSearch').value.toLowerCase().trim();
             const contents = document.querySelectorAll('.menu-tab-content');
@@ -480,18 +571,15 @@
             let totalVisibleCards = 0;
 
             if (query === '') {
-                // إذا كان مربع البحث فارغاً، نعود للوضع الافتراضي ونفعل أول قسم (الساخن)
                 const firstCapsule = categoriesBar.querySelector('.capsule-btn');
                 filterMenu('hot', firstCapsule, '☕ مشروبات ساخنة');
                 return;
             }
 
-            // عند البحث، يتم تغيير العنوان وإلغاء تفعيل كبسولات الأقسام لتوضيح أننا في وضع البحث العام
             titleBox.innerText = 'نتائج البحث عن: ' + query;
             const buttons = document.querySelectorAll('.capsule-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // البحث في جميع الأقسام والمنتجات فوراً دون التقيد بقسم محدد
             contents.forEach(content => {
                 let sectionHasMatch = false;
                 const cards = content.querySelectorAll('.modern-card');
@@ -507,7 +595,6 @@
                     }
                 });
 
-                // إذا كان القسم يحتوي على منتج مطابق، نظهره، وإلا نخفيه
                 if (sectionHasMatch) {
                     content.style.display = 'block';
                 } else {
@@ -515,7 +602,6 @@
                 }
             });
 
-            // التحكم في رسالة عدم وجود نتائج
             if (totalVisibleCards === 0) {
                 noResultsMessage.style.display = 'block';
             } else {
