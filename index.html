@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>منيو بيلونت الفاخر - النسخة المطورة</title>
+    <title>منيو بيلونت الفاخر - النسخة الفاتحة والمطورة</title>
     
     <!-- خط Cairo الممتاز للشاشات الرقمية -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --belont-dark: #160c07;       /* بني داكن ملكي ودافئ جداً للخلفية */
-            --belont-card: #24140b;       /* لون الكروت المتناسق مع الهوية */
-            --belont-peach: #ffa882;      /* اللون الخوخي الفاخر والمضيء للنصوص الهامة */
-            --text-light: #fdfaf8;       /* نصوص أساسية فاتحة ونقية مريحة للعين */
-            --text-muted: #a68c7e;       /* نصوص فرعية ناعمة */
-            --glass-bg: rgba(36, 20, 11, 0.7);
+            /* تعديل الألوان لتكون أفتح وأكثر وضوحاً مع الحفاظ على نفس الهوية تماماً */
+            --belont-bg: #2d1910;         /* خلفية بني دافئ مريحة وأفتح من السابق */
+            --belont-card: #3d2317;       /* لون بطاقات القوائم لتبدو بارزة وواضحة جداً */
+            --belont-peach: #ffa882;      /* اللون الخوخي الفخم المأخوذ من الشعار للنصوص الهامة والأزرار */
+            --text-light: #fdfaf8;        /* نصوص أساسية بيضاء نقية */
+            --text-muted: #cdb3a6;        /* نصوص فرعية وسعرات حرارية واضحة وقابلة للقراءة بسهولة */
+            --glass-bg: rgba(61, 35, 23, 0.85); /* شريط علوي زجاجي متناسق مع الخلفية الجديدة */
         }
 
         * {
@@ -28,7 +29,7 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--belont-dark);
+            background-color: var(--belont-bg);
             color: var(--text-light);
             height: 100vh;
             overflow: hidden;
@@ -36,21 +37,21 @@
         }
 
         /* -------------------------------------
-           شاشة بداية مطورة بتأثير إضاءة ناعم
+           شاشة البداية (Splash Screen) التفاعلية
            ------------------------------------- */
         .welcome-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #2d180e 0%, var(--belont-dark) 100%);
+            background: radial-gradient(circle at center, #42261a 0%, var(--belont-bg) 100%);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 9999;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .welcome-logo {
             text-align: center;
             margin-bottom: 50px;
-            animation: scaleUp 1s ease-out;
+            animation: scaleUp 0.8s ease-out;
         }
 
         .welcome-logo h1 {
@@ -68,12 +69,12 @@
             font-size: 1rem;
             letter-spacing: 10px;
             font-weight: 600;
-            opacity: 0.4;
+            opacity: 0.5;
         }
 
         .start-order-btn {
             background: linear-gradient(135deg, var(--belont-peach) 0%, #ff8652 100%);
-            color: var(--belont-dark);
+            color: var(--belont-bg);
             border: none;
             padding: 18px 70px;
             border-radius: 50px;
@@ -90,7 +91,7 @@
         }
 
         /* -------------------------------------
-           الشريط العلوي - تأثير الزجاج (Glassmorphism)
+           الشريط العلوي المطور والواضح جداً
            ------------------------------------- */
         .top-container {
             position: sticky; top: 0; z-index: 100;
@@ -98,7 +99,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             padding: 25px 25px 15px 25px;
-            border-bottom: 1px solid rgba(255, 168, 130, 0.08);
+            border-bottom: 1px solid rgba(255, 168, 130, 0.12);
             display: flex; flex-direction: column; gap: 20px;
         }
 
@@ -112,14 +113,14 @@
         }
 
         .logo-box p {
-            color: var(--text-light); font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5; margin-top: 2px;
+            color: var(--text-light); font-size: 0.7rem; letter-spacing: 3px; opacity: 0.6; margin-top: 2px;
         }
 
         .menu-title {
             font-size: 1.4rem; font-weight: 900; color: var(--text-light);
         }
 
-        /* كبسولات الأقسام الأنيقة */
+        /* كبسولات الأقسام الواضحة والمريحة للتنقل */
         .categories-scroll {
             display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px;
             -webkit-overflow-scrolling: touch;
@@ -127,46 +128,49 @@
         .categories-scroll::-webkit-scrollbar { display: none; }
 
         .capsule-btn {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text-muted);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 10px 24px; border-radius: 50px;
-            font-size: 0.9rem; font-weight: 700; cursor: pointer; white-space: nowrap;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+            transition: all 0.25s ease;
         }
 
         .capsule-btn.active {
             background: var(--belont-peach);
-            color: var(--belont-dark);
+            color: var(--belont-bg);
             font-weight: 900;
             box-shadow: 0 5px 20px rgba(255, 168, 130, 0.3);
+            border-color: var(--belont-peach);
         }
 
         /* -------------------------------------
-           منطقة المحتوى والكروت المتطورة
+           منطقة الكروت الأكثر برونقاً ووضوحاً
            ------------------------------------- */
         .main-wrapper {
             height: calc(100vh - 145px);
-            padding: 25px; overflow-y: auto;
+            padding: 25px 25px 80px 25px; /* مساحة إضافية بالأسفل لمنع التداخل مع زر العودة */
+            overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
 
         .grid-container {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px;
         }
 
         .modern-card {
-            background: linear-gradient(145deg, var(--belont-card) 0%, #1e0f07 100%);
+            background: linear-gradient(145deg, var(--belont-card) 0%, #351e13 100%);
             border-radius: 20px; padding: 18px;
             display: flex; flex-direction: column; justify-content: space-between;
-            border: 1px solid rgba(255, 168, 130, 0.03);
+            border: 1px solid rgba(255, 168, 130, 0.05);
             min-height: 190px;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
         .modern-card:active {
             transform: scale(0.97);
-            border-color: rgba(255, 168, 130, 0.2);
+            border-color: rgba(255, 168, 130, 0.25);
         }
 
         .card-header-area {
@@ -175,23 +179,61 @@
 
         .item-calories {
             font-size: 0.75rem; color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.06);
             padding: 2px 8px; border-radius: 6px;
             font-weight: 600;
         }
 
         .card-body { margin-top: 20px; }
-        .item-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+        .item-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; color: var(--text-light); }
 
         .card-footer {
             display: flex; justify-content: flex-start; align-items: center;
             margin-top: 12px; padding-top: 10px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.06);
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
             gap: 4px;
         }
 
         .item-price { font-size: 1.5rem; font-weight: 900; color: var(--belont-peach); }
         .item-currency { font-size: 1.1rem; font-weight: 700; color: var(--text-muted); }
+
+        /* -------------------------------------
+           زر العودة الثابت الصغير والأنيق (أسفل يسار)
+           ------------------------------------- */
+        .back-to-welcome-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+            background: rgba(61, 35, 23, 0.9);
+            color: var(--belont-peach);
+            border: 1px solid rgba(255, 168, 130, 0.3);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .back-to-welcome-btn:active {
+            transform: scale(0.93);
+            background: var(--belont-peach);
+            color: var(--belont-bg);
+            border-color: var(--belont-peach);
+        }
+
+        .back-to-welcome-btn svg {
+            width: 12px; height: 12px;
+            fill: currentColor;
+        }
 
         @keyframes scaleUp {
             from { opacity: 0; transform: scale(0.95); }
@@ -210,7 +252,7 @@
         <button class="start-order-btn" onclick="dismissWelcomeScreen()">ابدأ الطلب</button>
     </div>
 
-    <!-- الهيدر الزجاجي التفاعلي -->
+    <!-- الهيدر الزجاجي التفاعلي القوائم الواضحة -->
     <div class="top-container">
         <div class="header-row">
             <div class="logo-box">
@@ -228,7 +270,15 @@
         </div>
     </div>
 
-    <!-- منطقة المنتجات -->
+    <!-- زر العودة إلى صفحة البداية الثابت الأنيق (أسفل يسار) -->
+    <button class="back-to-welcome-btn" onclick="showWelcomeScreen()">
+        <svg viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        الرئيسية
+    </button>
+
+    <!-- منطقة المنتجات الواضحة -->
     <div class="main-wrapper">
         
         <!-- 1. قسم المشروبات الساخنة -->
@@ -387,13 +437,23 @@
 
     </div>
 
-    <!-- التفاعل والتحكم بالسكرين والأقسام -->
+    <!-- التفاعل والتحكم بالتنقل -->
     <script>
+        const screen = document.getElementById('welcomeScreen');
+
         function dismissWelcomeScreen() {
-            const screen = document.getElementById('welcomeScreen');
             screen.style.opacity = '0';
             screen.style.transform = 'scale(1.05)';
-            setTimeout(() => screen.remove(), 600);
+            setTimeout(() => screen.style.display = 'none', 500);
+        }
+
+        function showWelcomeScreen() {
+            screen.style.display = 'flex';
+            // مهلة بسيطة ليعمل تأثير الـ Smooth Transition بشكل رائع بصرياً
+            setTimeout(() => {
+                screen.style.opacity = '1';
+                screen.style.transform = 'scale(1)';
+            }, 10);
         }
 
         function filterMenu(tabId, btnElement) {
