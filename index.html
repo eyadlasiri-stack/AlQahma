@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>منيو بيلونت الفاخر الكامل - نسخة التطبيق</title>
+    <title>منيو بيلونت الفاخر الكامل - نسخة التطبيق الكامل</title>
     
-    <!-- الأسطر السحرية لتحويل الموقع إلى تطبيق كامل وإخفاء شريط المتصفح في الهواوي والأندرويد والآيفون -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#2d1910">
 
-    <!-- خط Cairo الممتاز للشاشات الرقمية -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* تعريف متغيرات الألوان للوضعين (الليلي الافتراضي والنهاري الخريفي) */
         :root {
             --belont-bg: #2d1910;         
             --belont-card: rgba(61, 35, 23, 0.65);       
@@ -66,7 +63,7 @@
             pointer-events: none;
         }
 
-        /* شاشة البداية */
+        /* شاشة البداية والترحيب */
         .welcome-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -174,10 +171,6 @@
             border-color: var(--belont-peach);
             box-shadow: 0 0 15px rgba(255, 168, 130, 0.1);
         }
-        .search-icon {
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-            width: 18px; height: 18px; fill: var(--text-muted); pointer-events: none;
-        }
 
         /* كبسولات الأقسام */
         .categories-scroll {
@@ -197,7 +190,7 @@
             box-shadow: 0 5px 20px rgba(255, 168, 130, 0.25); border-color: var(--belont-peach);
         }
 
-        /* الكروت */
+        /* حاوية الكروت وقائمة العرض */
         .main-wrapper {
             height: calc(100vh - 205px);
             padding: 20px 25px 90px 25px; 
@@ -205,7 +198,6 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* التعديل الذكي للعرض الأفقي (الوضع بالعرض اللاندسكيب) لتصبح الكروت بجانب بعضها بشكل منسق */
         @media (orientation: landscape) {
             .grid-container { grid-template-columns: repeat(2, 1fr) !important; }
             .main-wrapper { height: calc(100vh - 190px); }
@@ -285,7 +277,7 @@
 
     <div class="top-container">
         <div class="header-row">
-            <div class="title-box"><h2 class="menu-title" id="currentCategoryTitle">قائمة المنيو</h2></div>
+            <div class="title-box"><h2 class="menu-title" id="currentCategoryTitle">☕ مشروبات ساخنة</h2></div>
             <div class="left-actions-box">
                 <button class="theme-toggle-btn" onclick="toggleTheme()">
                     <svg id="themeIcon" viewBox="0 0 24 24">
@@ -315,405 +307,49 @@
     <div class="main-wrapper">
         <div id="noResultsMessage" class="no-results">عذراً، لم نجد ما تبحث عنه.. ☕</div>
         
-        <!-- 1. قسم المشروبات الساخنة -->
         <div id="hot" class="menu-tab-content">
             <div class="grid-container">
-                <div class="modern-card" data-name="قهوة اليوم"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">قهوة اليوم</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="كابتشينو"><div class="card-header-area"><span class="item-calories">130 سعرة</span></div><div class="card-body"><h3 class="item-title">كابتشينو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="لاتيه"><div class="card-header-area"><span class="item-calories">150 سعرة</span></div><div class="card-body"><h3 class="item-title">لاتيه</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="فلات وايت"><div class="card-header-area"><span class="item-calories">120 سعرة</span></div><div class="card-body"><h3 class="item-title">فلات وايت</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="كورتادو"><div class="card-header-area"><span class="item-calories">110 سعرة</span></div><div class="card-body"><h3 class="item-title">كورتادو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="إسبريسو"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">إسبريسو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
+                <div class="modern-card" data-name="قهوة اليوم"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">قهوة اليوم</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="كابتشينو"><div class="card-header-area"><span class="item-calories">130 سعرة</span></div><div class="card-body"><h3 class="item-title">كابتشينو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="لاتيه"><div class="card-header-area"><span class="item-calories">150 سعرة</span></div><div class="card-body"><h3 class="item-title">لاتيه</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="فلات وايت"><div class="card-header-area"><span class="item-calories">120 سعرة</span></div><div class="card-body"><h3 class="item-title">فلات وايت</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="كورتادو"><div class="card-header-area"><span class="item-calories">110 سعرة</span></div><div class="card-body"><h3 class="item-title">كورتادو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="إسبريسو"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">إسبريسو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">SR</span></div></div>
             </div>
         </div>
 
-        <!-- 2. قسم V60 -->
         <div id="v60" class="menu-tab-content" style="display: none;">
             <div class="grid-container">
-                <div class="modern-card" data-name="v60 إثيوبي"><div class="card-header-area"><span class="item-calories">0 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 إثيوبي</h3></div><div class="card-footer"><span class="item-price">14</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 كولومبي"><div class="card-header-area"><span class="item-calories">0 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 كولومبي</h3></div><div class="card-footer"><span class="item-price">14</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 يمني"><div class="card-header-area"><span class="item-calories">0 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 يمني</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 كرز فاكهي"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 كرز (فاكهي)</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 خوخ فاكهي"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 خوخ (فاكهي)</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 فراولة فاكهي"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 فراولة (فاكهي)</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
+                <div class="modern-card" data-name="v60 إثيوبي"><div class="card-header-area"><span class="item-calories">0 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 إثيوبي</h3></div><div class="card-footer"><span class="item-price">14</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="v60 كولومبي"><div class="card-header-area"><span class="item-calories">0 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 كولومبي</h3></div><div class="card-footer"><span class="item-price">14</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="v60 يمني"><div class="card-header-area"><span class="item-calories">0 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 يمني</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="v60 كرز فاكهي"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 كرز (فاكهي)</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="v60 خوخ فاكهي"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 خوخ (فاكهي)</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="v60 فراولة فاكهي"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 فراولة (فاكهي)</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">SR</span></div></div>
             </div>
         </div>
 
-        <!-- 3. قسم الماتشا والبارد -->
         <div id="matcha" class="menu-tab-content" style="display: none;">
             <div class="grid-container">
-                <div class="modern-card" data-name="الفريدو"><div class="card-header-area"><span class="item-calories">210 سعرة</span></div><div class="card-body"><h3 class="item-title">الفريدو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="كركديه"><div class="card-header-area"><span class="item-calories">85 سعرة</span></div><div class="card-body"><h3 class="item-title">كركديه</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="ماتشا كلاسيك"><div class="card-header-area"><span class="item-calories">120 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا كلاسيك</h3></div><div class="card-footer"><span class="item-price">13</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="ماتشا بورليه"><div class="card-header-area"><span class="item-calories">240 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا بورليه</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="ماتشا منجو"><div class="card-header-area"><span class="item-calories">195 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا منجو</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="ماتشا فراولة"><div class="card-header-area"><span class="item-calories">180 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا فراولة</h3></div><div class="card-footerأبشر، تفضل الكود الكامل والمعدل (نسخة التطبيق الكاملة التي تخفي شريط المتصفح):
-
-```html
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>منيو بيلونت الفاخر الكامل - نسخة التطبيق</title>
-    
-    <!-- الأسطر السحرية لتحويل الموقع إلى تطبيق كامل وإخفاء شريط المتصفح في الهواوي والأندرويد -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#2d1910">
-
-    <!-- خط Cairo الممتاز للشاشات الرقمية -->
-    <link href="[https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap](https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap)" rel="stylesheet">
-    
-    <style>
-        /* تعريف متغيرات الألوان للوضعين (الليلي الافتراضي والنهاري الخريفي) */
-        :root {
-            --belont-bg: #2d1910;         
-            --belont-card: rgba(61, 35, 23, 0.65);       
-            --belont-peach: #ffa882;      
-            --text-light: #fdfaf8;        
-            --text-muted: #cdb3a6;        
-            --glass-bg: rgba(45, 25, 16, 0.85);
-            --card-border: rgba(255, 168, 130, 0.15);
-            --shine-color: rgba(255, 255, 255, 0.08);
-        }
-
-        [data-theme="light"] {
-            --belont-bg: #fdf6f0;         
-            --belont-card: rgba(255, 255, 255, 0.75);       
-            --belont-peach: #e06a3b;      
-            --text-light: #3d2317;        
-            --text-muted: #8a6f62;        
-            --glass-bg: rgba(253, 246, 240, 0.85);
-            --card-border: rgba(224, 106, 59, 0.2);
-            --shine-color: rgba(224, 106, 59, 0.05);
-        }
-
-        * {
-            box-sizing: border-box;
-            -webkit-user-select: none;
-            user-select: none;
-            margin: 0; padding: 0;
-            outline: none;
-            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--belont-bg);
-            color: var(--text-light);
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 80% 20%, rgba(255, 168, 130, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 20% 80%, rgba(61, 35, 23, 0.1) 0%, transparent 50%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* شاشة البداية */
-        .welcome-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #42261a 0%, #2d1910 100%);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 9999;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .welcome-logo {
-            text-align: center;
-            margin-bottom: 50px;
-            animation: scaleUp 0.8s ease-out;
-        }
-
-        .welcome-logo h1 {
-            color: #ffa882;
-            font-weight: 900;
-            font-size: 5rem;
-            font-family: 'Georgia', serif;
-            line-height: 1;
-            text-shadow: 0 0 30px rgba(255, 168, 130, 0.3);
-        }
-
-        .welcome-logo p {
-            color: #fdfaf8;
-            margin-top: 12px;
-            font-size: 1rem;
-            letter-spacing: 10px;
-            font-weight: 600;
-            opacity: 0.5;
-        }
-
-        .start-order-btn {
-            background: linear-gradient(135deg, #ffa882 0%, #ff8652 100%);
-            color: #2d1910;
-            border: none;
-            padding: 18px 70px;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(255, 168, 130, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        /* الهيدر الزجاجي الفاخر */
-        .top-container {
-            position: sticky; top: 0; z-index: 100;
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            padding: 20px 25px 15px 25px;
-            border-bottom: 1px solid var(--card-border);
-            display: flex; flex-direction: column; gap: 15px;
-        }
-
-        .header-row {
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .title-box { order: 1; }
-        .menu-title {
-            font-size: 1.5rem; font-weight: 900; color: var(--text-light);
-            position: relative; padding-right: 15px;
-        }
-        .menu-title::before {
-            content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 4px;
-            background-color: var(--belont-peach); border-radius: 2px;
-        }
-
-        .left-actions-box {
-            display: flex; align-items: center; gap: 15px; order: 2;
-        }
-
-        .theme-toggle-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--card-border);
-            color: var(--belont-peach);
-            width: 38px; height: 38px;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .theme-toggle-btn svg { width: 18px; height: 18px; fill: currentColor; }
-
-        .logo-box { text-align: left; }
-        .logo-box h1 { color: var(--belont-peach); font-size: 2rem; font-family: 'Georgia', serif; line-height: 1; }
-        .logo-box p { color: var(--text-light); font-size: 0.7rem; letter-spacing: 3px; opacity: 0.6; margin-top: 2px; }
-
-        /* شريط البحث */
-        .search-wrapper { position: relative; width: 100%; }
-        .search-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 12px 45px 12px 15px;
-            color: var(--text-light);
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.95rem;
-        }
-        .search-input:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--belont-peach);
-            box-shadow: 0 0 15px rgba(255, 168, 130, 0.1);
-        }
-        .search-icon {
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-            width: 18px; height: 18px; fill: var(--text-muted); pointer-events: none;
-        }
-
-        /* كبسولات الأقسام */
-        .categories-scroll {
-            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px;
-            -webkit-overflow-scrolling: touch;
-        }
-        .categories-scroll::-webkit-scrollbar { display: none; }
-
-        .capsule-btn {
-            background: rgba(255, 255, 255, 0.04); color: var(--text-muted);
-            border: 1px solid var(--card-border);
-            padding: 10px 24px; border-radius: 50px;
-            font-size: 0.95rem; font-weight: 700; cursor: pointer; white-space: nowrap;
-        }
-        .capsule-btn.active {
-            background: var(--belont-peach); color: #2d1910; font-weight: 900;
-            box-shadow: 0 5px 20px rgba(255, 168, 130, 0.25); border-color: var(--belont-peach);
-        }
-
-        /* الكروت */
-        .main-wrapper {
-            height: calc(100vh - 205px);
-            padding: 20px 25px 90px 25px; 
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* التعديل الذكي للعرض الأفقي (الوضع بالعرض اللاندسكيب) لتصبح الكروت بجانب بعضها بشكل منسق */
-        @media (orientation: landscape) {
-            .grid-container { grid-template-columns: repeat(2, 1fr) !important; }
-            .main-wrapper { height: calc(100vh - 190px); }
-        }
-
-        .grid-container { display: grid; grid-template-columns: 1fr; gap: 16px; }
-
-        .modern-card {
-            background: var(--belont-card);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-radius: 20px; padding: 20px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            border: 1px solid var(--card-border);
-            min-height: 130px; 
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .modern-card::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -60%; width: 30%; height: 200%;
-            background: linear-gradient(to right, transparent, var(--shine-color), transparent);
-            transform: rotate(30deg);
-            animation: metallicShine 6s infinite ease-in-out;
-        }
-
-        .card-header-area { display: flex; justify-content: space-between; align-items: flex-start; z-index: 2; }
-        .item-calories {
-            font-size: 0.75rem; color: var(--text-muted); background: rgba(255, 255, 255, 0.08);
-            padding: 2px 8px; border-radius: 6px; font-weight: 600;
-        }
-
-        .card-body { margin-top: 8px; flex-grow: 1; display: flex; align-items: center; z-index: 2; }
-        .item-title { font-size: 1.25rem; font-weight: 700; color: var(--text-light); }
-
-        .card-footer {
-            display: flex; justify-content: flex-start; align-items: center;
-            margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--card-border); gap: 4px; z-index: 2;
-        }
-        .item-price { font-size: 1.5rem; font-weight: 900; color: var(--belont-peach); }
-        .item-currency { font-size: 1.1rem; font-weight: 700; color: var(--text-muted); }
-
-        .no-results { text-align: center; color: var(--text-muted); padding: 40px 0; display: none; }
-
-        .back-to-welcome-btn {
-            position: fixed; bottom: 20px; left: 20px; z-index: 999;
-            background: var(--glass-bg); color: var(--belont-peach);
-            border: 1px solid var(--card-border); padding: 8px 14px; border-radius: 30px;
-            font-family: 'Cairo', sans-serif; font-size: 0.75rem; font-weight: 700; cursor: pointer;
-            display: flex; align-items: center; gap: 6px; backdrop-filter: blur(10px);
-        }
-        .back-to-welcome-btn svg { width: 12px; height: 12px; fill: currentColor; }
-
-        @keyframes metallicShine {
-            0% { left: -60%; }
-            15% { left: 130%; }
-            100% { left: 130%; }
-        }
-        @keyframes scaleUp {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-    </style>
-</head>
-<body>
-
-    <div id="welcomeScreen" class="welcome-screen">
-        <div class="welcome-logo">
-            <h1>Belont</h1>
-            <p>B E L O N T</p>
-        </div>
-        <button class="start-order-btn" onclick="dismissWelcomeScreen()">ابدأ الطلب</button>
-    </div>
-
-    <div class="top-container">
-        <div class="header-row">
-            <div class="title-box"><h2 class="menu-title" id="currentCategoryTitle">قائمة المنيو</h2></div>
-            <div class="left-actions-box">
-                <button class="theme-toggle-btn" onclick="toggleTheme()">
-                    <svg id="themeIcon" viewBox="0 0 24 24">
-                        <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
-                    </svg>
-                </button>
-                <div class="logo-box"><h1>Belont</h1><p>B E L O N T</p></div>
+                <div class="modern-card" data-name="الفريدو"><div class="card-header-area"><span class="item-calories">210 سعرة</span></div><div class="card-body"><h3 class="item-title">الفريدو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="كركديه"><div class="card-header-area"><span class="item-calories">85 سعرة</span></div><div class="card-body"><h3 class="item-title">كركديه</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="ماتشا كلاسيك"><div class="card-header-area"><span class="item-calories">120 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا كلاسيك</h3></div><div class="card-footer"><span class="item-price">13</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="ماتشا بورليه"><div class="card-header-area"><span class="item-calories">240 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا بورليه</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="ماتشا منجو"><div class="card-header-area"><span class="item-calories">195 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا منجو</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="ماتشا فراولة"><div class="card-header-area"><span class="item-calories">180 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا فراولة</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">SR</span></div></div>
             </div>
         </div>
 
-        <div class="search-wrapper">
-            <input type="text" id="menuSearch" class="search-input" placeholder="ابحث عن مشروبك أو حلاك المفضّل..." oninput="searchMenu()">
-        </div>
-
-        <div class="categories-scroll" id="categoriesBar">
-            <button class="capsule-btn active" onclick="filterMenu('hot', this, '☕ مشروبات ساخنة')">☕ مشروبات ساخنة</button>
-            <button class="capsule-btn" onclick="filterMenu('v60', this, '⏳ قهوة التقطير V60')">⏳ قهوة التقطير V60</button>
-            <button class="capsule-btn" onclick="filterMenu('matcha', this, '🍹 الماتشا والمشروبات الباردة')">🍹 الماتشا والبارد</button>
-            <button class="capsule-btn" onclick="filterMenu('sweets', this, '🍰 الحلويات الفاخرة')">🍰 الحلويات</button>
-        </div>
-    </div>
-
-    <button class="back-to-welcome-btn" onclick="showWelcomeScreen()">
-        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> الرئيسية
-    </button>
-
-    <div class="main-wrapper">
-        <div id="noResultsMessage" class="no-results">عذراً، لم نجد ما تبحث عنه.. ☕</div>
-        
-        <!-- 1. قسم المشروبات الساخنة -->
-        <div id="hot" class="menu-tab-content">
-            <div class="grid-container">
-                <div class="modern-card" data-name="قهوة اليوم"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">قهوة اليوم</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="كابتشينو"><div class="card-header-area"><span class="item-calories">130 سعرة</span></div><div class="card-body"><h3 class="item-title">كابتشينو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="لاتيه"><div class="card-header-area"><span class="item-calories">150 سعرة</span></div><div class="card-body"><h3 class="item-title">لاتيه</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="فلات وايت"><div class="card-header-area"><span class="item-calories">120 سعرة</span></div><div class="card-body"><h3 class="item-title">فلات وايت</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="كورتادو"><div class="card-header-area"><span class="item-calories">110 سعرة</span></div><div class="card-body"><h3 class="item-title">كورتادو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="إسبريسو"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">إسبريسو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-            </div>
-        </div>
-
-        <!-- 2. قسم V60 -->
-        <div id="v60" class="menu-tab-content" style="display: none;">
-            <div class="grid-container">
-                <div class="modern-card" data-name="v60 إثيوبي"><div class="card-header-area"><span class="item-calories">0 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 إثيوبي</h3></div><div class="card-footer"><span class="item-price">14</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 كولومبي"><div class="card-header-area"><span class="item-calories">0 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 كولومبي</h3></div><div class="card-footer"><span class="item-price">14</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 يمني"><div class="card-header-area"><span class="item-calories">0 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 يمني</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 كرز فاكهي"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 كرز (فاكهي)</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 خوخ فاكهي"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 خوخ (فاكهي)</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="v60 فراولة فاكهي"><div class="card-header-area"><span class="item-calories">5 سعرة</span></div><div class="card-body"><h3 class="item-title">V60 فراولة (فاكهي)</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-            </div>
-        </div>
-
-        <!-- 3. قسم الماتشا والبارد -->
-        <div id="matcha" class="menu-tab-content" style="display: none;">
-            <div class="grid-container">
-                <div class="modern-card" data-name="الفريدو"><div class="card-header-area"><span class="item-calories">210 سعرة</span></div><div class="card-body"><h3 class="item-title">الفريدو</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="كركديه"><div class="card-header-area"><span class="item-calories">85 سعرة</span></div><div class="card-body"><h3 class="item-title">كركديه</h3></div><div class="card-footer"><span class="item-price">10</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="ماتشا كلاسيك"><div class="card-header-area"><span class="item-calories">120 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا كلاسيك</h3></div><div class="card-footer"><span class="item-price">13</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="ماتشا بورليه"><div class="card-header-area"><span class="item-calories">240 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا بورليه</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="ماتشا منجو"><div class="card-header-area"><span class="item-calories">195 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا منجو</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="ماتشا فراولة"><div class="card-header-area"><span class="item-calories">180 سعرة</span></div><div class="card-body"><h3 class="item-title">ماتشا فراولة</h3></div><div class="card-footer"><span class="item-price">17</span><span class="item-currency">⃁</span></div></div>
-            </div>
-        </div>
-
-        <!-- 4. قسم الحلويات -->
         <div id="sweets" class="menu-tab-content" style="display: none;">
             <div class="grid-container">
-                <div class="modern-card" data-name="ترافل منجو"><div class="card-header-area"><span class="item-calories">420 سعرة</span></div><div class="card-body"><h3 class="item-title">ترافل منجو</h3></div><div class="card-footer"><span class="item-price">18</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="كيكة عسل"><div class="card-header-area"><span class="item-calories">430 سعرة</span></div><div class="card-body"><h3 class="item-title">كيكة عسل</h3></div><div class="card-footer"><span class="item-price">19</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="كيكة الليمون"><div class="card-header-area"><span class="item-calories">310 سعرة</span></div><div class="card-body"><h3 class="item-title">كيكة الليمون</h3></div><div class="card-footer"><span class="item-price">19</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="تشيز البيكان"><div class="card-header-area"><span class="item-calories">460 سعرة</span></div><div class="card-body"><h3 class="item-title">تشيز البيكان</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="تشيز التوت"><div class="card-header-area"><span class="item-calories">400 سعرة</span></div><div class="card-body"><h3 class="item-title">تشيز التوت</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="دولتشي"><div class="card-header-area"><span class="item-calories">450 سعرة</span></div><div class="card-body"><h3 class="item-title">دولتشي</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="لندن"><div class="card-header-area"><span class="item-calories">510 سعرة</span></div><div class="card-body"><h3 class="item-title">لندن</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">⃁</span></div></div>
-                <div class="modern-card" data-name="مالتيدا"><div class="card-header-area"><span class="item-calories">490 سعرة</span></div><div class="card-body"><h3 class="item-title">مالتيدا</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">⃁</span></div></div>
+                <div class="modern-card" data-name="ترافل منجو"><div class="card-header-area"><span class="item-calories">420 سعرة</span></div><div class="card-body"><h3 class="item-title">ترافل منجو</h3></div><div class="card-footer"><span class="item-price">18</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="كيكة عسل"><div class="card-header-area"><span class="item-calories">430 سعرة</span></div><div class="card-body"><h3 class="item-title">كيكة عسل</h3></div><div class="card-footer"><span class="item-price">19</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="كيكة الليمون"><div class="card-header-area"><span class="item-calories">310 سعرة</span></div><div class="card-body"><h3 class="item-title">كيكة الليمون</h3></div><div class="card-footer"><span class="item-price">19</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="تشيز البيكان"><div class="card-header-area"><span class="item-calories">460 سعرة</span></div><div class="card-body"><h3 class="item-title">تشيز البيكان</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="تشيز التوت"><div class="card-header-area"><span class="item-calories">400 سعرة</span></div><div class="card-body"><h3 class="item-title">تشيز التوت</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="دولتشي"><div class="card-header-area"><span class="item-calories">450 سعرة</span></div><div class="card-body"><h3 class="item-title">دولتشي</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="لندن"><div class="card-header-area"><span class="item-calories">510 سعرة</span></div><div class="card-body"><h3 class="item-title">لندن</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">SR</span></div></div>
+                <div class="modern-card" data-name="مالتيدا"><div class="card-header-area"><span class="item-calories">490 سعرة</span></div><div class="card-body"><h3 class="item-title">مالتيدا</h3></div><div class="card-footer"><span class="item-price">20</span><span class="item-currency">SR</span></div></div>
             </div>
         </div>
 
@@ -721,10 +357,24 @@
 
     <script>
         const screen = document.getElementById('welcomeScreen');
+        
         function dismissWelcomeScreen() {
+            // التعديل الإجباري: تفعيل ميزة ملء الشاشة الكامل لإخفاء شريط العنوان والأزرار العلوية للكروم نهائياً
+            const docElm = document.documentElement;
+            if (docElm.requestFullscreen) {
+                docElm.requestFullscreen();
+            } else if (docElm.webkitRequestFullscreen) {
+                docElm.webkitRequestFullscreen(); // متصفحات أندرويد و iOS كروم/سفاري قديمة
+            } else if (docElm.mozRequestFullScreen) {
+                docElm.mozRequestFullScreen();
+            } else if (docElm.msRequestFullscreen) {
+                docElm.msRequestFullscreen();
+            }
+
             screen.style.opacity = '0';
             setTimeout(() => screen.style.display = 'none', 500);
         }
+
         function showWelcomeScreen() {
             screen.style.display = 'flex';
             setTimeout(() => screen.style.opacity = '1', 10);
