@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>منيو بيلونت الفاخر - الوضع الداكن</title>
+    <title>منيو بيلونت الفاخر</title>
     
     <!-- خط Cairo الممتاز للشاشات الرقمية -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --belont-dark: #29160d;       /* بني داكن جداً ملكي للخلفية الأساسية */
-            --belont-card: #3a2115;       /* لون كروت الهوية الرسمي من صور الأكواب */
-            --belont-peach: #ffa882;      /* اللون الخوخي الرسمي المضيء */
-            --text-light: #f5eae4;       /* نصوص فاتحة مريحة للعين */
-            --text-muted: #bda295;       /* نصوص فرعية ناعمة */
+            --belont-dark: #1e110a;       /* بني داكن ملكي ودافئ جداً للخلفية */
+            --belont-card: #2d1b11;       /* لون الكروت المتناسق مع الهوية */
+            --belont-peach: #ffa882;      /* اللون الخوخي الفاخر والمضيء للنصوص الهامة */
+            --text-light: #f7ede8;       /* نصوص أساسية فاتحة ونقية مريحة للعين */
+            --text-muted: #b09587;       /* نصوص فرعية ناعمة */
         }
 
         * {
@@ -37,15 +37,15 @@
         }
 
         /* -------------------------------------
-           الشريط العلوي (الشعار الفخم والأقسام)
+           الشريط العلوي (الشعار والأقسام)
            ------------------------------------- */
         .top-container {
             display: flex;
             flex-direction: column;
             padding: 25px 30px 15px 30px;
             gap: 20px;
-            background: linear-gradient(to bottom, #1f100a, var(--belont-dark));
-            border-bottom: 1px solid rgba(255, 168, 130, 0.08);
+            background: linear-gradient(to bottom, #140b06, var(--belont-dark));
+            border-bottom: 1px solid rgba(255, 168, 130, 0.05);
         }
 
         .header-row {
@@ -54,7 +54,6 @@
             align-items: center;
         }
 
-        /* اللوجو بالخط الفخم العريض المتطابق مع الشعار */
         .logo-box {
             text-align: left;
             order: 2;
@@ -67,7 +66,7 @@
             margin: 0;
             font-family: 'Georgia', serif;
             line-height: 0.9;
-            text-shadow: 0 2px 8px rgba(255, 168, 130, 0.2);
+            text-shadow: 0 2px 10px rgba(255, 168, 130, 0.15);
         }
 
         .logo-box p {
@@ -76,7 +75,7 @@
             font-size: 0.75rem;
             letter-spacing: 4px;
             font-weight: 700;
-            opacity: 0.7;
+            opacity: 0.6;
         }
 
         .menu-title {
@@ -100,7 +99,7 @@
             border-radius: 2px;
         }
 
-        /* كبسولات الأقسام الدائرية المودرن */
+        /* كبسولات الأقسام */
         .categories-scroll {
             display: flex;
             gap: 12px;
@@ -114,9 +113,9 @@
         }
 
         .capsule-btn {
-            background-color: rgba(255, 255, 255, 0.04);
+            background-color: rgba(255, 255, 255, 0.03);
             color: var(--text-muted);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             padding: 10px 26px;
             border-radius: 50px;
             font-size: 0.95rem;
@@ -126,16 +125,15 @@
             transition: all 0.25s ease;
         }
 
-        /* القسم النشط يضوي بالخوخي فخامة */
         .capsule-btn.active {
             background-color: var(--belont-peach);
             color: var(--belont-dark);
-            box-shadow: 0 4px 15px rgba(255, 168, 130, 0.25);
+            box-shadow: 0 4px 15px rgba(255, 168, 130, 0.2);
             border-color: var(--belont-peach);
         }
 
         /* -------------------------------------
-           منطقة الكروت الذكية
+           منطقة العرض والكروت
            ------------------------------------- */
         .main-wrapper {
             flex-grow: 1;
@@ -150,30 +148,25 @@
             gap: 20px;
         }
 
-        /* -------------------------------------
-           كرت المنتج التفاعلي بالوضع الداكن
-           ------------------------------------- */
         .modern-card {
-            background-color: rgba(58, 33, 21, 0.4); /* تداخل لون الكوب الرسمي مع الشفافية */
-            border-radius: 28px;
+            background-color: var(--belont-card);
+            border-radius: 24px;
             padding: 22px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 168, 130, 0.07); /* تحديد الكرت بلمسة خوخية ناعمة */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 168, 130, 0.04);
             min-height: 180px;
             transition: transform 0.2s, border-color 0.2s;
         }
 
-        /* تأثير خفيف عند لمس الشاشة */
         .modern-card:active {
             transform: scale(0.98);
-            border-color: rgba(255, 168, 130, 0.3);
+            border-color: rgba(255, 168, 130, 0.2);
         }
 
-        /* توزيع الأيقونات في زاوية الكرت */
         .card-graphic-wrapper {
             position: absolute;
             top: 20px;
@@ -196,26 +189,25 @@
             font-size: 0.8rem;
             color: var(--text-muted);
             font-weight: 600;
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: rgba(255, 255, 255, 0.04);
             padding: 3px 10px;
             border-radius: 8px;
             display: inline-block;
         }
 
-        /* خط فاصل أنيق بالأسفل */
         .card-footer {
             display: flex;
             justify-content: flex-start;
             align-items: baseline;
             margin-top: 15px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            border-top: 1px dashed rgba(255, 255, 255, 0.06);
             padding-top: 12px;
         }
 
         .item-price {
             font-size: 1.4rem;
             font-weight: 900;
-            color: var(--belont-peach); /* السعر يضيء بالخوخي الفخم */
+            color: var(--belont-peach);
         }
 
         .item-currency {
@@ -225,14 +217,13 @@
             margin-right: 4px;
         }
 
-        /* شارة التميز للمنتجات الخاصة */
         .badge-premium {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: rgba(255, 168, 130, 0.15);
+            background-color: rgba(255, 168, 130, 0.12);
             color: var(--belont-peach);
-            border: 1px solid rgba(255, 168, 130, 0.2);
+            border: 1px solid rgba(255, 168, 130, 0.15);
             font-size: 0.7rem;
             font-weight: 700;
             padding: 3px 10px;
@@ -242,19 +233,17 @@
 </head>
 <body>
 
-    <!-- الشريط العلوي الثابت للبراند -->
+    <!-- الشريط العلوي للبراند -->
     <div class="top-container">
         <div class="header-row">
-            <!-- اللوجو الفخم فوق يسار بلون الهوية المضيء -->
             <div class="logo-box">
                 <h1>Belont</h1>
                 <p>B E L O N T</p>
             </div>
-            <!-- العنوان فوق يمين -->
             <h2 class="menu-title">قائمة المنيو</h2>
         </div>
 
-        <!-- التنقل عبر الكبسولات الداكنة -->
+        <!-- الأقسام المتناسقة -->
         <div class="categories-scroll">
             <button class="capsule-btn active" onclick="filterMenu('sweets', this)">🍰 الحلويات</button>
             <button class="capsule-btn" onclick="filterMenu('matcha', this)">🍵 الماتشا والكركديه</button>
@@ -263,17 +252,16 @@
         </div>
     </div>
 
-    <!-- منطقة المنتجات الفاخرة المريحة للعين -->
+    <!-- منطقة المنتجات الفاخرة -->
     <div class="main-wrapper">
         
-        <!-- قسم الحلويات -->
+        <!-- قسم الحلويات المحدث بالكامل -->
         <div id="sweets" class="menu-tab-content">
             <div class="grid-container">
                 <div class="modern-card">
                     <span class="badge-premium">الأكثر طلباً 🔥</span>
                     <div class="card-graphic-wrapper">
-                        <!-- أيقونة كعك فاخرة متناسقة مع المود الداكن -->
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#bda295"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#b09587"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
                     </div>
                     <div class="card-body">
                         <h3 class="item-title">ترافل المانجو</h3>
@@ -285,10 +273,10 @@
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#bda295"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#b09587"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
                     </div>
                     <div class="card-body">
-                        <h3 class="item-title">كيكة لندن (شوكولاتة)</h3>
+                        <h3 class="item-title">كيكة لندن</h3>
                         <span class="item-calories">510 سعرة</span>
                     </div>
                     <div class="card-footer">
@@ -297,14 +285,74 @@
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#bda295"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#b09587"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
                     </div>
                     <div class="card-body">
-                        <h3 class="item-title">كيكة ترافل الفستق والتوت</h3>
-                        <span class="item-calories">480 سعرة</span>
+                        <h3 class="item-title">كيكة المتيلدا</h3>
+                        <span class="item-calories">490 سعرة</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="item-price">22</span><span class="item-currency">ر.س</span>
+                    </div>
+                </div>
+                <div class="modern-card">
+                    <div class="card-graphic-wrapper">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#b09587"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="item-title">تشيز البيكان</h3>
+                        <span class="item-calories">460 سعرة</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="item-price">24</span><span class="item-currency">ر.س</span>
+                    </div>
+                </div>
+                <div class="modern-card">
+                    <div class="card-graphic-wrapper">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#b09587"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="item-title">كيكة الليمون</h3>
+                        <span class="item-calories">310 سعرة</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="item-price">16</span><span class="item-currency">ر.س</span>
+                    </div>
+                </div>
+                <div class="modern-card">
+                    <div class="card-graphic-wrapper">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#b09587"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="item-title">ترافل الفستق</h3>
+                        <span class="item-calories">450 سعرة</span>
                     </div>
                     <div class="card-footer">
                         <span class="item-price">20</span><span class="item-currency">ر.س</span>
+                    </div>
+                </div>
+                <div class="modern-card">
+                    <div class="card-graphic-wrapper">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#b09587"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="item-title">ترافل التوت</h3>
+                        <span class="item-calories">430 سعرة</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="item-price">20</span><span class="item-currency">ر.س</span>
+                    </div>
+                </div>
+                <div class="modern-card">
+                    <div class="card-graphic-wrapper">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 18.5C2 17.67 2.67 17 3.5 17H20.5C21.33 17 22 17.67 22 18.5V20.5C22 20.78 21.78 21 21.5 21H2.5C2.22 21 2 20.78 2 20.5V18.5Z" fill="#b09587"/><path d="M3 15.5V17H21V15.5C21 12.46 17.42 12 12 12C6.58 12 3 12.46 3 15.5Z" fill="#ffa882"/><circle cx="12" cy="7" r="2" fill="#ffa882"/></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="item-title">تشيز التوت</h3>
+                        <span class="item-calories">400 سعرة</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="item-price">22</span><span class="item-currency">ر.س</span>
                     </div>
                 </div>
             </div>
@@ -315,46 +363,35 @@
             <div class="grid-container">
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <!-- كوب بيلونت الفاخر باللون الخوخي الفاتح والخطوط الانسيابية -->
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none">
-                            <path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/>
-                            <path d="M1 1H34V4H1V1Z" fill="#ffffff"/>
-                            <path d="M6 41H29V43H6V41Z" fill="#ffffff"/>
-                            <path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/>
-                        </svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
-                    <div class="card-body">
-                        <h3 class="item-title">ماتشا فراولة</h3>
-                        <span class="item-calories">180 سعرة</span>
-                    </div>
-                    <div class="card-footer">
-                        <span class="item-price">15</span><span class="item-currency">ر.س</span>
-                    </div>
+                    <div class="card-body"><h3 class="item-title">ماتشا فراولة</h3><span class="item-calories">180 سعرة</span></div>
+                    <div class="card-footer"><span class="item-price">15</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">ماتشا كلاسيك</h3><span class="item-calories">120 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">15</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">ماتشا مانجو</h3><span class="item-calories">195 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">15</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">ماتشا بورليه</h3><span class="item-calories">240 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">15</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">كركديه منعش</h3><span class="item-calories">85 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">10</span><span class="item-currency">ر.س</span></div>
@@ -367,28 +404,28 @@
             <div class="grid-container">
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">لاتيه ساخن</h3><span class="item-calories">150 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">10</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">فلات وايت</h3><span class="item-calories">120 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">10</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">إسبريسو</h3><span class="item-calories">5 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">10</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">كابتشينو</h3><span class="item-calories">130 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">10</span><span class="item-currency">ر.س</span></div>
@@ -401,14 +438,14 @@
             <div class="grid-container">
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">آيس سبانش لاتيه</h3><span class="item-calories">280 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">10</span><span class="item-currency">ر.س</span></div>
                 </div>
                 <div class="modern-card">
                     <div class="card-graphic-wrapper">
-                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#29160d" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        <svg width="35" height="45" viewBox="0 0 35 45" fill="none"><path d="M2 2H33L29 41H6L2 2Z" fill="#ffa882"/><path d="M1 1H34V4H1V1Z" fill="#ffffff"/><path d="M6 41H29V43H6V41Z" fill="#ffffff"/><path d="M8 18C12 18 16 24 22 21C26 19 28 15 28 15" stroke="#1e110a" stroke-width="1.8" stroke-linecap="round"/></svg>
                     </div>
                     <div class="card-body"><h3 class="item-title">البن اليمني</h3><span class="item-calories">0 سعرة</span></div>
                     <div class="card-footer"><span class="item-price">17</span><span class="item-currency">ر.س</span></div>
@@ -418,7 +455,7 @@
 
     </div>
 
-    <!-- جافا سكريبت التنقل -->
+    <!-- سكريبت التنقل التفاعلي -->
     <script>
         function filterMenu(tabId, btnElement) {
             const contents = document.querySelectorAll('.menu-tab-content');
